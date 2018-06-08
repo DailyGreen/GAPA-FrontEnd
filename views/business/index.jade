@@ -1,9 +1,10 @@
 extends ../layouts/layout
 
 block _css
+  link(rel="stylesheet", href="css/temp.css")
 
 block _content
-  h1 INDEX PAGE
-  h3 content..
+  include index.html
 
 block _js
+  script(src="js/temp.js")

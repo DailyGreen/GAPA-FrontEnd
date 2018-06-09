@@ -5,6 +5,14 @@ html {
     padding: 0;
 }
 
+.form-input
+{
+    border-right: #ffffff 1px solid;
+    border-left: #ffffff 1px solid;
+    border-top: #ffffff 1px solid;
+    border-bottom: #000000 1px solid;
+}
+
 body {
     background-image: url("../img/background.jpg");
     background-position: center top;
@@ -20,13 +28,26 @@ body {
 }
 
 .text-account {
-    color: #000000;
+    color: #ffffff;
     font-size: 15px;
 }
 
 .text-welcome {
+    color: #000000;
     font-size: 200%;
-    margin-top: -30px;
+    margin-top:-17%;
+    background-color: white;
+    box-shadow:0px 0px 1px 1px gray;
+}
+
+.btn-success
+{
+    background-color: #a9d18e;
+    border: #a9d18e;
+    outline: #a9d18e
+}
+.btn-success:hover{
+    background-color: #99bf80;
 }
 
 .formboxparent-mng {
@@ -40,9 +61,15 @@ body {
     }
 
     .container {
-        padding-left: 10%;
-        padding-right: 10%;
+        padding-left: 15%;
+        padding-right: 15%;
         padding-top: 10%;
         padding-bottom: 10%;
     }
 }
+
+#font-text{
+    font-family: 'Roboto', sans-serif;
+}
+
+body {overflow:hidden}

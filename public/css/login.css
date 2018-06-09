@@ -1,0 +1,37 @@
+.form-input{
+    border-right: #ffffff 1px solid; 
+    border-left: #ffffff 1px solid;
+    border-top: #ffffff 1px solid;
+    border-bottom: #000000 1px solid;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-account{
+  color: #000000;
+  font-size: 15px;
+}
+
+.text-welcome{
+  font-size: 200%;
+  margin-top: -30px;
+}
+
+@media (min-width: 992px) {
+  .card {
+      padding-left: 20%;
+      padding-right: 20%;
+  }
+}
+
+body {
+  background-image: url("../img/background.jpg"); 
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}

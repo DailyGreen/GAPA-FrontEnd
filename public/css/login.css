@@ -13,13 +13,6 @@ body {
     height: 100%;
 }
 
-.form-input {
-    border-right: #ffffff 1px solid;
-    border-left: #ffffff 1px solid;
-    border-top: #ffffff 1px solid;
-    border-bottom: #000000 1px solid;
-}
-
 .center-block {
     display: block;
     margin-left: auto;
@@ -36,9 +29,20 @@ body {
     margin-top: -30px;
 }
 
+.formboxparent-mng {
+    margin-top: 5%;
+ }
+
 @media (min-width: 992px) {
     .card {
-        padding-left: 20%;
-        padding-right: 20%;
+        padding-left: -10%;
+        padding-right: -10%;
+    }
+
+    .container {
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-top: 10%;
+        padding-bottom: 10%;
     }
 }

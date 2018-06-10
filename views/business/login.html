@@ -1,21 +1,62 @@
 <div class="container formboxparent-mng">
-    <div class="card"style="box-shadow:0px 0px 1.5px 1.5px gray;">
-        <div class="card-body" >
-            <div class="card-body col-xs-6 col-md-8 center-block">
-            <p class="center-block text-center text-welcome"id="font-text">Welcome !!</p></div>
-
-            <form class="form-inline">
-                <label class="sr-only" for="ID">ID</label>
-                <input type="id" class="center-block form-control col-md-6" style="margin-bottom: 10px" id="font-text"placeholder="ID">
-            </form>
-
-          <form class="form-inline">
-                <label class="sr-only" for="Password">Password</label>
-                <input type="password" class="center-block form-control col-md-6" style="margin-bottom: 10px"id="font-text" placeholder="Password">
-            </form>
-            
-            <button type="button" class="center-block btn btn-success col-md-6"id="font-text">LOGIN</button>
+    <div class="card" style="box-shadow: 0px 0px 1.5px 1.5px gray;" id="authentication">
+        
+        <!-- 로그인 창 -->
+        <div v-show='state === 1'>
+            <div class="card-body">
+                <div class="card-body col-xs-6 col-md-8 center-block">
+                    <p class="center-block text-center text-welcome" id="font-text">Welcome !!</p>
+                </div>
+                <form>
+                    <div class="form-inline">
+                        <label class="sr-only" for="ID">ID</label>
+                        <input type="id" class="center-block form-control col-md-6" style="margin-bottom: 10px" id="font-text" placeholder="ID">
+                    </div>
+                    <div class="form-inline">
+                        <label class="sr-only" for="Password">PW</label>
+                        <input type="password" class="center-block form-control col-md-6" style="margin-bottom: 10px" id="font-text" placeholder="PW">
+                    </div>
+                    <button type="button" class="center-block btn btn-success col-md-6" id="font-text" v-on:click="gameSelect">Register</button>
+                </form>
+            </div>
+            <button type="button" class="btn btn-success text-account" href="#"  style="margin-top: 10px" id="font-text" v-on:click="wantRegister">Create An Account</button>
         </div>
-        <button type="button" class="btn btn-success text-account" href="#"  style="margin-top: 10px" id="font-text">Create An Account</a>
+
+        <!-- 회원가입 창 -->
+        <div v-show='state === 0'>
+            <div class="card-body">
+                <div class="card-body col-xs-6 col-md-8 center-block">
+                    <p class="center-block text-center text-welcome" id="font-text">Nice to meet you !!</p>
+                </div>
+                <form>
+                    <div class="form-inline">
+                        <label class="sr-only" for="ID">ID</label>
+                        <input type="id" class="center-block form-control col-md-6" style="margin-bottom: 10px" id="font-text" placeholder="ID">
+                    </div>
+                    <div class="form-inline">
+                        <label class="sr-only" for="Password">PW</label>
+                        <input type="password" class="center-block form-control col-md-6" style="margin-bottom: 10px" id="font-text" placeholder="PW">
+                    </div>
+                    <div class="form-inline">
+                        <label class="sr-only" for="Password">PW-RE</label>
+                        <input type="password" class="center-block form-control col-md-6" style="margin-bottom: 10px" id="font-text" placeholder="PW-RE">
+                    </div>
+                    <div class="form-inline">
+                        <label class="sr-only" for="ID">E-mail</label>
+                        <input type="email" class="center-block form-control col-md-6" style="margin-bottom: 10px" id="font-text" placeholder="E-mail">
+                    </div>
+                    <button type="button" class="center-block btn btn-success col-md-6" id="font-text">Register</button>
+                </form>
+                
+            </div>
+            <button type="button" class="btn btn-success text-account" href="#"  style="margin-top: 10px" id="font-text" v-on:click="wantLogin">Login</button>
+        </div>
+
+        <!-- 게임 선택 창 -->
+        <div v-show='state === 2'>
+            <div class="card-body">
+                
+            </div>
+        </div>
     </div>
 </div>

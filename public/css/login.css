@@ -4,61 +4,46 @@ html {
     margin: 0;
     padding: 0;
 }
-/* input 태그 폼 _________ 모양 만드는 클래스 (미사용) */
-.form-input{
-    border-right: #ffffff 1px solid;
-    border-left: #ffffff 1px solid;
-    border-top: #ffffff 1px solid;
-    border-bottom: #000000 1px solid;
-}
-
 body {
     background-image: url("../img/unknown-1.png");
     /*background-image: url("../img/background.jpg");*/
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
-    overflow:hidden;
+    overflow: hidden;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Orbitron', sans-serif;
 }
 
-.center-block {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+/* Bootstrap btn-success 색 수정 */
+.btn-success {
+    background-color: #a9d18e;
+    border: #a9d18e;
+    outline: #a9d18e;
+}
+.btn-success:hover {
+    background-color: #99bf80;
+    border: #a9d18e;
+    outline: #a9d18e;
 }
 
-.text-account {
+/* input 태그 폼 _________ 모양 만드는 클래스 (미사용) */
+.form-input {
+    border-right: #ffffff 1px solid;
+    border-left: #ffffff 1px solid;
+    border-top: #ffffff 1px solid;
+    border-bottom: #000000 1px solid;
+}
+
+.card .btn-account {
     color: #ffffff;
     font-size: 15px;
     width: 100.2%;
-    border-radius: 0px 0px 1px 1px;
+    /* padding: 0; */
+    margin: 0;
+    border-radius: 0 0 1px 1px;
 }
 
-.text-welcome {
-    color: #000000;
-    font-size: 200%;
-    margin-top:-4rem;
-    background-color: white;
-    box-shadow:0px 0px 0.7px 0.7px gray;
-}
-
-.btn-success
-{
-    background-color: #a9d18e;
-    border: #a9d18e;
-    outline: #a9d18e
-}
-.btn-success:hover{
-    background-color: #99bf80;
-    border: #a9d18e;
-    outline: #a9d18e
-}
-
-.formboxparent-mng {
-    margin-top: 5%;
- }
-  
 @media (min-width: 992px) {
     .card {
         margin-left: 10rem;
@@ -77,62 +62,100 @@ body {
         margin-right: 7rem;
     }
 
-    .btn-game:before,.btn-game:after{
-        content:'';
-        position:absolute;
-        top:0;
-        right:0;
-        height:2px;
-        width:0;
+    .btn-game:after,
+    .btn-game:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 2px;
+        width: 0;
         background: #1AAB8A;
-        transition:400ms ease all;
-      }
+        transition: 400ms ease all;
+    }
 }
 
-#font-text{
-    font-family: 'Roboto', sans-serif;
+.card .card-body .text-welcome {
+    color: #000000;
+    font-size: 200%;
+    margin-top: -4rem;
+    background-color: white;
+    box-shadow: 0 0 0.7px 0.7px gray;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.card .card-body .center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card .card-body .next-btn {
+    margin-top: 10%;
+    height: 50px;
+    font-size: 150%;
 }
 
 /* 게임선택창 버튼 */
-.btn-game{
-    background:#fff;
-    border:none;
-    position:relative;
+.card .card-body .center-block.btn-game {
+    background: #fff;
+    border: none;
+    position: relative;
     height: auto;
-    font-size:1.6em;
-    padding:0 2em;
-    cursor:pointer;
-    transition:400ms ease all;
-    outline:none;
-  }
-  .btn-game:hover{
-    background:#fff;
-  }
-  .btn-game:active{
+    font-size: 1.6em;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 400ms ease all;
+    outline: none;
+    outline-style: none;
+}
+.card .card-body .center-block.btn-game:hover {
+    background: #fff;
+}
+.card .card-body .center-block.btn-game:active {
     background: #e2f0d9;
 }
- 
-  .btn-game:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-  }
-  .btn-game:hover:before,button:hover:after{
-    width:100%;
-    transition:800ms ease all;
+.card .card-body .center-block.btn-game:focus {
+    outline-style: none;
+}
+.card .card-body .center-block.btn-game:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+.card .card-body .center-block:hover:before,
+button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+/* select-box */
+@keyframes game-selected {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
   }
 
-  .select-box { 
-      background: #a9d18e;
-      border:1px solid;
-      border-style: none;
-      margin-top: 5%;
-      padding:2.5px;
- }
+.card .card-body .center-block.select-box {
+    background: #a9d18e;
+    border: 1px solid;
+    border-style: none;
+    margin-top: 5%;
+    padding: 2.5px;
+    animation-name: game-selected;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+.card .card-body .center-block.un-select-box {
+    background: white;
+    border: 1px solid;
+    border-style: none;
+    margin-top: 5%;
+    padding: 2.5px;
+}
 
- .next-btn{
-    margin-top:10%;
-    height: 50px;
-    font-size: 150%;
- }

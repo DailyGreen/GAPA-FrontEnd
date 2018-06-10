@@ -1,7 +1,7 @@
 <div class="container formboxparent-mng">
-    <div class="card" style="box-shadow: 0px 0px 1.5px 1.5px gray;" id="authentication">
+    <div class="card" style="box-shadow: 0px 0px 30px 0px gray;"  id="authentication">
         
-        <!-- 로그인 창 -->
+        <!-- 로그인 창 state === 1-->
         <div v-show='state === 1'>
             <div class="card-body">
                 <div class="card-body col-xs-6 col-md-8 center-block">
@@ -52,11 +52,37 @@
             <button type="button" class="btn btn-success text-account" href="#"  style="margin-top: 10px" id="font-text" v-on:click="wantLogin">Login</button>
         </div>
 
-        <!-- 게임 선택 창 -->
+        <!-- 게임 선택 창 state === 2-->
         <div v-show='state === 2'>
-            <div class="card-body">
-                
+            <div class="card-body" style="margin-bottom: 5%;">
+                <div class="card-body col-xs-6 col-md-8 center-block">
+                    <p class="center-block text-center text-welcome" id="font-text">CHOOSE GAME</p>
+                </div>
+                <div class="row" style="margin-top:5%;">
+                    <div class="col-md-4">
+                        <button type="button" class="center-block btn-game" id="font-text" v-on:click="soverwatch"><img src="../img/overwatch.png" width="80%"> </button>
+                        <div class="col-md-3 center-block select-box" v-show='game === 1'></div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="center-block btn-game" id="font-text"v-on:click="slol"><img src="../img/lol.png"width="80%"></button>
+                        <div class="col-md-3 center-block select-box" v-show='game === 2'></div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="center-block btn-game" id="font-text"v-on:click="spubg"><img src="../img/pubg.png"width="80%"></button>
+                        <div class="col-md-3 center-block select-box" v-show='game === 3'></div>
+                    </div>
+                 </div>
+
+                <button type="button" class="center-block btn btn-success col-md-4 next-btn disabled" id="font-text" v-bind:class="{disabled: disableButton}"><a href="#"></a>NEXT</button>
             </div>
         </div>
+
+        <!-- 다음 페이지-->
+        <div v-show='state === 3'>
+            <div class="card-body">
+                    
+            </div>
+        </div>
+
     </div>
 </div>

@@ -1,0 +1,48 @@
+body {
+    background-color: #E2F0D9
+
+}
+
+@font-face { 
+    font-family: 'KoPubDotumMedium'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/KoPubDotumMedium.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+@media (min-width : 992px) {
+    body {
+        margin-top: 10rem;
+    }
+}
+
+img#title-img {
+    width:60px;
+    position: absolute;
+    /* margin-top:60px; */
+}
+
+.row {
+    font-family: 'KoPubDotumMedium'; 
+    height: 40rem;
+    box-shadow: rgb(112, 106, 112) 0px 0px 35px -2px;
+}
+
+.row .col-md-6#left { 
+    padding-top: 3%;
+    height: 40rem;
+    background-color: rgb(248,248,248);
+    text-align: center;
+}
+.row .col-md-6#right {
+    padding-top: 20%;
+    height: 40rem;
+    background-color: white;
+    text-align: center;
+}
+
+.row .col-md-6#right button {
+    font-size: 25px;
+    width: 150px;
+    height: 50px;
+}

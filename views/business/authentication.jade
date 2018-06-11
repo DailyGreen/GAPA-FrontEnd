@@ -1,0 +1,21 @@
+extends ../layouts/layout
+
+block _css
+    link(rel="stylesheet", href="css/body.css")
+
+block _content
+  .container
+    .row
+      .col-md-6#left
+        img#title-img(src="img/gapa_icon.png")
+        img(src="img/gapa_intro_1.png")
+      .col-md-6#right
+        h1 반갑습니다!
+        h5 GAPA는 게임 친구, 파티를 찾아주는 서비스입니다.
+        br
+        br
+        br
+        button.btn.btn-success 자세히
+
+block _js
+    //- script(src="js/temp.js")

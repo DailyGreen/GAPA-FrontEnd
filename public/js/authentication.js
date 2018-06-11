@@ -6,6 +6,7 @@ var Main = new Vue({
         // state === 2 : 로그인 창
         // state === 3 : 게임 창
         state: 1,
+        on: true
     },
     methods: {
         // 페이지 전환
@@ -20,3 +21,9 @@ var Main = new Vue({
         }
     }
 })
+
+$('#open').on('click', function(e) {
+    setTimeout(function(){
+        $('#col-box').hide() 
+    }, 2000); // 1초는 깜빡이는 시간, 1초는 잠시 휴식(바로 버튼 못누르게)
+});

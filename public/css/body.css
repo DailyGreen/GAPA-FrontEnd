@@ -41,10 +41,10 @@ img#title-img {
     text-align: center;
 }
 
-.row .col-md-6.white {
+.row .col-md-6.white, .row .col-md-9.white {
     background-color: white;
 }
-.row .col-md-6.gray {
+.row .col-md-6.gray, .row .col-md-3.gray{
     background-color: rgb(248,248,248);
 }
 
@@ -122,7 +122,7 @@ img#title-img {
     box-shadow: 0px 0px 15px -7px gray;
 }
 
-.row .col-md-6#right button{
+.row .col-md-6#right button, .row .col-md-3#left button{
     background-color: #8dcc75;
     border-right: #8dcc75 1px solid;
     border-left: #8dcc75 1px solid;
@@ -144,12 +144,13 @@ img#title-img {
     text-decoration: underline;
 }
 
-/* 게임 입력창 input 박스 */
-.row .col-md-6#right .form-inline #gamebox{
+/* 게임 입력창 input */
+.row .col-md-6#right .form-inline #gamebox, .row .col-md-9.white input{
     height: 50px;
     width: 400px;
     border-right: #8dcc75 3px solid;
     border-left: #8dcc75 3px solid;
     border-top: #8dcc75 3px solid;
     border-bottom: #8dcc75 3px solid;
+    margin-top: 10px;
 }

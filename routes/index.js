@@ -13,4 +13,8 @@ router.get('/alogin', function(req, res) {
     res.render('business/authentication', { title: 'GAPA Login page'});
 });
 
+router.get('/rooms', function(req, res) {
+    res.render('business/rooms', { title: 'GAPA Game Room page'});
+});
+
 module.exports = router;

@@ -9,9 +9,18 @@ body {
     font-style: normal; 
 }
 
+@media (max-width : 992px){
+    .row .col-md-3#left #setting{
+        margin-top: 30%
+    }
+}
+
 @media (min-width : 992px) {
     body {
         margin-top: 10rem;
+    }
+    .row .col-md-3#left #setting{
+        margin-top: 70%
     }
 }
 
@@ -71,15 +80,20 @@ img#title-img {
     padding-top: 20%;
 }
 
-.row .col-md-3#left .col-md-4#setting{
-    background: rgb(248,248,248);
-    height: 50px;
+.row .col-md-3#left #setting, .row .col-md-9 .col-md-1{
     color: #8dcc75;
-    width: auto;
-    height: auto;
     border: 0;
-    font-size: 350%;
+}
+.row .col-md-3#left #setting{
+    background-color: rgb(248,248,248);
+    font-size: 300%;
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.row .col-md-9 .col-md-1{
+    background-color: white;
+    margin-left: auto;
+    font-size: 200%;
 }

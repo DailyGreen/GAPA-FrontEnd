@@ -17,4 +17,8 @@ router.get('/rooms', function(req, res) {
     res.render('business/rooms', { title: 'GAPA Game Room page'});
 });
 
+router.get('/chat', function(req, res) {
+    res.render('business/chat', { title: 'GAPA Game Chat page'});
+});
+
 module.exports = router;

@@ -6,20 +6,45 @@
 </p>
 
 # Dev (개발 메모)
+[TODO - Drive](https://docs.google.com/document/d/1ThtNlaxVdBlL2ThwG41KtXHospNcx3J7zJRBf6-axwY/edit)
+## 개발환경
+#### Frontend
+- Vue.js (v2.6.10)
+
+#### Backend
+- Express (v4.16.1)
+
+
+#### 환경설정
+```
+npm install
+cd eon-backend
+npm install
+cd ..
+cd eon-frontend
+npm install
+cd ..
+npm run start
+```
+
+> concurrently 이용해서 백엔드와 프론트엔드를 동시 시작함
+
+## goorm.ide 환경 설정
+:8080 포트 - 프론트엔드
+
+> [https://gapaclient.run-us-west1.goorm.io](https://gapaclient.run-us-west1.goorm.io)
+
+:3000 포트 - 백엔드
+
+> [https://gapaserver.run-us-west1.goorm.io](https://gapaserver.run-us-west1.goorm.io)
+
 ### 모듈 다운 
 
 `npm install`
 
 ### 실행 
 
-`node app.js`
-
-### views
- `views/layouts` : 레이아웃 (반복 코드 미리 구성)
- 
- `views/components` : 부품 (header, footer 등등)
- 
- `views/business` : 실제 로직 
+`npm start`
 
 ## git
  `git branch ***` : *** 브랜치 생성

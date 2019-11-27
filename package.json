@@ -1,29 +1,18 @@
 {
-  "name": "gapa",
+  "name": "vue-with-express",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
   "scripts": {
+    "server": "cd gapa-backend && npm start",
+    "client": "cd gapa-frontend && npm run serve",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DailyGreen/GAPA.git"
-  },
-  "author": "kyechan99@gmail.com",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DailyGreen/GAPA/issues"
+  "devDependencies": {
+    "concurrently": "^3.1.0"
   },
-  "homepage": "https://github.com/DailyGreen/GAPA#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "bootstrap": "^4.1.1",
-    "express": "^4.16.3",
-    "jade": "^1.11.0",
-    "jquery": "^3.3.1",
-    "mongodb": "^3.1.1",
-    "morgan": "^1.9.0",
-    "vue": "^2.5.16"
-  }
+  "dependencies": {}
 }

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 
 import Index from '../containers/Index'
+import Index2 from '../containers/Index2'
 
 import Auth from '../containers/Auth'
 import Login from '../containers/Login'
@@ -15,12 +16,17 @@ const routes = [
     {
       path: '/',
       name: 'IndexPage',
-      component: Auth
-    },
-    {
-      path: '/auth',
-      name: 'AuthPage',
       component: Index
+    },
+	{
+		path: '/test',
+		name: 'IndexPageTest',
+		component: Index2
+	},
+    {
+      path: '/old',
+      name: 'IndexPage',
+      component: Auth
     },
     {
       path: '/login',

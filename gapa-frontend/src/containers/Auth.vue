@@ -6,7 +6,7 @@
 				<div class="col-md-6 gray" id="left">
 					<img id="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
 					<div class="col-content">
-						<img src="img/gapa_intro_1.png"/>
+						<img :src="require(`@/assets/gapa_intro_1.png`)"/>
 					</div>
 				</div>
 
@@ -44,8 +44,6 @@
 						<button type="button" class="btn btn-success" id="loginbtn" v-on:click="gameSelect">Login</button><br/>
 						<a href="#" id="register">회 원 가 입</a>
 					</div>
-					<div class="col-box" id="col-box">
-					</div>
 				</div>
 			</div>
 
@@ -67,7 +65,7 @@
 						<label class="sr-only" for="game">game</label>
 						<input type="game" class="center-block" id="gamebox" style="margin-bottom: 10px;" placeholder="   게임 입력">
 
-						<!-- <div class="btn-group">
+						<!--<div class="btn-group">
 							<input type="game" class="center-block" id="gamebox" style="margin-bottom: 10px;" placeholder="   게임 입력">
 							<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							</button>
@@ -78,7 +76,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#">Separated link</a>
 							</div>
-						</div> -->
+						</div>-->
 					</div>
 				</div>
 			</div>
@@ -123,10 +121,10 @@ export default {
 
 
 <style lang="scss" scoped>
-body {
-    background-color: #E2F0D9;
-}
-
+//.container {
+//    background-color: #E2F0D9;
+//}
+	
 @font-face { 
     font-family: 'KoPubDotumMedium'; 
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/KoPubDotumMedium.woff') format('woff'); 
@@ -141,7 +139,7 @@ body {
 }
 
 @media (min-width : 992px) {
-    body {
+    .container {
         margin-top: 10rem;
     }
     .row .col-md-6#right #bottom-text{

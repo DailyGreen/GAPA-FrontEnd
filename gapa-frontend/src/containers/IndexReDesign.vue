@@ -1,7 +1,12 @@
 <template>
   <div>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="content row">
+			<!--
+					login-page : 0
+					idle-page : 1
+					search-page : 2
+			-->
 			<!-- 로그인 화면 (왼쪽) -->
 			<div class="left-content login-page col-md-4" v-if="type===0">
 				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
@@ -9,12 +14,14 @@
 				<!--<p class="text-danger"> 아이디 혹은 비밀번호가 다릅니다.</p>-->
 				
 				<div class="login card">
-					<!-- <div class="group">
-						<input class="form-item id" id="id" type="text" name="id" required>
-						<label for="id">아이디</label>
-					</div> -->
-					<input type="id" class="col-md-12" style="margin-bottom: 10px;" placeholder="아이디">
-					<input type="id" class="col-md-12" placeholder="비밀번호">
+					<div class="row login-input">
+						<i class="col-md-2 far fa-1x fa-envelope align-middle"></i>
+						<input type="email" class="col-md-10" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+					</div>
+					<div class="row login-input">
+						<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
+						<input type="password" class="col-md-10" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+					</div>
 					<button type="button" class="btn btn-success" v-on:click="LoginSuccess">Login</button>
 					<a href="#" style="margin-top: 0px; text-align:center; font-size: 13px;">계정 생성</a>
 					<!-- 로그인 실패시 띄워주기 -->
@@ -22,7 +29,7 @@
 				</div>
 			</div>
 			<!-- 평상시 화면 (왼쪽)-->
-			<div class="left-content common-page col-md-4" v-else-if="type===1">
+			<div class="left-content idle-page col-md-4" v-else-if="type===1">
 				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
 				
 				<div class="common-profile card">
@@ -34,12 +41,11 @@
 				</div>
 			</div>
 			<!-- 팀원 검색 화면 (왼쪽)-->
-			<div class="left-content search-teams col-md-4" v-else-if="type===2">
+			<div class="left-content search-page col-md-4" v-else-if="type===2 || type===3">
 				<!-- <img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/> -->
 				<h1 class="search-title">Waiting TEAM..</h1>
-
 				<div class="teams card">
-					<div class="member row" v-for="member in teams" v-bind:key="member.id">
+					<div class="member row" v-for="member in teams" v-bind:key="member.id" v-on:click="type=3">
 						<div class="col-md-4 member-profile">
 							<i class="fas fa-male"></i>
 						</div>
@@ -56,14 +62,19 @@
 				</div>
 			</div>
 			
+			<!--
+					login-page : 0
+					idle-page : 1
+					search-page : 2
+			-->
 			<!-- 로그인 화면 (오른쪽)-->
-			<div class="right-content col-md-8" v-if="type===0">
+			<div class="right-content login-page col-md-8" v-if="type===0">
 				<h1> 안녕하세요 !</h1>
-				<h5 id="bottom-text">반갑습니다! 저는 GAPA라고 해요.</h5>
-				<h5 id="bottom-text">저는 게임 친구, 파티를 찾아드리기 위해 만들어졌어요. \- 이런거 이제 안함ㅁㅁㅁ</h5>
+				<h5>반갑습니다! 저는 GAPA라고 해요.</h5>
+				<h5>저는 게임 친구, 파티를 찾아드리기 위해 만들어졌어요. \- 이런거 이제 안함ㅁㅁㅁ ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</h5>
 			</div>
 			<!-- 평상시 화면 (오른쪽)-->
-			<div class="right-content col-md-8" v-else-if="type===1">
+			<div class="right-content idle-page col-md-8" v-else-if="type===1">
 				<div class="sprofile col-md-4">
 					<h1 style="font-size: 20px; color: white;">small profile</h1>	<!-- 임시용 나중에 수정-->
 				</div>
@@ -133,8 +144,40 @@
 				</simplebar>
 			</div>
 			<!-- 팀원 찾기 화면 (오른쪽)-->
-			<div class="right-content col-md-8" v-else-if="type===2">
-				<p>fdsa</p>
+			<div class="right-content search-page col-md-8" v-else-if="type===2">
+				<div class="bg"></div>
+				<div class="row h-100">
+					<div class="col-md-6">
+						<div class="card">
+							<i class="fas fa-user-friends fa-3x"></i>
+							<div class="card-body">
+								<p class="card-text">Join Team</p>
+							</div>
+							<div class="card-footer">
+								<p>asdfasf</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card">
+							<i class="fas fa-plus fa-3x"></i>
+							<div class="card-body">
+								<p class="card-text">Create Team</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-content profile-page col-md-8" v-else-if="type===3">
+				<h3>Games<span> ></span></h3>
+				<div class="games">
+					<img class="game-card" :src="require(`@/assets/lol_card.png`)"/>
+					<img class="game-card" :src="require(`@/assets/pubg_card.jpg`)"/>
+				</div>
+				<h3>Recent<span> ></span></h3>
+				<div class="recents">
+					<p> 리그오브레전드를(을) 5인파티로 생성해서 게임함 (3hours)</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -197,50 +240,61 @@ export default {
     @content;
   }
 }
-	
+
 .container {
 	margin-top: 100px;
     // box-shadow: #4E67EB 0px 0px 5px 0px;
 	background-color: white;
 	border-radius: 50px;
 	padding: 5px 20px 5px 20px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 .content {
-	img#title-img {
-    width:60px;
-    position: relative;
-	}
-	
     height: 40rem;
 	// background-color: #8458B3;
 	.left-content {
 		padding: 25px;
 		border-radius: 50px 0px 0px 50px;
-		background-color: white;
+		background-color: $themeColor;
 		.title-img {
 			width: 40px;
+			position: relative;
 		}
 		&.login-page{
 			.login-title {
 					margin-top: 8rem;
 					font-family: 'Lilita One', cursive;
 					margin-bottom: 1rem;
-				}
+			}
 			.login{
 				border-color: white;
+				.login-input {
+					background-color: #e6e6e6;
+					display: block;
+					margin: 0px 0px 10px 0px;
+					input{
+						padding: 10px 0px 10px 0px;
+						font-size: 18px;
+						border: 0px;
+						background-color: #e6e6e6;
+						color: #686868;
+						&:focus {
+							outline:none;
+						}
+					}
+					i {
+						padding: 0px 0px 5px 0px;
+						text-align: center;
+						vertical-align: middle;
+						color: #686868;
+					}
+				}
 				button{
 					margin-top: 3rem;
 				}
-				input{
-					font-size: 22px;
-					border: 0px;
-					border-bottom: #d5ebca 1px solid;
-					margin-top: 20px;
-					margin-bottom: 20px;
-				}
 			}
 		}
-		&.common-page{
+		&.idle-page{
 			.common-profile{
 				border-color: white;
 				.profileimg{
@@ -263,10 +317,8 @@ export default {
 					}
 				}
 			}
-		}
-		
-		
-		&.search-teams {
+		}		
+		&.search-page {
 			.search-title {
 				margin-top: 8rem;
 				font-family: 'Lilita One', cursive;
@@ -288,6 +340,7 @@ export default {
 						p { margin-bottom: 0px; }
 					}
 					&:hover {
+						cursor: pointer;
 						background-color: #F2F2F2;
 					}
 				}
@@ -315,42 +368,110 @@ export default {
 		border-radius: 50px;
 		// border-radius: 40px 50px 50px 40px;
 		// border-radius: 0px 50px 50px 0px;
-		background-color: $themeColor;
-		.sprofile{
-			background-color: black;
-			border-radius: 50px;
-			opacity: 0.5;
-			float: right;
-			height: 6.5%;
-		}
-		.search {
-			margin-top: 5rem;
-			font-size: 30px;
-			color: white;
-			input {
-				margin-left: 15px;
+		background-color: $idleColor;
+		overflow: hidden;
+		&.idle-page {
+			.sprofile {
+				background-color: black;
+				border-radius: 50px;
+				opacity: 0.5;
+				float: right;
+				height: 6.5%;
+			}
+			.search {
+				margin-top: 5rem;
+				font-size: 30px;
 				color: white;
-				border: 0px;
-				background-color: rgba(0,0,0,0);
-				&::placeholder {
-					color: #FAFAFA;
+				input {
+					margin-left: 15px;
+					color: white;
 					border: 0px;
+					background-color: rgba(0,0,0,0);
+					&::placeholder {
+						color: #FAFAFA;
+						border: 0px;
+					}
+				}
+			}
+			.scrolling-wrapper {
+				margin-top: 50px;
+				height: 443px;		
+				padding-right: 10px;
+				-webkit-overflow-scrolling: touch;
+				.card {
+					border-radius: 25px;
+					overflow: hidden;
 				}
 			}
 		}
-		.scrolling-wrapper {
-			margin-top: 50px;
-			height: 443px;		
-			padding-right: 10px;
-			-webkit-overflow-scrolling: touch;
-			.card {
-				border-radius: 25px;
-				overflow: hidden;
+		&.search-page {
+			background-color: white;
+			&:not(.bg) {
+				z-index: 1;
+			}
+			.bg {
+				position: absolute;
+				background: url('~@/assets/lol_illust.png') no-repeat right 0px; 
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				filter: brightness(50%);
+				-webkit-filter: blur(3px);
+				-moz-filter: blur(3px);
+				-o-filter: blur(3px);
+				-ms-filter: blur(3px);
+				filter: blur(3px);
+				width: calc(100% + 80px);
+				height: calc(100% + 20px);
+				margin: -20px -40px 0px -40px;
+				z-index: -1;
+			}
+			.row {
+				height: 100%;
+				text-align: center;
+				.col-md-6 {
+					margin-top: auto;
+					margin-bottom: auto;
+					.card {
+						padding-top: 40px;
+						padding-bottom: 10px;
+						border-radius: 20px;
+						cursor: pointer;
+						.card-body {
+							.card-text {
+								font-weight: 700;
+							}
+						}
+						.card-footer {
+							padding: 0px;
+							p { margin-top: 5px; margin-bottom: 0px; }
+						}
+					}
+				}
 			}
 		}
-		.main{
-			h2{
-				font-family: 'Permanent Marker', cursive;
+		&.profile-page {
+			color: white;
+			font-size: 14px;
+			h3 {
+				margin-top: 30px;
+				font-size: 20px;
+				font-weight: 700;
+				span {
+					font-size: 14px;
+					font-weight: 400;
+				}
+			}
+			.games {
+				font-weight: 400;
+				.game-card {
+					object-fit: cover;
+					object-position: center;
+					width: 100px;
+					height: 120px;
+					margin-bottom: 1rem;
+				}
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="/public/img/gapa_project.png" width=500/>
+    <img src="gapa_project.png" width=500/>
 </p>
 <p align="center">
     <strong>게임 파티 찾아주기</strong>
@@ -32,11 +32,11 @@ npm run start
 ## goorm.ide 환경 설정
 :8080 포트 - 프론트엔드
 
-> [https://gapaclient.run-us-west1.goorm.io](https://gapaclient.run-us-west1.goorm.io)
+> [https://gapaclient.run-us-west2.goorm.io/](https://gapaclient.run-us-west2.goorm.io/)
 
 :3000 포트 - 백엔드
 
-> [https://gapaserver.run-us-west1.goorm.io](https://gapaserver.run-us-west1.goorm.io)
+> [https://gapaserver.run-us-west2.goorm.io](https://gapaserver.run-us-west2.goorm.io)
 
 ### 모듈 다운 
 

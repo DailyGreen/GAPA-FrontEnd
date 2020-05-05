@@ -3,6 +3,7 @@
   <div>		<!-- 만약 내가 html 테그 안에 클래스를 여러게 쓰고싶다 이러면 그냥 띄어쓰기하면 됨  5번째 줄 이어짐-->
 	<div class="container">		<!-- 컨테이너는 부트 스트랩에서 가장 기본적인 레이아웃 요소이며 기본 그리드 시스템을 사용할 때 필요합니다. -->
 		<div class="content row">		<!-- 고로 이친구는 클래스가 2개라는 뜻 -->
+			
 			<!-- 로그인 화면 (왼쪽) -->
 			<div class="left-content login-page col-md-4" v-if="type===0">
 				<img id="title-img" :src="require(`@/assets/gapa_icon.png`)"/> <!-- v-if="type===0" 아래 까지 웹사이트 화면을 보여준다는뜻 -->
@@ -11,11 +12,25 @@
 				<div class="login card"> <!-- 아 그리고 div 라는 태그는 그냥 묶음 이라생각하면됨 -->
 					<input type="id" class="col-md-12" style="margin-bottom: 10px;" placeholder="아이디">
 					<input type="id" class="col-md-12" placeholder="비밀번호">
-					<button type="button" class="btn btn-success" v-on:click="LoginSuccess">Login</button>	<!-- 이 버튼을 누르면 LoginSuccess 라는 함수가 호출이되는데 이 함수의 내용이 type를 1로 바꿔줌 그래서 아래 평상시 화면이 나타남-->
+					<button type="button" class="btn btn-success" v-on:click="LoginSuccess">Login</button>	
+					<!-- 이 버튼을 누르면 LoginSuccess 라는 함수가 호출이되는데 이 함수의 내용이 type를 1로 바꿔줌 그래서 아래 평상시 화면이 나타남-->
+					
+					
 					<a href="#" style="margin-top: 50px;">계정 생성</a>
 					<a href="#">로그인이 안되시나요?</a>
 				</div>
 			</div>			<!-- 여기까지 v-if="type===0" 이아래 다 동일-->
+			
+			<!-- 로그인 화면 (오른쪽)-->
+			<div class="right-content col-md-8" v-if="type===0">
+				<h1 class="text-center">**공지사항**</h1>
+				<p class="text-center">끄적끄적(심심해서 해놓음)</p>
+				<h1 class="text-center">**GAPA 소식**</h1>
+				<p class="text-center">끄적끄적(심심해서 해놓음)</p>
+			</div>
+			
+			
+			
 			
 			<!-- 평상시 화면 (왼쪽)-->
 			<div class="left-content common-page col-md-4" v-else-if="type===1">
@@ -26,7 +41,7 @@
 					<h4 class="text-center" style="margin-top: 30px;">닉 넣을까말까?#3322</h4>
 					<!-- 버튼 나중에 꾸미기! -->
 					<button type="button" class="btn btn-success" id="top">호출 대기</button>	<!-- btn btn-success 는 부트 스트랩이 지원하는 클래스임 https://getbootstrap.com/docs/4.0/components/buttons/ -->
-					<button type="button" class="btn btn-success" id="bottom">팀 생성하기</button>
+					<button type="button" class="btn btn-success" v-on:click="SearchingTeams" id="bottom">팀 생성하기</button>
 				</div>
 			</div>
 			
@@ -53,17 +68,17 @@
 				</div>
 			</div>
 			
-			<!-- 로그인 화면 (오른쪽)-->
-			<div class="right-content col-md-8" v-if="type===0">
-				<h1 class="text-center">**공지사항**</h1>
-				<p class="text-center">끄적끄적(심심해서 해놓음)</p>
-				<h1 class="text-center">**GAPA 소식**</h1>
-				<p class="text-center">끄적끄적(심심해서 해놓음)</p>
-			</div>
+			
+			
+			
+			
 			<!-- 평상시 화면 (오른쪽)-->
 			<div class="right-content col-md-8" v-if="type===1">
 				<p>asdfasdf</p>
 			</div>
+			
+			
+			
 			<!-- 팀원 찾기 화면 (오른쪽)-->
 			<div class="right-content col-md-8" v-else-if="type===2">
 				<p>fdsa</p>
@@ -83,7 +98,7 @@ export default {
 				1: 평소 Index
 				2: 팀원 검색 중
 			*/
-			type: 1,
+			type: 0,
 			teams: [
 				{
 					name: 'USER_0',
@@ -100,6 +115,9 @@ export default {
 	methods:{
 		LoginSuccess : function(){
 			this.type = 1;
+		},
+		SearchingTeams : function(){
+			this.type = 2;
 		}
 	},
 	components: {

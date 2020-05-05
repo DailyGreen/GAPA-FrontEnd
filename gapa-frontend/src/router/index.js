@@ -3,49 +3,37 @@ import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 
 import Index from '../containers/Index'
-import Index2 from '../containers/Index2'
+import IndexReDesign from '../containers/IndexReDesign'
 
 import Auth from '../containers/Auth'
-import Login from '../containers/Login'
-import Rooms from '../containers/Rooms'
-import Chat from '../containers/Chat'
+import Sample from '../containers/Sample'
 
 Vue.use(VueRouter)
 
 const routes = [
     {
-      path: '/',
-      name: 'IndexPage',
-      component: Index
+		path: '/',
+		name: 'IndexPage',
+		component: Index
+    },
+    {
+		path: '/re',
+		name: 'IndexReDesignPage',
+		component: IndexReDesign
+    },
+    {
+		path: '/auth',
+		name: 'AuthPage',
+		component: Auth
     },
 	{
-		path: '/test',
-		name: 'IndexPageTest',
-		component: Index2
+		path: '/sample',
+		name: 'SamplePage',
+		component: Sample
 	},
-    {
-      path: '/old',
-      name: 'IndexPage',
-      component: Auth
-    },
-    {
-      path: '/login',
-      name: 'LoginPage',
-      component: Login
-    },
-    {
-      path: '/rooms',
-      name: 'RoomsPage',
-      component: Rooms
-    },
-    {
-      path: '/chat',
-      name: 'ChatPage',
-      component: Chat
-    },
-    {
-      path: '*',
-      redirect: '/'
+	{
+		path: '*',
+		redirect: '/'
     }
 ]
 

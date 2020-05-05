@@ -5,13 +5,15 @@
 			<!--
 					idle-page : 0
 					search-page : 1
+					chat-page : 2
+					profile-page : 3
 			-->
 			<!-- 평상시 화면 (왼쪽)-->
 			<div class="left-content idle-page col-md-8" v-if="type===0">
 				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
 				<div class="search">
-					<i class="fas fa-search"></i>
-					<input class="" type="text" placeholder="Search">
+					<!-- <i class="fas fa-search"></i> -->
+					<input class="search-input" type="text" placeholder="리그오브레전드">
 				</div>
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="card-columns">
@@ -99,7 +101,69 @@
 					</div>
 				</div>
 			</div>
-			<div class="left-content profile-page col-md-8" v-else-if="type===2">
+			<div class="left-content chat-page col-md-8" v-else-if="type===2">
+				<div class="chat-content">
+					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
+						<div class="chat-log row">
+							<div class="profile col-md-2">
+								<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+							</div>
+							<div class="msg col-md-10">
+								<p class="nickname">닉네임</p>
+								<pre>안녕하세요오옹.</pre>
+							</div>
+						</div>
+						<div class="chat-log row">
+							<div class="profile col-md-2">
+								<img class="profile-img float-center" :src="require(`@/assets/blackspirit.jpg`)"/>
+							</div>
+							<div class="msg col-md-10">
+								<p class="nickname">닉네임22</p>
+								<pre>
+	네 반갑습니다아. ㅁㄴㅇㄻ
+	ㄴㅇㄻㄴㅇㄹ
+	asdf
+	네 반갑습니다아. ㅁㄴㅇㄻ
+	ㄴㅇㄻㄴㅇㄹ
+	asdf
+	네 반갑습니다아. ㅁㄴㅇㄻ
+	ㄴㅇㄻㄴㅇㄹ
+	asdf
+	네 반갑습니다아. ㅁㄴㅇㄻ
+	ㄴㅇㄻㄴㅇㄹ
+	asdf
+	네 반갑습니다아. ㅁㄴㅇㄻ
+	ㄴㅇㄻㄴㅇㄹ
+	asdf
+	네 반갑습니다아. ㅁㄴㅇㄻ
+	ㄴㅇㄻㄴㅇㄹ
+	asdf
+	네 반갑습니다아. ㅁㄴㅇㄻ
+	ㄴㅇㄻㄴㅇㄹ
+	asdf
+	여러줄 테스트으 ㅁㄴㅇㄹ
+								</pre>
+							</div>
+						</div>
+						<div class="chat-log row">
+							<div class="profile col-md-2">
+								<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+							</div>
+							<div class="msg col-md-10">
+								<p class="nickname">닉네임</p>
+								<pre>안녕하세요오옹.</pre>
+							</div>
+						</div>
+					</simplebar>
+				</div>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Send Your Message">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="button">Enter</button>
+					</div>
+				</div>
+			</div>
+			<div class="left-content profile-page col-md-8" v-else-if="type===3">
 				<h3>Games<span> ></span></h3>
 				<div class="games">
 					<img class="game-card" :src="require(`@/assets/lol_card.png`)"/>
@@ -119,12 +183,12 @@
 			<div class="right-content idle-page col-md-4" v-if="type===0">
 				<div class="state-nav">
 					<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
-					<img class="profile-img float-right" :src="require(`@/assets/blackspirit.jpg`)"/>
+					<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)"/>
 				</div>
 				
 				<div class="menu-nav">
 					<!-- 버튼 나중에 꾸미기! -->
-					<button type="button" class="btn btn-success btn-lg btn-block">
+					<button type="button" class="btn btn-success btn-lg btn-block" v-on:click="type=1">
 						<div class="card">
 							<i class="fas fa-user-friends fa-2x"></i>
 							<div class="card-body">
@@ -146,24 +210,29 @@
 				</div>
 			</div>
 			<!-- 팀원 검색 화면 (오른쪽)-->
-			<div class="right-content search-page col-md-4" v-else-if="type===1 || type===2">
+			<div class="right-content search-page col-md-4" v-else-if="type===2">
 				<!-- <img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/> -->
 				<h1 class="search-title">Waiting TEAM..</h1>
 				<div class="teams card">
 					<div class="member row" v-for="member in teams" v-bind:key="member.id" v-on:click="type=3">
-						<div class="col-md-4 member-profile">
-							<i class="fas fa-male"></i>
+						<div class="col-md-3 member-profile">
+							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
 						</div>
-						<div class="col-md-8 member-name">
-							<p>{{ member.name }}</p>
+						<div class="col-md-9 member-name">
+							<span class="align-middle">{{ member.name }}</span>
 						</div>
 					</div>
-					<div class="empty-member" v-for="i in (maxMember - teams.length)" v-bind:key="i">
-						<p>Empty</p>
+					<div class="member empty-member row" v-for="i in (maxMember - teams.length)" v-bind:key="i">
+						<div class="col-md-3 member-profile">
+							<img class="profile-img float-center" :src="require(`@/assets/noone.png`)"/>
+						</div>
+						<div class="col-md-9 member-name">
+							<span class="align-middle">Empty</span>
+						</div>
 					</div>
 				</div>
 				<div class="leave-teams">
-					<button class="btn btn-light" v-on:click="type=1"><i class="fas fa-sign-out-alt"></i></button>
+					<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
 				</div>
 			</div><!-- left-content -->
 		</div>
@@ -187,11 +256,11 @@ export default {
 			type: 0,
 			teams: [
 				{
-					name: 'USER_0',
+					name: '닉네임',
 					id: 'asdf'
 				},
 				{
-					name: '유저_1',
+					name: '닉네임22',
 					id: 'fdsa'
 				}
 			],
@@ -241,6 +310,15 @@ export default {
 .content {
     height: 40rem;
 	// background-color: #8458B3;
+	.profile-img {
+		min-width: 40px;
+		max-width: 40px;
+		min-height: 40px;
+		max-height: 40px;
+		border-radius: 20%;
+		object-fit: cover;
+		cursor: pointer;
+	}
 	.left-content {
 		padding: 20px 40px 0px 40px;
 		border-radius: 50px;
@@ -263,12 +341,17 @@ export default {
 			.search {
 				// margin-top: 5rem;
 				font-size: 30px;
+				// font-weight: 700;
 				color: black;
-				input {
-					margin-left: 15px;
-					color: black;
+				.search-input {
+					width: 100%;
+					// margin-left: 15px;
+					// display: block;
+					color: white;
 					border: 0px;
-					background-color: rgba(0,0,0,0);
+					border-radius: 4px;
+					padding: 0px 10px 0px 10px;
+					background-color: rgba(20,20,20,0.2);
 					&::placeholder {
 						color: #FAFAFA;
 						border: 0px;
@@ -334,6 +417,57 @@ export default {
 				}
 			}
 		}
+		&.chat-page {
+			.chat-content {
+				margin-top: 20px;
+				// padding-top: 20px;
+				// padding-bottom: 20px;
+				width: 100%;
+				height: -webkit-calc(100% - 100px); /* for Chrome, Safari */
+				height:    -moz-calc(100% - 100px); /* for Firefox */
+				height:         calc(100% - 100px); /* for IE */
+				border: 0px;
+				border-radius: 5px;
+				background-color: #edebeb;
+				.scrolling-wrapper {
+					height: 520px;		
+					padding-right: 10px;
+					padding-bottom: 20px;
+					-webkit-overflow-scrolling: touch;
+					.chat-log {
+						margin-left: 0px;
+						margin-right: 0px;
+						margin-top: 20px;
+						.profile {
+							text-align: center;
+							.profile-img {
+								min-width: 60px;
+								max-width: 60px;
+								min-height: 60px;
+								max-height: 60px;
+								border: 0px;
+							}
+						}
+						.msg {
+							padding-left: 0px;
+							.nickname {
+								margin-bottom: 0px;
+								font-weight: 800;
+								font-size: 20px;
+							}
+							pre {
+								color: rgba(0,0,0,0.5);
+								margin-bottom: 0px;
+								white-space: pre-line;
+								font-size: 16px;
+								font-weight: 600;
+								font-family: 'Noto Sans KR', sans-serif;
+							}
+						}
+					}
+				}
+			}
+		}
 		&.profile-page {
 			color: white;
 			font-size: 14px;
@@ -363,25 +497,22 @@ export default {
 		// border-radius: 50px 0px 0px 50px;
 		border-radius: 30px 30px 30px 30px;
 		background-color: $themeColor;
-		.profile-img {
-			// width: auto;
-			// height: auto;
-			max-width: 40px;
-			max-height: 40px;
-			border-radius: 20%;
-			display: block;
-			cursor: pointer;
-			// margin-left: auto;
-			// margin-right: auto;
-			// right: 0px;
-		}
 		&.idle-page {
 			.state-nav {
 				height: 40px;
 				display: block;
+				.profile-img {
+					display: block;
+				}
 			}
 			.menu-nav {
+				height: -webkit-calc(100% - 40px); /* for Chrome, Safari */
+				height:    -moz-calc(100% - 40px); /* for Firefox */
+				height:         calc(100% - 40px); /* for IE */
 				border-color: white;
+				display: flex;
+				flex-direction: column; justify-content: center;
+				align-items: center;
 				button {
 					display: block;
 					background-color: $pointColor;
@@ -404,35 +535,36 @@ export default {
 		}		
 		&.search-page {
 			.search-title {
+				color: white;
 				margin-top: 8rem;
 				font-family: 'Lilita One', cursive;
 			}
 			.teams {
 				margin-top: 10px;
 				border: 0px;
+				background-color: $themeColor;
+				color: white;
 				.member {
-					background-color: white;
-					border: 0px;
+					background-color: $themeColor;
+					border-radius: 10px;
 					margin: 2px 0px 2px 0px;
 					.member-profile {
 						padding: 8px 0px 8px 0px;
 						text-align: center;
 					}
 					.member-name {
-						padding: 8px 0px 8px 0px;
+						padding: 0px;
 						text-align: left;
-						p { margin-bottom: 0px; }
+						display: flex;
+						align-items: center;
 					}
 					&:hover {
 						cursor: pointer;
-						background-color: #F2F2F2;
+						background-color: #1f1d1d;
 					}
 				}
 				.empty-member {
-					margin: 10px 0px 10px 0px;
-					// text-align: center;
-					padding: 10px;
-					font-family: 'Baloo Bhai', cursive;
+					color: #575757;
 				}
 			}
 			.leave-teams {

@@ -172,6 +172,7 @@
 				<h3>Recent<span> ></span></h3>
 				<div class="recents">
 					<p> 리그오브레전드를(을) 5인파티로 생성해서 게임함 (3hours)</p>
+					<p> 배틀그라운드(을) 4인 스쿼드 파티로 생성해서 게임함 (2days)</p>
 				</div>
 			</div><!-- left-content -->
 			
@@ -183,7 +184,7 @@
 			<div class="right-content idle-page col-md-4" v-if="type===0">
 				<div class="state-nav">
 					<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
-					<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)"/>
+					<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="type=3"/>
 				</div>
 				
 				<div class="menu-nav">
@@ -215,24 +216,48 @@
 				<h1 class="search-title">Waiting TEAM..</h1>
 				<div class="teams card">
 					<div class="member row" v-for="member in teams" v-bind:key="member.id" v-on:click="type=3">
-						<div class="col-md-3 member-profile">
+						<div class="col-sm-3 member-profile">
 							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
 						</div>
-						<div class="col-md-9 member-name">
+						<div class="col-sm-9 member-name">
 							<span class="align-middle">{{ member.name }}</span>
 						</div>
 					</div>
 					<div class="member empty-member row" v-for="i in (maxMember - teams.length)" v-bind:key="i">
-						<div class="col-md-3 member-profile">
-							<img class="profile-img float-center" :src="require(`@/assets/noone.png`)"/>
+						<div class="col-sm-3 member-profile-empty">
+							<!-- <img class="profile-img float-center" :src="require(`@/assets/noone.png`)"/> -->
+							<div class="lds-ripple"><div></div><div></div></div>
 						</div>
-						<div class="col-md-9 member-name">
-							<span class="align-middle">Empty</span>
+						<div class="col-sm-9 member-name">
+							<span class="align-middle">Waiting..</span>
+							<!-- <div class="lds-ripple"><div></div><div></div></div> -->
 						</div>
 					</div>
 				</div>
 				<div class="leave-teams">
 					<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
+				</div>
+			</div>
+			<!-- 프로필 화면 (오른쪽)-->
+			<div class="right-content profile-page col-md-4" v-else-if="type===3">
+				<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
+				
+				<div class="profile-curt">
+					<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+				</div>
+				<div class="row profile-info">
+					<div class="col-md-4 text-center">
+						<h4>183</h4>
+						<p>Followers</p>
+					</div>
+					<div class="col-md-4 text-center">
+						<h4>4</h4>
+						<p>Games</p>
+					</div>
+					<div class="col-md-4 text-center">
+						<h4>1.2K</h4>
+						<p>Following</p>
+					</div>
 				</div>
 			</div><!-- left-content -->
 		</div>
@@ -295,6 +320,41 @@ export default {
   @media #{$queryString} {
     @content;
   }
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 18px;
+    left: 18px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 36px;
+    height: 36px;
+    opacity: 0;
+  }
+}
+.lds-ripple {
+	display: inline-block;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	div {
+		position: absolute;
+		border: 2px solid #fff;
+		opacity: 1;
+		border-radius: 50%;
+		animation: lds-ripple 1s cubic-bezier(0, 0.1, 0.4, 1) infinite;
+		display: inline-block;
+		&:nth-child(2) {
+			animation-delay: -0.5s;
+		}
+	}
 }
 
 .container {
@@ -469,7 +529,7 @@ export default {
 			}
 		}
 		&.profile-page {
-			color: white;
+			color: black;
 			font-size: 14px;
 			h3 {
 				margin-top: 30px;
@@ -552,6 +612,13 @@ export default {
 						padding: 8px 0px 8px 0px;
 						text-align: center;
 					}
+					.member-profile-empty {
+						margin-top: 8px;
+						margin-bottom: 8px;
+						width: 40px;
+						height: 40px;
+						text-align: center;
+					}
 					.member-name {
 						padding: 0px;
 						text-align: left;
@@ -576,6 +643,26 @@ export default {
 					font-size: 40px;
 					// color: #ABABAB;
 				}
+			}
+		}
+		&.profile-page {
+			.profile-curt {
+				margin-top: 50px;
+				text-align: center;
+				.profile-img {
+					min-width: 150px;
+					max-width: 150px;
+					min-height: 150px;
+					max-height: 150px;
+					border-radius: 20%;
+					object-fit: cover;
+					cursor: pointer;
+				}
+			}
+			.profile-info {
+				margin-top: 50px;
+				color: white;
+				text-align: center;
 			}
 		}
 	}

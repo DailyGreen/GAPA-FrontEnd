@@ -3,13 +3,13 @@
 	<div class="container">
 		<div class="content row">
 			<!--
-					idle-page : 0
+					idle-page : 0 | 4(우측 notice-page 상태)
 					search-page : 1
 					chat-page : 2
 					profile-page : 3
 			-->
 			<!-- 평상시 화면 (왼쪽)-->
-			<div class="left-content idle-page col-md-8" v-if="type===0">
+			<div class="left-content idle-page col-md-8" v-if="type===0 || type===4">
 				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
 				<div class="search">
 					<!-- <i class="fas fa-search"></i> -->
@@ -179,12 +179,17 @@
 			<!--
 					idle-page : 0
 					search-page : 1
+					chat-page : 2
+					notice-page : 4 (우측만 바뀜)
+					search-page : 5 (좌측만 바뀔지 아직 미정)
 			-->
 			<!-- 평상시 화면 (오른쪽)-->
 			<div class="right-content idle-page col-md-4" v-if="type===0">
 				<div class="state-nav">
 					<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
 					<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="type=3"/>
+					<button class="float-right" v-on:click="type=4"><i class="far fa-bell"></i></button>
+					<button class="float-right" v-on:click="type=5"><i class="fas fa-search"></i></button>
 				</div>
 				
 				<div class="menu-nav">
@@ -211,7 +216,10 @@
 				</div>
 			</div>
 			<!-- 팀원 검색 화면 (오른쪽)-->
-			<div class="right-content search-page col-md-4" v-else-if="type===2">
+			<div class="right-content search-page col-md-4" v-else-if="type===1">
+			</div>
+			<!-- 팀원 꾸리기 화면 : 채팅 (오른쪽)-->
+			<div class="right-content chat-page col-md-4" v-else-if="type===2">
 				<!-- <img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/> -->
 				<h1 class="search-title">Waiting TEAM..</h1>
 				<div class="teams card">
@@ -259,7 +267,38 @@
 						<p>Following</p>
 					</div>
 				</div>
-			</div><!-- left-content -->
+			</div>
+			<!-- 알림 화면 (오른쪽) -->
+			<div class="right-content notice-page col-md-4" v-else-if="type===4">
+				<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
+				<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="type=3"/>
+				<h4>Notifications</h4>
+				<div class="notice-content">
+					<div class="notice-msg row">
+						<div class="col-md-2">
+							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+						</div>
+						<div class="col-md-10">
+							<h5>닉네임2</h5>
+							<h6>Would You Join Us? <span>(3min)</span></h6>
+							<button type="button" class="btn btn-primary">Join</button>
+							<button type="button" class="btn btn-outline-primary">Refused</button>
+						</div>
+					</div>
+					<div class="notice-msg row">
+						<div class="col-md-2">
+							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+						</div>
+						<div class="col-md-10">
+							<h5>NickName3232</h5>
+							<h6>Would You Join Us? <span>(1day)</span></h6>
+							<p>Refused..</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!-- left-content -->
 		</div>
 	</div>
   </div>
@@ -561,6 +600,18 @@ export default {
 			.state-nav {
 				height: 40px;
 				display: block;
+				button {
+					height: 40px;
+					line-height: 40px;
+					margin-right: 20px;
+					border: 0px;
+					background-color: $themeColor;
+					color: white;
+					cursor: pointer;
+					i {
+						font-size: 24px;
+					}
+				}
 				.profile-img {
 					display: block;
 				}
@@ -592,8 +643,10 @@ export default {
 					}
 				}
 			}
-		}		
+		}
 		&.search-page {
+		}
+		&.chat-page {
 			.search-title {
 				color: white;
 				margin-top: 8rem;
@@ -663,6 +716,57 @@ export default {
 				margin-top: 50px;
 				color: white;
 				text-align: center;
+			}
+		}
+		&.notice-page {
+			background-color: $pointColor;
+			color: $idleColor;
+			h4 {
+				margin-bottom: 25px;
+				margin-top: 40px;
+				font-weight: 800;
+			}
+			.notice-content {
+				// font-weight: 500;
+				.notice-msg {
+					margin-bottom: 25px;
+					h5 {
+						margin-bottom: 0px;
+						font-weight: 600;
+					}
+					h6 {
+						margin-bottom: 0px;
+						font-weight: 400;
+						span {
+							font-size: 12px;
+							font-weight: 400;
+						}
+					}
+					p {
+						font-size: 14px;
+						color: $idleColorOpa;
+					}
+					.btn {
+						margin-top: 10px;
+						// width: calc(50%-6px);
+						width: -webkit-calc(50% - 6px); /* for Chrome, Safari */
+						width:    -moz-calc(50% - 6px); /* for Firefox */
+						width:         calc(50% - 6px); /* for IE */
+						// border-width: 1px;
+						&.btn-primary {
+							color: $idleColor;
+							border-color: $positiveColor;
+							background-color: $positiveColor;
+							margin-right: 3px;
+						}
+						&.btn-outline-primary {
+							color: $idleColor;
+							border-color: $idleColor;
+							background-color: $pointColor;
+							margin-left: 3px;
+						}
+					}
+				}
 			}
 		}
 	}

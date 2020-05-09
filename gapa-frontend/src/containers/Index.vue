@@ -9,19 +9,19 @@
 					profile-page : 3
 			-->
 			<!-- 평상시 화면 (왼쪽)-->
-			<div class="left-content idle-page col-md-8" v-show="type===0 || type===4">
+			<div class="left-content idle-page col-md-8" v-show="pages.type === 'Main'">
 				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)" v-on:click="type=0"/>
 				<div class="menu">
-					<Button class="btn" v-on:click="leftType=0">Explore</Button>
-					<Button class="btn" v-on:click="leftType=1">Games</Button>
-					<Button class="btn">Rooms</Button>
+					<Button class="btn" v-on:click="pages.leftType = leftType.Explore">Explore</Button>
+					<Button class="btn" v-on:click="pages.leftType = leftType.Games">Games</Button>
+					<Button class="btn" v-on:click="pages.leftType = leftType.Explore">Rooms</Button>
 					<Button class="btn">Users</Button>
 				</div>
 				<!-- 	검색어창 비활성화	 -->
 				<!-- <div class="search">
 					<input class="search-input" type="text" placeholder="리그오브레전드">
 				</div> -->
-				<div class="explore" v-show="leftType===0">
+				<div class="explore" v-show="pages.leftType === leftType.Explore">
 					<h2>Recommend For You</h2>
 					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 						<div class="card-columns">
@@ -48,18 +48,17 @@
 									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 								</div>
 							</div>
-							<div class="card bg-primary text-white text-center p-3">
-								<blockquote class="blockquote mb-0">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-									<footer class="blockquote-footer text-white">
-										<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-									</footer>
-								</blockquote>
+							<div class="card">
+								<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title" style="z-index:10;">맞춤 라인에는 관련 게임을 분석해서</h5>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								</div>
 							</div>
 							<div class="card text-center">
 								<div class="card-body">
 									<h5 class="card-title">Card title</h5>
-									<p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+									<p class="card-text">This 비슷한 유저들을 추천해hort paragraphy of text below it.</p>
 									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 								</div>
 							</div>
@@ -84,40 +83,40 @@
 						</div>
 					</simplebar>
 				</div>
-				<div class="games" v-show="leftType===1">
+				<div class="games" v-show="pages.leftType === leftType.Games">
 					<h2>Game Category</h2>
 					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 						<div class="game-category">
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="type=0"/>
+							<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="pages.rightType=rightType.GameInfo"/>
 							<div class="card-body">
 								<p class="game-name">BATTLEGROUND</p>
 								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/DeadByDaylight.png`)" v-on:click="type=0"/>
+							<img class="game-img" :src="require(`@/assets/img/games/DeadByDaylight.png`)" v-on:click="pages.rightType=rightType.GameInfo"/>
 							<div class="card-body">
 								<p class="game-name">BATTLEGROUND</p>
 								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/LeagueOfLegend.png`)" v-on:click="type=0"/>
+							<img class="game-img" :src="require(`@/assets/img/games/LeagueOfLegend.png`)" v-on:click="pages.rightType=rightType.GameInfo"/>
 							<div class="card-body">
 								<p class="game-name">BATTLEGROUND</p>
 								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/TTF.png`)" v-on:click="type=0"/>
+							<img class="game-img" :src="require(`@/assets/img/games/TTF.png`)" v-on:click="pages.rightType=rightType.GameInfo"/>
 							<div class="card-body">
 								<p class="game-name">BATTLEGROUND</p>
 								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/overwatch.png`)" v-on:click="type=0"/>
+							<img class="game-img" :src="require(`@/assets/img/games/overwatch.png`)" v-on:click="pages.rightType==rightType.GameInfo"/>
 							<div class="card-body">
 								<p class="game-name">BATTLEGROUND</p>
 								<p class="game-follower">145명의 팔로워</p>
@@ -126,9 +125,34 @@
 						</div>
 					</simplebar>
 				</div>
+				<div class="rooms" v-show="pages.leftType === 1000">
+					<h2>Rooms</h2>
+					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
+					<h4 class="game-name">리그오브레전드 ></h4>
+					<div class="room-list">
+						<div class="card bg-primary text-white text-center p-3">
+							<blockquote class="blockquote mb-0">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+								<footer class="blockquote-footer text-white">
+									<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+								</footer>
+							</blockquote>
+						</div>
+						<div class="card bg-primary text-white text-center p-3">
+							<blockquote class="blockquote mb-0">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+								<footer class="blockquote-footer text-white">
+									<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+								</footer>
+							</blockquote>
+						</div>
+					</div>
+					<h4 class="game-name">배틀그라운드 ></h4>
+					</simplebar>
+				</div>
 			</div>
 			<!-- 팀원 찾기 화면 (왼쪽)-->
-			<div class="left-content search-page col-md-8" v-show="type===1">
+			<div class="left-content search-page col-md-8" v-show="pages.leftType === leftType.Search">
 				<div class="bg"></div>
 				<div class="row h-100">
 					<div class="col-md-6">
@@ -152,12 +176,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="left-content chat-page col-md-8" v-show="type===2">
+			<div class="left-content chat-page col-md-8" v-show="pages.leftType === leftType.Chat">
 				<div class="chat-content">
 					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 						<div class="chat-log row">
 							<div class="profile col-md-2">
-								<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+								<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
 							</div>
 							<div class="msg col-md-10">
 								<p class="nickname">닉네임</p>
@@ -166,7 +190,7 @@
 						</div>
 						<div class="chat-log row">
 							<div class="profile col-md-2">
-								<img class="profile-img float-center" :src="require(`@/assets/blackspirit.jpg`)"/>
+								<img class="profile-img float-center" :src="require(`@/assets/blackspirit.jpg`)" v-on:click="SearchUser"/>
 							</div>
 							<div class="msg col-md-10">
 								<p class="nickname">닉네임22</p>
@@ -198,7 +222,7 @@
 						</div>
 						<div class="chat-log row">
 							<div class="profile col-md-2">
-								<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+								<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
 							</div>
 							<div class="msg col-md-10">
 								<p class="nickname">닉네임</p>
@@ -214,7 +238,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="left-content profile-page col-md-8" v-show="type===3">
+			<div class="left-content profile-page col-md-8" v-show="pages.leftType === leftType.Timeline">
 				<h3>Games<span> ></span></h3>
 				<div class="games">
 					<img class="game-card" :src="require(`@/assets/lol_card.png`)"/>
@@ -235,17 +259,24 @@
 					search-page : 5 (좌측만 바뀔지 아직 미정)
 			-->
 			<!-- 평상시 화면 (오른쪽)-->
-			<div class="right-content idle-page col-md-4" v-show="type===0">
+			<div class="right-content idle-page col-md-4" v-show="pages.type === 'Main'">
 				<div class="state-nav">
 					<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
-					<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="type=3"/>
-					<button class="float-right" v-on:click="type=4"><i class="far fa-bell"></i></button>
-					<button class="float-right" v-on:click="type=5"><i class="fas fa-search"></i></button>
+					<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+					<button class="float-right" v-on:click="pages.rightType = rightType.Notice"><i class="far fa-bell"></i></button>
+					<button class="float-right" v-on:click="pages.rightType = rightType.Notice"><i class="fas fa-search"></i></button>
 				</div>
-				
-				<div class="menu-nav">
+				<div class="game-profile" v-show="pages.rightType === rightType.GameInfo">
+					<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="rightType=1"/>
+					<br/>
+					<a href="">13 <span>Followers</span></a>
+					<a href="">2 <span>Rooms</span></a>
+					<br/>
+					<button class="btn btn-primary follow">Follow</button>
+				</div>
+				<div class="menu-nav" v-show="pages.rightType === rightType.Idle">>
 					<!-- 버튼 나중에 꾸미기! -->
-					<button type="button" class="btn btn-success btn-lg btn-block" v-on:click="type=1">
+					<button type="button" class="btn btn-success btn-lg btn-block">
 						<div class="card">
 							<i class="fas fa-user-friends fa-2x"></i>
 							<div class="card-body">
@@ -256,7 +287,7 @@
 							</div> -->
 						</div>
 					</button>
-					<button type="button" class="btn btn-success btn-lg btn-block" v-on:click="type=2">
+					<button type="button" class="btn btn-success btn-lg btn-block" v-on:click="CreateRoom">
 						<div class="card">
 							<i class="fas fa-plus fa-2x"></i>
 							<div class="card-body">
@@ -267,16 +298,16 @@
 				</div>
 			</div>
 			<!-- 팀원 검색 화면 (오른쪽)-->
-			<div class="right-content search-page col-md-4" v-show="type===1">
+			<div class="right-content search-page col-md-4" v-show="pages.rightType === rightType.SearchUser">
 			</div>
 			<!-- 팀원 꾸리기 화면 : 채팅 (오른쪽)-->
-			<div class="right-content chat-page col-md-4" v-show="type===2">
+			<div class="right-content chat-page col-md-4" v-show="pages.rightType === rightType.UserList">
 				<!-- <img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/> -->
 				<h1 class="search-title">Waiting TEAM..</h1>
 				<div class="teams card">
-					<div class="member row" v-for="member in teams" v-bind:key="member.id" v-on:click="type=3">
+					<div class="member row" v-for="member in teams" v-bind:key="member.id" v-on:click="SearchUser">
 						<div class="col-sm-3 member-profile">
-							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"  v-on:click="SearchUser"/>
 						</div>
 						<div class="col-sm-9 member-name">
 							<span class="align-middle">{{ member.name }}</span>
@@ -294,15 +325,15 @@
 					</div>
 				</div>
 				<div class="leave-teams">
-					<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
+					<button class="btn btn-light" v-on:click="OutRoom"><i class="fas fa-sign-out-alt"></i></button>
 				</div>
 			</div>
 			<!-- 프로필 화면 (오른쪽)-->
-			<div class="right-content profile-page col-md-4" v-show="type===3">
-				<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
+			<div class="right-content profile-page col-md-4" v-show="pages.rightType === rightType.Profile">
+				<button class="btn btn-light" v-on:click="OutRoom"><i class="fas fa-sign-out-alt"></i></button>
 				
 				<div class="profile-curt">
-					<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+					<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
 				</div>
 				<div class="row profile-info">
 					<div class="col-md-4 text-center">
@@ -320,14 +351,14 @@
 				</div>
 			</div>
 			<!-- 알림 화면 (오른쪽) -->
-			<div class="right-content notice-page col-md-4" v-show="type===4">
-				<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
-				<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="type=3"/>
+			<div class="right-content notice-page col-md-4" v-show="pages.rightType === rightType.Notice">
+				<button class="btn btn-light" v-on:click="pages.rightType = rightType.Idle"><i class="fas fa-sign-out-alt"></i></button>
+				<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
 				<h4>Notifications</h4>
 				<div class="notice-content">
 					<div class="notice-msg row">
 						<div class="col-md-2">
-							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
 						</div>
 						<div class="col-md-10">
 							<h5>닉네임2</h5>
@@ -338,7 +369,7 @@
 					</div>
 					<div class="notice-msg row">
 						<div class="col-md-2">
-							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)"/>
+							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
 						</div>
 						<div class="col-md-10">
 							<h5>NickName3232</h5>
@@ -362,14 +393,32 @@ import 'simplebar/dist/simplebar.min.css'
 export default {
 	data () {
 		return {
-			/*
-				type: 페이지 상황
-				0: 로그인
-				1: 평소 Index
-				2: 팀원 검색 중
-			*/
-			type: 0,
-			leftType: 0,
+			leftType: {
+				Explore: 0,
+				Games: 1,
+				Chat: 2,
+				UserList: 3,
+				Timeline: 4,
+				Search: 5
+			},
+			rightType: {
+				Idle: 0,
+				Notice: 1,
+				Profile: 2,
+				GameInfo: 3,
+				UserList: 4,
+				Search: 5
+			},
+			// pages: [
+			// 	{ type: 'Main', leftType: leftType.Explore, rightType: rightType.Idle },
+			// 	{ type: 'Chat', leftType: leftType.Chat, rightType: rightType.UserList },
+			// 	{ type: 'Profile', leftType: leftType.Chat, rightType: rightType.UserList }
+			// ],
+			pages: {
+				type: 'Main',
+				leftType: 0,
+				rightType: 0
+			},
 			teams: [
 				{
 					name: '닉네임',
@@ -384,9 +433,30 @@ export default {
 		}
     },
 	methods:{
-		LoginSuccess : function(){
-			this.type = 1;
+		init: function() {
+			this.pages.leftType = this.leftType.Explore;
+			this.pages.rightType = this.rightType.Idle;
+		},
+		SearchUser : function() {
+			this.pages.type = 'Profile';
+			this.pages.leftType = this.leftType.Timeline;
+			this.pages.rightType = this.rightType.Profile;
+		},
+		OutRoom: function() {
+			this.pages.type = 'Main';
+			this.init();
+		},
+		JoinRoom: function() {
+			this.pages.type = 'Chat';
+			this.pages.leftType = this.leftType.Chat;
+			this.pages.rightType = this.rightType.UserList;
+		},
+		CreateRoom: function() {
+			this.JoinRoom();
 		}
+	},
+	mounted() {
+		this.init();
 	},
 	components: {
 		simplebar
@@ -487,6 +557,14 @@ export default {
 				display: inline;
 				.btn {
 					margin-left: 10px;
+					&:hover {
+						color: $pointColor;
+					}
+					&:active,
+					&:focus {
+						outline: none !important;
+						box-shadow: none !important;
+					}
 				}
 			}
 			.sprofile {
@@ -524,7 +602,7 @@ export default {
 					-webkit-overflow-scrolling: touch;
 					.card {
 						border-radius: 25px;
-						overflow: hidden;
+						// overflow: hidden;
 						cursor: pointer;
 					}
 				}
@@ -544,7 +622,7 @@ export default {
 							margin-bottom: 15px;
 							display: inline-block;
 							position: relative;
-							box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+							border: 0px;
 							.game-img {
 								min-width: 138px;
 								min-height: 183px;
@@ -552,8 +630,12 @@ export default {
 								max-height: 183px;
 								display: inline-block;
 								position: relative;
+								border-radius: 10px;
+								box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+								cursor: pointer;
 							}
 							.card-body {
+								margin-top: 5px;
 								padding: 0px;
 								.game-name {
 									font-size: 14px;
@@ -570,6 +652,22 @@ export default {
 						}
 					}
 				}	
+			}
+			.rooms {
+				margin-top: 30px;
+				.scrolling-wrapper {
+					height: 443px;
+					padding-right: 10px;
+					-webkit-overflow-scrolling: touch;
+					.game-name {
+						
+					}
+					.room-list {
+						.card {
+							width: 120px;
+						}
+					}
+				}
 			}
 		}
 		&.search-page {
@@ -714,6 +812,35 @@ export default {
 				}
 				.profile-img {
 					display: block;
+				}
+			}
+			.game-profile {
+				margin-top: 30px;
+				text-align: center;
+				.game-img {
+					min-width: 138px;
+					min-height: 183px;
+					max-width: 138px;
+					max-height: 183px;
+					border-radius: 10px;
+				}
+				a {
+					margin-left: 5px;
+					margin-right: 5px;
+					color: white;
+					font-weight: 500;
+					text-decoration: none;
+					span {
+						color: $idleColorOpa;
+						font-size: 12px;
+						font-weight: 400;
+					}
+				}
+				.btn {
+					border: 0px;
+					&.follow {
+						background-color: $positiveColor;
+					}
 				}
 			}
 			.menu-nav {

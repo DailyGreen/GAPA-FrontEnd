@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 
 import Index from '../containers/Index'
-import IndexReDesign from '../containers/IndexReDesign'
 
 import Auth from '../containers/Auth'
 import Sample from '../containers/Sample'
@@ -15,11 +14,6 @@ const routes = [
 		path: '/',
 		name: 'IndexPage',
 		component: Index
-    },
-    {
-		path: '/re',
-		name: 'IndexReDesignPage',
-		component: IndexReDesign
     },
     {
 		path: '/auth',

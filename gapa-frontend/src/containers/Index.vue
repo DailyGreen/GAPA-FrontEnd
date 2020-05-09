@@ -9,75 +9,126 @@
 					profile-page : 3
 			-->
 			<!-- 평상시 화면 (왼쪽)-->
-			<div class="left-content idle-page col-md-8" v-if="type===0 || type===4">
-				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
-				<div class="search">
-					<!-- <i class="fas fa-search"></i> -->
-					<input class="search-input" type="text" placeholder="리그오브레전드">
+			<div class="left-content idle-page col-md-8" v-show="type===0 || type===4">
+				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)" v-on:click="type=0"/>
+				<div class="menu">
+					<Button class="btn" v-on:click="leftType=0">Explore</Button>
+					<Button class="btn" v-on:click="leftType=1">Games</Button>
+					<Button class="btn">Rooms</Button>
+					<Button class="btn">Users</Button>
 				</div>
-				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
-					<div class="card-columns">
-						<div class="card">
-							<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title that wraps to a new line</h5>
-								<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<!-- 	검색어창 비활성화	 -->
+				<!-- <div class="search">
+					<input class="search-input" type="text" placeholder="리그오브레전드">
+				</div> -->
+				<div class="explore" v-show="leftType===0">
+					<h2>Recommend For You</h2>
+					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
+						<div class="card-columns">
+							<div class="card">
+								<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title">맞춤 라인에는 관련 게임을 분석해서</h5>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								</div>
 							</div>
-						</div>
-						<div class="card p-3">
-							<blockquote class="blockquote mb-0 card-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-								<footer class="blockquote-footer">
-									<small class="text-muted">Someone famous in <cite title="Source Title">Source Title</cite></small>
-								</footer>
-							</blockquote>
-						</div>
-						<div class="card">
-							<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
-							<div class="card-body">
+							<div class="card p-3">
+								<blockquote class="blockquote mb-0 card-body">
+									<p>만들어진 방이나</p>
+									<footer class="blockquote-footer">
+										<small class="text-muted">Someone famous in <cite title="Source Title">Source Title</cite></small>
+									</footer>
+								</blockquote>
+							</div>
+							<div class="card">
+								<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title">비슷한 유저들을 추천해줍니다.</h5>
+									<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+							<div class="card bg-primary text-white text-center p-3">
+								<blockquote class="blockquote mb-0">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+									<footer class="blockquote-footer text-white">
+										<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+									</footer>
+								</blockquote>
+							</div>
+							<div class="card text-center">
+								<div class="card-body">
+									<h5 class="card-title">Card title</h5>
+									<p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+							<div class="card">
+								<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
+							</div>
+							<div class="card p-3 text-right">
+								<blockquote class="blockquote mb-0">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+									<footer class="blockquote-footer">
+										<small class="text-muted">Someone famous in <cite title="Source Title">Source Title</cite></small>
+									</footer>
+								</blockquote>
+							</div>
+							<div class="card">
+								<div class="card-body">
 								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+								<p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
 								<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
 							</div>
 						</div>
-						<div class="card bg-primary text-white text-center p-3">
-							<blockquote class="blockquote mb-0">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-								<footer class="blockquote-footer text-white">
-									<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-								</footer>
-							</blockquote>
-						</div>
-						<div class="card text-center">
+					</simplebar>
+				</div>
+				<div class="games" v-show="leftType===1">
+					<h2>Game Category</h2>
+					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
+						<div class="game-category">
+						<div class="card">
+							<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="type=0"/>
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-								<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								<p class="game-name">BATTLEGROUND</p>
+								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						<div class="card">
-							<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
-						</div>
-						<div class="card p-3 text-right">
-							<blockquote class="blockquote mb-0">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-								<footer class="blockquote-footer">
-									<small class="text-muted">Someone famous in <cite title="Source Title">Source Title</cite></small>
-								</footer>
-							</blockquote>
-						</div>
-						<div class="card">
+							<img class="game-img" :src="require(`@/assets/img/games/DeadByDaylight.png`)" v-on:click="type=0"/>
 							<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								<p class="game-name">BATTLEGROUND</p>
+								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
-					</div>
-				</simplebar>
+						<div class="card">
+							<img class="game-img" :src="require(`@/assets/img/games/LeagueOfLegend.png`)" v-on:click="type=0"/>
+							<div class="card-body">
+								<p class="game-name">BATTLEGROUND</p>
+								<p class="game-follower">145명의 팔로워</p>
+							</div>
+						</div>
+						<div class="card">
+							<img class="game-img" :src="require(`@/assets/img/games/TTF.png`)" v-on:click="type=0"/>
+							<div class="card-body">
+								<p class="game-name">BATTLEGROUND</p>
+								<p class="game-follower">145명의 팔로워</p>
+							</div>
+						</div>
+						<div class="card">
+							<img class="game-img" :src="require(`@/assets/img/games/overwatch.png`)" v-on:click="type=0"/>
+							<div class="card-body">
+								<p class="game-name">BATTLEGROUND</p>
+								<p class="game-follower">145명의 팔로워</p>
+							</div>
+						</div>
+						</div>
+					</simplebar>
+				</div>
 			</div>
 			<!-- 팀원 찾기 화면 (왼쪽)-->
-			<div class="left-content search-page col-md-8" v-else-if="type===1">
+			<div class="left-content search-page col-md-8" v-show="type===1">
 				<div class="bg"></div>
 				<div class="row h-100">
 					<div class="col-md-6">
@@ -101,7 +152,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="left-content chat-page col-md-8" v-else-if="type===2">
+			<div class="left-content chat-page col-md-8" v-show="type===2">
 				<div class="chat-content">
 					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 						<div class="chat-log row">
@@ -163,7 +214,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="left-content profile-page col-md-8" v-else-if="type===3">
+			<div class="left-content profile-page col-md-8" v-show="type===3">
 				<h3>Games<span> ></span></h3>
 				<div class="games">
 					<img class="game-card" :src="require(`@/assets/lol_card.png`)"/>
@@ -184,7 +235,7 @@
 					search-page : 5 (좌측만 바뀔지 아직 미정)
 			-->
 			<!-- 평상시 화면 (오른쪽)-->
-			<div class="right-content idle-page col-md-4" v-if="type===0">
+			<div class="right-content idle-page col-md-4" v-show="type===0">
 				<div class="state-nav">
 					<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
 					<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="type=3"/>
@@ -216,10 +267,10 @@
 				</div>
 			</div>
 			<!-- 팀원 검색 화면 (오른쪽)-->
-			<div class="right-content search-page col-md-4" v-else-if="type===1">
+			<div class="right-content search-page col-md-4" v-show="type===1">
 			</div>
 			<!-- 팀원 꾸리기 화면 : 채팅 (오른쪽)-->
-			<div class="right-content chat-page col-md-4" v-else-if="type===2">
+			<div class="right-content chat-page col-md-4" v-show="type===2">
 				<!-- <img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/> -->
 				<h1 class="search-title">Waiting TEAM..</h1>
 				<div class="teams card">
@@ -247,7 +298,7 @@
 				</div>
 			</div>
 			<!-- 프로필 화면 (오른쪽)-->
-			<div class="right-content profile-page col-md-4" v-else-if="type===3">
+			<div class="right-content profile-page col-md-4" v-show="type===3">
 				<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
 				
 				<div class="profile-curt">
@@ -269,7 +320,7 @@
 				</div>
 			</div>
 			<!-- 알림 화면 (오른쪽) -->
-			<div class="right-content notice-page col-md-4" v-else-if="type===4">
+			<div class="right-content notice-page col-md-4" v-show="type===4">
 				<button class="btn btn-light" v-on:click="type=0"><i class="fas fa-sign-out-alt"></i></button>
 				<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="type=3"/>
 				<h4>Notifications</h4>
@@ -318,6 +369,7 @@ export default {
 				2: 팀원 검색 중
 			*/
 			type: 0,
+			leftType: 0,
 			teams: [
 				{
 					name: '닉네임',
@@ -419,17 +471,24 @@ export default {
 		cursor: pointer;
 	}
 	.left-content {
-		padding: 20px 40px 0px 40px;
+		padding: 40px 40px 0px 40px;
 		border-radius: 50px;
 		// border-radius: 40px 50px 50px 40px;
 		// border-radius: 0px 50px 50px 0px;
-		background-color: $idleColor;
+		// background-color: $idleColor;
 		overflow: hidden;		
 		.title-img {
 			width: 40px;
 			position: relative;
 		}		
 		&.idle-page {
+			.menu {
+				margin-left: 10px;
+				display: inline;
+				.btn {
+					margin-left: 10px;
+				}
+			}
 			.sprofile {
 				background-color: black;
 				border-radius: 50px;
@@ -457,16 +516,60 @@ export default {
 					}
 				}
 			}
-			.scrolling-wrapper {
-				margin-top: 50px;
-				height: 443px;		
-				padding-right: 10px;
-				-webkit-overflow-scrolling: touch;
-				.card {
-					border-radius: 25px;
-					overflow: hidden;
-					cursor: pointer;
+			.explore {
+				margin-top: 30px;
+				.scrolling-wrapper {
+					height: 443px;
+					padding-right: 10px;
+					-webkit-overflow-scrolling: touch;
+					.card {
+						border-radius: 25px;
+						overflow: hidden;
+						cursor: pointer;
+					}
 				}
+			}
+			.games {
+				margin-top: 30px;
+				.scrolling-wrapper {
+					height: 443px;
+					padding-right: 10px;
+					-webkit-overflow-scrolling: touch;
+					.game-category {
+						display: flex;
+						flex-wrap: wrap;
+						justify-content: space-between;
+						.card {
+							width: 138px;
+							margin-bottom: 15px;
+							display: inline-block;
+							position: relative;
+							box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+							.game-img {
+								min-width: 138px;
+								min-height: 183px;
+								max-width: 138px;
+								max-height: 183px;
+								display: inline-block;
+								position: relative;
+							}
+							.card-body {
+								padding: 0px;
+								.game-name {
+									font-size: 14px;
+									font-weight: 500;
+									margin-bottom: 0px;
+								}
+								.game-follower {
+									font-size: 12px;
+									color: #656565;
+									font-weight: 400;
+									margin-bottom: 0px;
+								}
+							}
+						}
+					}
+				}	
 			}
 		}
 		&.search-page {
@@ -518,25 +621,22 @@ export default {
 		}
 		&.chat-page {
 			.chat-content {
-				margin-top: 20px;
+				// margin-top: 20px;
 				// padding-top: 20px;
 				// padding-bottom: 20px;
 				width: 100%;
-				height: -webkit-calc(100% - 100px); /* for Chrome, Safari */
-				height:    -moz-calc(100% - 100px); /* for Firefox */
-				height:         calc(100% - 100px); /* for IE */
+				height: -webkit-calc(100% - 80px); /* for Chrome, Safari */
+				height:    -moz-calc(100% - 80px); /* for Firefox */
+				height:         calc(100% - 80px); /* for IE */
 				border: 0px;
 				border-radius: 5px;
 				background-color: #edebeb;
 				.scrolling-wrapper {
 					height: 520px;		
 					padding-right: 10px;
-					padding-bottom: 20px;
 					-webkit-overflow-scrolling: touch;
 					.chat-log {
-						margin-left: 0px;
-						margin-right: 0px;
-						margin-top: 20px;
+						margin: 20px 0px 20px 0px;
 						.profile {
 							text-align: center;
 							.profile-img {

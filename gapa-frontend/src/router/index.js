@@ -25,6 +25,7 @@ const routes = [
 		name: 'SamplePage',
 		component: Sample
 	},
+	
 	{
 		path: '*',
 		redirect: '/'

@@ -22,8 +22,8 @@
 						<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
 						<input type="password" class="col-md-10" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 					</div>
-					<button type="button" class="btn btn-success" v-on:click="LoginSuccess">Login</button>
-					<a href="#">Register</a>
+					<button type="button" class="btn btn-success" v-on:click="LoginSuccess" id="Login">Login</button>
+					<a class="text-center" v-on:click="SingUp" id="SingUp">SingUp</a>
 					<!-- 로그인 실패시 띄워주기 -->
 					<!-- <a href="#">로그인이 안되시나요?</a> -->
 				</div>
@@ -31,9 +31,40 @@
 			
 			<!-- 로그인 화면 (오른쪽)-->
 			<div class="right-content login-page col-md-8" v-if="type===0">
-				<h1> 안녕하세요 !</h1>
-				<h5>반갑습니다! 저는 GAPA라고 해요.</h5>
-				<h5>저는 게임 친구, 파티를 찾아드리기 위해 만들어졌어요. \- 이런거 이제 안함ㅁㅁㅁ ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</h5>
+				<p>여기 안에는 뭐할까요</p>
+			</div>
+			
+			
+			
+			<!-- 회원가입 페이지-->
+			<div class="left-content SingUp-page col-md-4" v-if="type===-1">
+				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
+				<h1 class="SingUp-title">SingUp</h1>
+				
+				<div class="SingUp card">
+					<div class="row SingUp-input">
+						<i class="col-md-2 far fa-1x fa-envelope align-middle"></i>
+						<input type="email" class="col-md-10" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+					</div>
+					<div class="row SingUp-input">
+						<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
+						<input type="password" class="col-md-10" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+					</div>
+					<div class="row SingUp-input">
+						<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
+						<input type="Confirm Password" class="col-md-10" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+					</div>
+					<div class="row SingUp-input">
+						<i class="col-md-2 far fa-user align-middle"></i>
+						<input type="Nickname" class="col-md-10" placeholder="Nickname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nickname'">
+					</div>
+				<button type="button" class="col-md-6 btn btn-success" v-on:click="SingIn">SIGN UP</button>
+				</div>
+			</div>
+		
+			<!-- 회원가입 페이지(오른쪽)-->
+			<div class="right-content SingUp-page col-md-8" v-if="type===-1">
+				<button type="button" class="btn btn-success" v-on:click="SingIn">SIGN IN</button>
 			</div>
 		</div>
 	</div>
@@ -47,27 +78,23 @@ export default {
 		return {
 			/*
 				type: 페이지 상황
+				-1: 회원가입
 				0: 로그인
 				1: 평소 Index
 				2: 팀원 검색 중
 			*/
 			type: 0,
-			teams: [
-				{
-					name: 'USER_0',
-					id: 'asdf'
-				},
-				{
-					name: '유저_1',
-					id: 'fdsa'
-				}
-			],
-			maxMember: 4
 		}
     },
 	methods:{
 		LoginSuccess : function(){
 			this.type = 1;
+		},
+		SingIn : function(){
+			this.type = 0;
+		},
+		SingUp : function(){
+			this.type = -1;
 		}
 	}
 }
@@ -93,13 +120,13 @@ export default {
 }
 
 .container {
-	margin-top: 100px;
+	margin-top: 130px;
     -webkit-box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
 	-moz-box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
 	box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
 	background-color: white;
 	border-radius: 50px;
-	padding: 5px 20px 5px 20px;
+	// padding: 5px 20px 5px 20px;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 .content {
@@ -145,16 +172,65 @@ export default {
 						color: #686868;
 					}
 				}
-				a {
-					margin-top: 0px;
-					text-align:center;
-					font-size: 10px;
+				a{
+					cursor: pointer;
 					color: white;
+					margin-top: 2rem;
+					font-family: 'Lilita One', cursive;
 				}
-				button {
+				button#Login{
 					background-color: $pointColor;
 					margin-top: 3rem;
 				}
+				button#SingUp{
+					background-color: $pointColor;
+					margin-top: 1rem;
+				}
+			}
+		}
+		&.SingUp-page{
+			.SingUp-fonts {
+				color: white;
+				font-family: 'Lilita One', cursive;
+				font-size : 20px;
+			}
+			.SingUp-title {
+				color: white;
+				margin-top: 4rem;
+				font-family: 'Lilita One', cursive;
+				margin-bottom: 1rem;
+			}
+			.SingUp{
+				border-color: $themeColor;
+				background-color: $themeColor;
+				.SingUp-input {
+					background-color: #e6e6e6;
+					display: block;
+					margin: 0px 0px 10px 0px;
+					margin-top: 15px;
+					input{
+						padding: 10px 0px 10px 0px;
+						font-size: 18px;
+						border: 0px;
+						background-color: #e6e6e6;
+						color: #686868;
+						&:focus {
+							outline:none;
+						}
+					}
+					i {
+						padding: 0px 0px 5px 0px;
+						text-align: center;
+						vertical-align: middle;
+						color: #686868;
+					}
+				}
+			}
+			button {
+				background-color: #8ce33d;
+				display: table;
+				margin: 0 auto;
+				margin-top: 2rem;
 			}
 		}
 	}
@@ -163,11 +239,16 @@ export default {
 		border-radius: 50px;
 		// border-radius: 40px 50px 50px 40px;
 		// border-radius: 0px 50px 50px 0px;
-		background-color: $idleColor;
+		// background-color: $idleColor;
 		overflow: hidden;
 		&.login-page {
 			// 로긴 페이지
 			color: black;
+		}
+		&.SingUp-page{
+			background-image: url("../assets/temp.jpg");
+			background-repeat : no-repeat;
+			background-size : cover;
 		}
 	}
 }

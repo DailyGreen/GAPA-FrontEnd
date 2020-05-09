@@ -88,42 +88,47 @@
 					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 						<div class="game-category">
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="pages.rightType=rightType.GameInfo"/>
+							<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="GameInfo(0)"/>
 							<div class="card-body">
 								<p class="game-name">BATTLEGROUND</p>
 								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/DeadByDaylight.png`)" v-on:click="pages.rightType=rightType.GameInfo"/>
+							<img class="game-img" :src="require(`@/assets/img/games/DeadByDaylight.png`)" v-on:click="GameInfo(1)"/>
 							<div class="card-body">
-								<p class="game-name">BATTLEGROUND</p>
+								<p class="game-name">DeadByDaylight</p>
+								<p class="game-follower">12명의 팔로워</p>
+							</div>
+						</div>
+						<div class="card">
+							<img class="game-img" :src="require(`@/assets/img/games/LeagueOfLegend.png`)" v-on:click="GameInfo(2)"/>
+							<div class="card-body">
+								<p class="game-name">League of Legend</p>
 								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/LeagueOfLegend.png`)" v-on:click="pages.rightType=rightType.GameInfo"/>
+							<img class="game-img" :src="require(`@/assets/img/games/TTF.png`)" v-on:click="GameInfo(3)"/>
 							<div class="card-body">
-								<p class="game-name">BATTLEGROUND</p>
+								<p class="game-name">TTF</p>
 								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/TTF.png`)" v-on:click="pages.rightType=rightType.GameInfo"/>
+							<img class="game-img" :src="require(`@/assets/img/games/overwatch.png`)" v-on:click="GameInfo(4)"/>
 							<div class="card-body">
-								<p class="game-name">BATTLEGROUND</p>
-								<p class="game-follower">145명의 팔로워</p>
-							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/overwatch.png`)" v-on:click="pages.rightType==rightType.GameInfo"/>
-							<div class="card-body">
-								<p class="game-name">BATTLEGROUND</p>
+								<p class="game-name">Overwatch</p>
 								<p class="game-follower">145명의 팔로워</p>
 							</div>
 						</div>
 						</div>
 					</simplebar>
+				</div>
+				<div class="list" v-show="pages.leftType === leftType.GameInfo">
+					<h4>게임 방</h4>
+					<h4>대기 유저</h4>
+					<h4>여기서 부터 코딩하자구</h4>
 				</div>
 				<div class="rooms" v-show="pages.leftType === 1000">
 					<h2>Rooms</h2>
@@ -259,7 +264,7 @@
 					search-page : 5 (좌측만 바뀔지 아직 미정)
 			-->
 			<!-- 평상시 화면 (오른쪽)-->
-			<div class="right-content idle-page col-md-4" v-show="pages.type === 'Main'">
+			<div class="right-content idle-page col-md-4" v-show="pages.type === 'Main' && pages.rightType !== rightType.Notice">
 				<div class="state-nav">
 					<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
 					<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
@@ -273,6 +278,10 @@
 					<a href="">2 <span>Rooms</span></a>
 					<br/>
 					<button class="btn btn-primary follow">Follow</button>
+					<br/>					
+					<br/>
+					<button class="btn btn-primary">초대 대기하기</button>
+					<button class="btn btn-primary">팀 꾸리기</button>
 				</div>
 				<div class="menu-nav" v-show="pages.rightType === rightType.Idle">>
 					<!-- 버튼 나중에 꾸미기! -->
@@ -399,7 +408,8 @@ export default {
 				Chat: 2,
 				UserList: 3,
 				Timeline: 4,
-				Search: 5
+				Search: 5,
+				GameInfo: 6
 			},
 			rightType: {
 				Idle: 0,
@@ -453,6 +463,12 @@ export default {
 		},
 		CreateRoom: function() {
 			this.JoinRoom();
+		},
+		GameInfo: function(gameTag) {
+			this.maxMember = gameTag;  // 지워도 되는거, 만들어 놨는데 안쓰면 버그 나서 아무렇게나 쓴거
+			this.maxMember = 4;
+			this.pages.leftType = this.leftType.GameInfo;
+			this.pages.rightType = this.rightType.GameInfo;
 		}
 	},
 	mounted() {
@@ -499,25 +515,14 @@ export default {
     opacity: 0;
   }
 }
-.lds-ripple {
-	display: inline-block;
-	position: relative;
-	width: 40px;
-	height: 40px;
-	text-align: center;
-	div {
-		position: absolute;
-		border: 2px solid #fff;
-		opacity: 1;
-		border-radius: 50%;
-		animation: lds-ripple 1s cubic-bezier(0, 0.1, 0.4, 1) infinite;
-		display: inline-block;
-		&:nth-child(2) {
-			animation-delay: -0.5s;
-		}
+
+button {
+	&:active,
+	&:focus {
+		outline: none !important;
+		box-shadow: none !important;
 	}
 }
-
 .container {
 	margin-top: 100px;
     -webkit-box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
@@ -559,11 +564,6 @@ export default {
 					margin-left: 10px;
 					&:hover {
 						color: $pointColor;
-					}
-					&:active,
-					&:focus {
-						outline: none !important;
-						box-shadow: none !important;
 					}
 				}
 			}
@@ -898,6 +898,24 @@ export default {
 						width: 40px;
 						height: 40px;
 						text-align: center;
+						.lds-ripple {
+							display: inline-block;
+							position: relative;
+							width: 40px;
+							height: 40px;
+							text-align: center;
+							div {
+								position: absolute;
+								border: 2px solid #fff;
+								opacity: 1;
+								border-radius: 50%;
+								animation: lds-ripple 1s cubic-bezier(0, 0.1, 0.4, 1) infinite;
+								display: inline-block;
+								&:nth-child(2) {
+									animation-delay: -0.5s;
+								}
+							}
+						}
 					}
 					.member-name {
 						padding: 0px;

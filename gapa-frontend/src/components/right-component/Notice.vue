@@ -1,0 +1,133 @@
+<template>
+	<div>
+		<div class="notice-page">
+			<button class="btn btn-light" v-on:click="pages.rightType = rightType.Idle"><i class="fas fa-sign-out-alt"></i></button>
+			<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+			<h4>Notifications</h4>
+			<div class="notice-content">
+				<div class="notice-msg row">
+					<div class="col-md-2">
+						<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+					</div>
+					<div class="col-md-10">
+						<h5>닉네임2</h5>
+						<h6>Would You Join Us? <span>(3min)</span></h6>
+						<button type="button" class="btn btn-primary">Join</button>
+						<button type="button" class="btn btn-outline-primary">Refused</button>
+					</div>
+				</div>
+				<div class="notice-msg row">
+					<div class="col-md-2">
+						<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+					</div>
+					<div class="col-md-10">
+						<h5>NickName3232</h5>
+						<h6>Would You Join Us? <span>(1day)</span></h6>
+						<p>Refused..</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	props: {
+		leftType: {
+			type: Number,
+			default: -1
+		},
+		rightType: {
+			type: Number,
+			default: -1
+		},
+		pages: {
+			names: {
+				type: String,
+				default: ''
+			},
+			leftType: {
+				type: Number,
+				default: -1
+			},
+			rightType: {
+				type: Number,
+				default: -1
+			}
+		}
+	},
+	data () {
+		return {
+		}
+	},
+	methods:{
+		SearchUser : function() {
+			this.$emit('SearchUser');
+		},
+		OutRoom : function() {
+			this.$emit('OutRoom');
+		}
+	},
+	components: {
+	}
+}
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/css/_variables.scss";
+@import "@/assets/css/baseStyle.scss";
+
+.notice-page {
+	background-color: $pointColor;
+	color: $idleColor;
+	h4 {
+		margin-bottom: 25px;
+		margin-top: 40px;
+		font-weight: 800;
+	}
+	.notice-content {
+		// font-weight: 500;
+		.notice-msg {
+			margin-bottom: 25px;
+			h5 {
+				margin-bottom: 0px;
+				font-weight: 600;
+			}
+			h6 {
+				margin-bottom: 0px;
+				font-weight: 400;
+				span {
+					font-size: 12px;
+					font-weight: 400;
+				}
+			}
+			p {
+				font-size: 14px;
+				color: $idleColorOpa;
+			}
+			.btn {
+				margin-top: 10px;
+				// width: calc(50%-6px);
+				width: -webkit-calc(50% - 6px); /* for Chrome, Safari */
+				width:    -moz-calc(50% - 6px); /* for Firefox */
+				width:         calc(50% - 6px); /* for IE */
+				// border-width: 1px;
+				&.btn-primary {
+					color: $idleColor;
+					border-color: $positiveColor;
+					background-color: $positiveColor;
+					margin-right: 3px;
+				}
+				&.btn-outline-primary {
+					color: $idleColor;
+					border-color: $idleColor;
+					background-color: $pointColor;
+					margin-left: 3px;
+				}
+			}
+		}
+	}
+}
+</style>

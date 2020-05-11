@@ -1,0 +1,23 @@
+@mixin media($queryString){
+  @media #{$queryString} {
+    @content;
+  }
+}
+
+button {
+	&:active,
+	&:focus {
+		outline: none !important;
+		box-shadow: none !important;
+	}
+}
+
+.profile-img {
+	min-width: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	max-height: 40px;
+	border-radius: 20%;
+	object-fit: cover;
+	cursor: pointer;
+}

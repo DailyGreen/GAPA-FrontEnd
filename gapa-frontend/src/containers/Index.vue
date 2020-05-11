@@ -87,48 +87,86 @@
 					<h2>Game Category</h2>
 					<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 						<div class="game-category">
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="GameInfo(0)"/>
-							<div class="card-body">
-								<p class="game-name">BATTLEGROUND</p>
-								<p class="game-follower">145명의 팔로워</p>
+							<div class="card">
+								<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="GameInfo(0)"/>
+								<div class="card-body">
+									<p class="game-name">BATTLEGROUND</p>
+									<p class="game-follower">145명의 팔로워</p>
+								</div>
 							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/DeadByDaylight.png`)" v-on:click="GameInfo(1)"/>
-							<div class="card-body">
-								<p class="game-name">DeadByDaylight</p>
-								<p class="game-follower">12명의 팔로워</p>
+							<div class="card">
+								<img class="game-img" :src="require(`@/assets/img/games/DeadByDaylight.png`)" v-on:click="GameInfo(1)"/>
+								<div class="card-body">
+									<p class="game-name">DeadByDaylight</p>
+									<p class="game-follower">12명의 팔로워</p>
+								</div>
 							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/LeagueOfLegend.png`)" v-on:click="GameInfo(2)"/>
-							<div class="card-body">
-								<p class="game-name">League of Legend</p>
-								<p class="game-follower">145명의 팔로워</p>
+							<div class="card">
+								<img class="game-img" :src="require(`@/assets/img/games/LeagueOfLegend.png`)" v-on:click="GameInfo(2)"/>
+								<div class="card-body">
+									<p class="game-name">League of Legend</p>
+									<p class="game-follower">145명의 팔로워</p>
+								</div>
 							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/TTF.png`)" v-on:click="GameInfo(3)"/>
-							<div class="card-body">
-								<p class="game-name">TTF</p>
-								<p class="game-follower">145명의 팔로워</p>
+							<div class="card">
+								<img class="game-img" :src="require(`@/assets/img/games/TTF.png`)" v-on:click="GameInfo(3)"/>
+								<div class="card-body">
+									<p class="game-name">TTF</p>
+									<p class="game-follower">145명의 팔로워</p>
+								</div>
 							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/overwatch.png`)" v-on:click="GameInfo(4)"/>
-							<div class="card-body">
-								<p class="game-name">Overwatch</p>
-								<p class="game-follower">145명의 팔로워</p>
+							<div class="card">
+								<img class="game-img" :src="require(`@/assets/img/games/overwatch.png`)" v-on:click="GameInfo(4)"/>
+								<div class="card-body">
+									<p class="game-name">Overwatch</p>
+									<p class="game-follower">145명의 팔로워</p>
+								</div>
 							</div>
-						</div>
 						</div>
 					</simplebar>
 				</div>
 				<div class="list" v-show="pages.leftType === leftType.GameInfo">
-					<h4>게임 방</h4>
-					<h4>대기 유저</h4>
-					<h4>여기서 부터 코딩하자구</h4>
+					<button class="btn">게임 방</button>
+					<button class="btn">대기 유저</button>
+					<simplebar class="scrolling-wrapper list-rooms" data-simplebar-auto-hide="true" v-show="false">
+						<div class="list-content">
+							<div class="card almost-full">
+								<div class="card-head">
+									<h5 class="card-title">여기에는 방 이름이 들어갑니다.</h5>
+								</div>
+								<blockquote class="blockquote mb-0 card-body float-right">
+									<p class="">( 3 / 4 )</p>
+								</blockquote>
+							</div>
+							<div class="card half">
+								<div class="card-head">
+									<h5 class="card-title">여기에는 방 이름이 들어갑니다.</h5>
+								</div>
+								<blockquote class="blockquote mb-0 card-body float-right">
+									<p class="">( 2 / 4 )</p>
+								</blockquote>
+							</div>
+							<div class="card room" v-for="i in 10" :key="i">
+								<div class="card-head">
+									<h5 class="card-title">여기에는 방 이름이 들어갑니다.</h5>
+								</div>
+								<blockquote class="blockquote mb-0 card-body float-right">
+									<p class="">( 1 / 4 )</p>
+								</blockquote>
+							</div>
+						</div>
+					</simplebar>
+					<simplebar class="scrolling-wrapper list-users" data-simplebar-auto-hide="true">
+						<div class="list-content">
+							<div class="card" v-for="i in 40" :key="i">
+								<img :src="require(`@/assets/profileImg.png`)" alt="profile-image" class="profile"/>
+								<div class="card-content">
+									<h2>닉네임</h2>
+									<p>14 Followers</p>
+								</div>
+							</div>
+						</div>
+					</simplebar>
 				</div>
 				<div class="rooms" v-show="pages.leftType === 1000">
 					<h2>Rooms</h2>
@@ -273,15 +311,16 @@
 				</div>
 				<div class="game-profile" v-show="pages.rightType === rightType.GameInfo">
 					<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="rightType=1"/>
+					<h1 class="game-title">BATTLEGROUND</h1>
+					<div class="game-info">
+						<a href="">13 <span>Followers</span></a>
+						<a href="">2 <span>Rooms</span></a>
+					</div>
+					<!-- <button class="btn btn-primary follow"><i class="far fa-heart"></i> Follow</button> -->
+					<button class="btn btn-primary following"><i class="fas fa-heart"></i> Following</button>
 					<br/>
-					<a href="">13 <span>Followers</span></a>
-					<a href="">2 <span>Rooms</span></a>
-					<br/>
-					<button class="btn btn-primary follow">Follow</button>
-					<br/>					
-					<br/>
-					<button class="btn btn-primary">초대 대기하기</button>
-					<button class="btn btn-primary">팀 꾸리기</button>
+					<!-- <button class="btn btn-primary">초대 대기하기</button>
+					<button class="btn btn-primary">팀 꾸리기</button> -->
 				</div>
 				<div class="menu-nav" v-show="pages.rightType === rightType.Idle">>
 					<!-- 버튼 나중에 꾸미기! -->
@@ -653,6 +692,95 @@ button {
 					}
 				}	
 			}
+			.list {
+				margin-top: 30px;
+				.scrolling-wrapper {
+					height: 443px;
+					padding-right: 10px;
+					-webkit-overflow-scrolling: touch;
+					&.list-rooms {
+						.list-content {
+							display: flex;
+							flex-wrap: wrap;
+							.card {
+								width: 100%;
+								margin-bottom: 8px;
+								border-radius: 8px;
+								cursor: pointer;
+								display: block;
+								position: relative;
+								border: 0px;
+								&:hover {
+									background-color: $idleColor;
+									border-color: $idleColor;
+								}
+								&.almost-full {
+									background-color: $almostFullColor;
+									border-color:  $almostFullColor;
+									&:hover {
+										background-color: $almostFullColorHover;
+										border-color: $almostFullColorHover;
+									}
+								}
+								&.half {
+									background-color: $halfColor;
+									border-color: $halfColor;
+									&:hover {
+										background-color: $halfColorHover;
+										border-color: $halfColorHover;
+									}
+								}
+								.card-head {
+									padding: 10px;
+									h5 {
+										margin-bottom: 0px;
+									}
+								}
+								.card-body {
+									padding: 0px 10px 10px 10px;
+									p {
+										font-size: 12px;
+										margin-bottom: 0px;
+									}
+								}
+							}
+						}
+					}
+					&.list-users {
+						.list-content {
+							display: flex;
+							flex-wrap: wrap;
+							justify-content: space-between;
+							.card {
+								margin-bottom: 25px;
+								display: inline-block;
+								position: relative;
+								color: #ffffff;
+								text-align: center;
+								width: 138px;
+								border: 0px;
+								border-radius: 10px;
+								box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+								background-color: $themeColor;
+								padding: 30px 0px 30px 0px;
+								.profile {
+									border-radius: 50%;
+									min-width: 50px;
+									min-height: 50px;
+									max-width: 50px;
+									max-height: 50px;
+									object-fit: cover;
+								}
+								.card-content {
+									h2 {
+										font-size: 18px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 			.rooms {
 				margin-top: 30px;
 				.scrolling-wrapper {
@@ -823,23 +951,43 @@ button {
 					max-width: 138px;
 					max-height: 183px;
 					border-radius: 10px;
+					margin-bottom: 8px;
 				}
-				a {
-					margin-left: 5px;
-					margin-right: 5px;
+				.game-title {
 					color: white;
-					font-weight: 500;
-					text-decoration: none;
-					span {
-						color: $idleColorOpa;
-						font-size: 12px;
-						font-weight: 400;
+					font-size: 24px;
+					font-weight: 700;
+				}
+				.game-info {
+					a {
+						margin-left: 5px;
+						margin-right: 5px;
+						margin-bottom: 8px;
+						color: white;
+						font-weight: 500;
+						text-decoration: none;
+						span {
+							color: $idleColorOpa;
+							font-size: 12px;
+							font-weight: 400;
+						}
 					}
 				}
 				.btn {
+					padding: 8px 15px 8px 15px;
+					margin-top: 8px;
 					border: 0px;
+					font-weight: 400;
+					i {
+						font-size: 12px;
+						margin-right: 5px;
+					}
+					// display: block;
 					&.follow {
 						background-color: $positiveColor;
+					}
+					&.following {
+						background-color: $pointColor;
 					}
 				}
 			}

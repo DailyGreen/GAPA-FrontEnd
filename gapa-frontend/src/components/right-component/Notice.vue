@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<div class="notice-page">
-			<button class="btn btn-light" v-on:click="pages.rightType = rightType.Idle"><i class="fas fa-sign-out-alt"></i></button>
-			<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+			<button class="btn btn-light" v-on:click="pages.rightType = RIGHT_TYPE.Idle"><i class="fas fa-sign-out-alt"></i></button>
+			<img class="profile-img float-right" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 			<h4>Notifications</h4>
 			<div class="notice-content">
 				<div class="notice-msg row">
 					<div class="col-md-2">
-						<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+						<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 					</div>
 					<div class="col-md-10">
 						<h5>닉네임2</h5>
@@ -18,7 +18,7 @@
 				</div>
 				<div class="notice-msg row">
 					<div class="col-md-2">
-						<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+						<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 					</div>
 					<div class="col-md-10">
 						<h5>NickName3232</h5>
@@ -33,16 +33,10 @@
 </template>
 
 <script>
+import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
+	
 export default {
 	props: {
-		leftType: {
-			type: Number,
-			default: -1
-		},
-		rightType: {
-			type: Number,
-			default: -1
-		},
 		pages: {
 			names: {
 				type: String,
@@ -60,6 +54,8 @@ export default {
 	},
 	data () {
 		return {
+			LEFT_TYPE : new LEFT_TYPE(),
+			RIGHT_TYPE : new RIGHT_TYPE()
 		}
 	},
 	methods:{

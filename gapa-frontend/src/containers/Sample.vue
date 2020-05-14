@@ -6,7 +6,7 @@
 			
 			<!-- 로그인 화면 (왼쪽) -->
 			<div class="left-content login-page col-md-4" v-if="type===0">
-				<img id="title-img" :src="require(`@/assets/gapa_icon.png`)"/> <!-- v-if="type===0" 아래 까지 웹사이트 화면을 보여준다는뜻 -->
+				<img id="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)"/> <!-- v-if="type===0" 아래 까지 웹사이트 화면을 보여준다는뜻 -->
 				<h1 class="login-title">SIGN IN</h1>
 				
 				<div class="login card"> <!-- 아 그리고 div 라는 태그는 그냥 묶음 이라생각하면됨 -->
@@ -34,10 +34,10 @@
 			
 			<!-- 평상시 화면 (왼쪽)-->
 			<div class="left-content common-page col-md-4" v-else-if="type===1">
-				<img id="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
+				<img id="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)"/>
 				
 				<div class="common-profile card">
-					<img class="profileimg" :src="require(`@/assets/blackspirit.jpg`)"/>
+					<img class="profileimg" :src="require(`@/assets/img/profile/blackspirit.jpg`)"/>
 					<h4 class="text-center" style="margin-top: 30px;">닉 넣을까말까?#3322</h4>
 					<!-- 버튼 나중에 꾸미기! -->
 					<button type="button" class="btn btn-success" id="top">호출 대기</button>	<!-- btn btn-success 는 부트 스트랩이 지원하는 클래스임 https://getbootstrap.com/docs/4.0/components/buttons/ -->
@@ -47,7 +47,7 @@
 			
 			<!-- 팀원 검색 화면 (왼쪽)-->
 			<div class="left-content search-teams col-md-4" v-else-if="type===2">
-				<img id="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
+				<img id="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)"/>
 				<h1 class="search-title">Waiting TEAM..</h1>
 
 				<div class="teams card">

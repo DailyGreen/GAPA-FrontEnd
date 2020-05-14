@@ -4,7 +4,7 @@
 			<button class="btn btn-light" v-on:click="OutRoom"><i class="fas fa-sign-out-alt"></i></button>
 
 			<div class="profile-curt">
-				<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+				<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 			</div>
 			<div class="row profile-info">
 				<div class="col-md-4 text-center">
@@ -25,16 +25,10 @@
 </template>
 
 <script>
+import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
+	
 export default {
 	props: {
-		leftType: {
-			type: Number,
-			default: -1
-		},
-		rightType: {
-			type: Number,
-			default: -1
-		},
 		pages: {
 			names: {
 				type: String,
@@ -52,6 +46,8 @@ export default {
 	},
 	data () {
 		return {
+			LEFT_TYPE : new LEFT_TYPE(),
+			RIGHT_TYPE : new RIGHT_TYPE()
 		}
 	},
 	methods:{

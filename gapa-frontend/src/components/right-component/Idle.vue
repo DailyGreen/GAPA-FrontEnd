@@ -3,12 +3,12 @@
 		<div class="idle-page">
 			<div class="state-nav">
 				<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
-				<img class="profile-img float-right" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
-				<button class="float-right" v-on:click="pages.rightType = rightType.Notice"><i class="far fa-bell"></i></button>
-				<button class="float-right" v-on:click="pages.rightType = rightType.Notice"><i class="fas fa-search"></i></button>
+				<img class="profile-img float-right" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
+				<button class="float-right" v-on:click="pages.rightType = RIGHT_TYPE.Notice"><i class="far fa-bell"></i></button>
+				<button class="float-right" v-on:click="pages.rightType = RIGHT_TYPE.Notice"><i class="fas fa-search"></i></button>
 			</div>
-			<div class="game-profile" v-show="pages.rightType === rightType.GameInfo">
-				<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="rightType=1"/>
+			<div class="game-profile" v-show="pages.rightType === RIGHT_TYPE.GameInfo">
+				<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="pages.rightType=1"/>
 				<h1 class="game-title">BATTLEGROUND</h1>
 				<div class="game-info">
 					<a href="">13 <span>Followers</span></a>
@@ -20,7 +20,7 @@
 				<!-- <button class="btn btn-primary">초대 대기하기</button>
 				<button class="btn btn-primary">팀 꾸리기</button> -->
 			</div>
-			<div class="menu-nav" v-show="pages.rightType === rightType.Idle">>
+			<div class="menu-nav" v-show="pages.rightType === RIGHT_TYPE.Idle">>
 				<!-- 버튼 나중에 꾸미기! -->
 				<button type="button" class="btn btn-success btn-lg btn-block">
 					<div class="card">
@@ -47,16 +47,10 @@
 </template>
 
 <script>
+import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
+	
 export default {
 	props: {
-		leftType: {
-			type: Number,
-			default: -1
-		},
-		rightType: {
-			type: Number,
-			default: -1
-		},
 		pages: {
 			names: {
 				type: String,
@@ -74,6 +68,8 @@ export default {
 	},
 	data () {
 		return {
+			LEFT_TYPE : new LEFT_TYPE(),
+			RIGHT_TYPE : new RIGHT_TYPE()
 		}
 	},
 	methods:{

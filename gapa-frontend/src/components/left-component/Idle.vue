@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<div class="idle-page">
-			<img class="title-img" :src="require(`@/assets/gapa_icon.png`)" v-on:click="type=0"/>
+			<img class="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)" v-on:click="ChangeLeftType(LEFT_TYPE.Explore)"/>
 			<div class="menu">
-				<Button class="btn" v-on:click="pages.leftType = leftType.Explore">Explore</Button>
-				<Button class="btn" v-on:click="pages.leftType = leftType.Games">Games</Button>
+				<Button class="btn" v-on:click="ChangeLeftType(LEFT_TYPE.Explore)">Explore</Button>
+				<Button class="btn" v-on:click="ChangeLeftType(LEFT_TYPE.Games)">Games</Button>
 				<!-- <Button class="btn" v-on:click="pages.leftType = leftType.Explore">Rooms</Button> -->
 				<Button class="btn">{{ pages }}</Button>
 			</div>
@@ -12,7 +12,7 @@
 			<!-- <div class="search">
 				<input class="search-input" type="text" placeholder="리그오브레전드">
 			</div> -->
-			<div class="explore" v-show="pages.leftType === leftType.Explore">
+			<div class="explore" v-show="pages.leftType === LEFT_TYPE.Explore">
 				<h2>Recommend For You</h2>
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="card-columns">
@@ -74,7 +74,7 @@
 					</div>
 				</simplebar>
 			</div>
-			<div class="games" v-show="pages.leftType === leftType.Games">
+			<div class="games" v-show="pages.leftType === LEFT_TYPE.Games">
 				<h2>Game Category</h2>
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="game-category">
@@ -116,7 +116,7 @@
 					</div>
 				</simplebar>
 			</div>
-			<div class="list" v-show="pages.leftType === leftType.GameInfo">
+			<div class="list" v-show="pages.leftType === LEFT_TYPE.GameInfo">
 				<button class="btn">게임 방</button>
 				<button class="btn">대기 유저</button>
 				<simplebar class="scrolling-wrapper list-rooms" data-simplebar-auto-hide="true" v-show="false">
@@ -150,7 +150,7 @@
 				<simplebar class="scrolling-wrapper list-users" data-simplebar-auto-hide="true">
 					<div class="list-content">
 						<div class="card" v-for="i in 40" :key="i">
-							<img :src="require(`@/assets/profileImg.png`)" alt="profile-image" class="profile"/>
+							<img :src="require(`@/assets/img/profile/profileImg.png`)" alt="profile-image" class="profile"/>
 							<div class="card-content">
 								<h2>닉네임</h2>
 								<p>14 Followers</p>
@@ -189,19 +189,13 @@
 </template>
 
 <script>
+import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
+	
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 
 export default {
 	props: {
-		leftType: {
-			type: Number,
-			default: -1
-		},
-		rightType: {
-			type: Number,
-			default: -1
-		},
 		pages: {
 			names: {
 				type: String,
@@ -219,9 +213,15 @@ export default {
 	},
 	data () {
 		return {
+			LEFT_TYPE : new LEFT_TYPE(),
+			RIGHT_TYPE : new RIGHT_TYPE()
 		}
 	},
 	methods:{
+		ChangeLeftType: function(leftType) {
+			this.pages.leftType = leftType
+			this.$emit('PagePush', this.pages);
+		},
 		GameInfo : function(gameNum) {
 			this.$emit('GameInfo', gameNum);
 		}

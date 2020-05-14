@@ -5,7 +5,7 @@
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="chat-log row">
 						<div class="profile col-md-2">
-							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+							<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 						</div>
 						<div class="msg col-md-10">
 							<p class="nickname">닉네임</p>
@@ -14,7 +14,7 @@
 					</div>
 					<div class="chat-log row">
 						<div class="profile col-md-2">
-							<img class="profile-img float-center" :src="require(`@/assets/blackspirit.jpg`)" v-on:click="SearchUser"/>
+							<img class="profile-img float-center" :src="require(`@/assets/img/profile/blackspirit.jpg`)" v-on:click="SearchUser"/>
 						</div>
 						<div class="msg col-md-10">
 							<p class="nickname">닉네임22</p>
@@ -46,7 +46,7 @@
 					</div>
 					<div class="chat-log row">
 						<div class="profile col-md-2">
-							<img class="profile-img float-center" :src="require(`@/assets/profileImg.png`)" v-on:click="SearchUser"/>
+							<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 						</div>
 						<div class="msg col-md-10">
 							<p class="nickname">닉네임</p>
@@ -66,19 +66,13 @@
 </template>
 
 <script>
+import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
+
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 
 export default {
 	props: {
-		leftType: {
-			type: Number,
-			default: -1
-		},
-		rightType: {
-			type: Number,
-			default: -1
-		},
 		pages: {
 			names: {
 				type: String,
@@ -96,6 +90,8 @@ export default {
 	},
 	data () {
 		return {
+			LEFT_TYPE : new LEFT_TYPE(),
+			RIGHT_TYPE : new RIGHT_TYPE()
 		}
 	},
 	methods:{

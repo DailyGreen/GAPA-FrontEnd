@@ -3,8 +3,8 @@
 		<div class="profile-page">
 			<h3>Games<span> ></span></h3>
 			<div class="games">
-				<img class="game-card" :src="require(`@/assets/lol_card.png`)"/>
-				<img class="game-card" :src="require(`@/assets/pubg_card.jpg`)"/>
+				<img class="game-card" :src="require(`@/assets/img/games/LeagueOfLegend.png`)"/>
+				<img class="game-card" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)"/>
 			</div>
 			<h3>Recent<span> ></span></h3>
 			<div class="recents">
@@ -16,16 +16,10 @@
 </template>
 
 <script>
+import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
+	
 export default {
 	props: {
-		leftType: {
-			type: Number,
-			default: -1
-		},
-		rightType: {
-			type: Number,
-			default: -1
-		},
 		pages: {
 			names: {
 				type: String,
@@ -43,6 +37,8 @@ export default {
 	},
 	data () {
 		return {
+			LEFT_TYPE : new LEFT_TYPE(),
+			RIGHT_TYPE : new RIGHT_TYPE()
 		}
 	},
 	components: {

@@ -9,7 +9,7 @@
 			-->
 			<!-- 로그인 화면 (왼쪽) -->
 			<div class="left-content login-page col-md-4" v-if="type===0">
-				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
+				<img class="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)"/>
 				<h1 class="login-title">SIGN IN</h1>
 				<!--<p class="text-danger"> 아이디 혹은 비밀번호가 다릅니다.</p>-->
 				
@@ -38,7 +38,7 @@
 			
 			<!-- 회원가입 페이지-->
 			<div class="left-content SingUp-page col-md-4" v-if="type===-1">
-				<img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/>
+				<img class="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)"/>
 				<h1 class="SingUp-title">SingUp</h1>
 				
 				<div class="SingUp card">
@@ -246,7 +246,7 @@ export default {
 			color: black;
 		}
 		&.SingUp-page{
-			background-image: url("../assets/temp.jpg");
+			// background-image: url("../assets/temp.jpg");
 			background-repeat : no-repeat;
 			background-size : cover;
 		}

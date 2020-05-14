@@ -1,14 +1,17 @@
 <template>
   <div>
+	<p>{{ pageStack }}</p>
+	<p>{{ LEFT_TYPE }}</p>
+	<p>{{ RIGHT_TYPE }}</p>
 	<div class="container">
 		<div class="content row">
 			<div class="left-content col-md-8">
 				<!----------------------- start of left-content ----------------------->
 				<!-- 평상시 화면 (왼쪽) -->
 				<!-- components / left-component / Idle.vue -->
-				<leftIdle v-show="pages.name === 'Main'" :pages="pages" :leftType="leftType" :rightType="rightType" @GameInfo="GameInfo"></leftIdle>
+				<leftIdle v-show="pages.name === 'Main'" :pages="pages" @GameInfo="GameInfo" @PagePush="PagePush" @PagePop="PagePop"></leftIdle>
 				<!-- 팀원 찾기 화면 (왼쪽)-->
-				<div class="left-content search-page col-md-8" v-show="pages.leftType === leftType.Search">
+				<div class="left-content search-page col-md-8" v-show="pages.leftType === LEFT_TYPE.Search">
 					<div class="bg"></div>
 					<div class="row h-100">
 						<div class="col-md-6">
@@ -34,10 +37,10 @@
 				</div>
 				<!-- 채팅 화면 (왼쪽) -->
 				<!-- components / left-component / Chat.vue -->
-				<leftChat v-show="pages.leftType === leftType.Chat" :pages="pages" :leftType="leftType" :rightType="rightType" @SearchUser="SearchUser"></leftChat>
+				<leftChat v-show="pages.leftType === LEFT_TYPE.Chat" :pages="pages" @SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftChat>
 				<!-- 프로필 화면 (왼쪽) -->
 				<!-- components / left-component / Profile.vue -->
-				<leftProfile v-show="pages.leftType === leftType.Timeline" :pages="pages" :leftType="leftType" :rightType="rightType"></leftProfile>
+				<leftProfile v-show="pages.leftType === LEFT_TYPE.Timeline" :pages="pages" @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
 				<!------------------------ end of left-content ------------------------>
 			</div>
 			
@@ -46,19 +49,19 @@
 				<!----------------------- start of right-content ----------------------->
 				<!-- 평상시 화면 (오른쪽)-->
 				<!-- components / right-component / Idle.vue -->
-				<rightIdle v-show="pages.name === 'Main' && pages.rightType !== rightType.Notice" :pages="pages" :leftType="leftType" :rightType="rightType" @SearchUser="SearchUser" @CreateRoom="CreateRoom"></rightIdle>
+				<rightIdle v-show="pages.name === 'Main' && pages.rightType !== RIGHT_TYPE.Notice" :pages="pages" @SearchUser="SearchUser" @CreateRoom="CreateRoom" @PagePush="PagePush" @PagePop="PagePop"></rightIdle>
 				<!-- 팀원 검색 화면 (오른쪽)-->
-				<div class="right-content search-page col-md-4" v-show="pages.rightType === rightType.SearchUser">
+				<div class="right-content search-page col-md-4" v-show="pages.rightType === RIGHT_TYPE.SearchUser">
 				</div>
 				<!-- 팀원 꾸리기 화면 : 채팅 (오른쪽)-->
 				<!-- components / right-component / Chat.vue -->
-				<rightChat v-show="pages.rightType === rightType.UserList" :pages="pages" :leftType="leftType" :rightType="rightType" @SearchUser="SearchUser" @OutRoom="OutRoom"></rightChat>
+				<rightChat v-show="pages.rightType === RIGHT_TYPE.UserList" :pages="pages" @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightChat>
 				<!-- 프로필 화면 (오른쪽)-->
 				<!-- components / right-component / Profile.vue -->
-				<rightProfile v-show="pages.rightType === rightType.Profile" :pages="pages" :leftType="leftType" :rightType="rightType" @SearchUser="SearchUser" @OutRoom="OutRoom"></rightProfile>
+				<rightProfile v-show="pages.rightType === RIGHT_TYPE.Profile" :pages="pages" @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightProfile>
 				<!-- 알림 화면 (오른쪽) -->
 				<!-- components / right-component / Notice.vue -->
-				<rightNotice v-show="pages.rightType === rightType.Notice" :pages="pages" :leftType="leftType" :rightType="rightType" @OutRoom="OutRoom"></rightNotice>
+				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightNotice>
 				<!------------------------ end of right-content ------------------------>
 			</div>
 		</div>
@@ -67,6 +70,8 @@
 </template>
 
 <script>	
+import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
+
 import leftIdle from '@/components/left-component/Idle'
 import leftProfile from '@/components/left-component/Profile'
 import leftChat from '@/components/left-component/Chat'
@@ -76,48 +81,43 @@ import rightProfile from '@/components/right-component/Profile'
 import rightNotice from '@/components/right-component/Notice'
 import rightChat from '@/components/right-component/Chat'
 
+class Stack {
+	constructor() {
+		this.pagesStack = [];
+	}
+	
+	push(page) {
+		this.pagesStack.push(page);
+	}
+	
+	pop() {
+		return this.pagesStack.pop();
+	}
+}
+
 export default {
 	data () {
 		return {
-			leftType: {
-				Explore: 0,
-				Games: 1,
-				Chat: 2,
-				UserList: 3,
-				Timeline: 4,
-				Search: 5,
-				GameInfo: 6
-			},
-			rightType: {
-				Idle: 0,
-				Notice: 1,
-				Profile: 2,
-				GameInfo: 3,
-				UserList: 4,
-				Search: 5
-			},
-			// pages: [
-			// 	{ name: 'Main', leftType: leftType.Explore, rightType: rightType.Idle },
-			// 	{ name: 'Chat', leftType: leftType.Chat, rightType: rightType.UserList },
-			// 	{ name: 'Profile', leftType: leftType.Chat, rightType: rightType.UserList }
-			// ],
 			pages: {
 				name: 'Main',
 				leftType: 0,
 				rightType: 0
-			}
+			},
+			pageStack : new Stack(),
+			LEFT_TYPE : new LEFT_TYPE(),
+			RIGHT_TYPE : new RIGHT_TYPE()
 		}
     },
 	methods:{
 		// http://www.devkuma.com/books/pages/1175
 		init: function() {
-			this.pages.leftType = this.leftType.Explore;
-			this.pages.rightType = this.rightType.Idle;
+			this.pages.leftType = this.LEFT_TYPE.Explore;
+			this.pages.rightType = this.RIGHT_TYPE.Idle;
 		},
 		SearchUser : function() {
 			this.pages.name = 'Profile';
-			this.pages.leftType = this.leftType.Timeline;
-			this.pages.rightType = this.rightType.Profile;
+			this.pages.leftType = this.LEFT_TYPE.Timeline;
+			this.pages.rightType = this.RIGHT_TYPE.Profile;
 		},
 		OutRoom: function() {
 			this.pages.name = 'Main';
@@ -125,21 +125,26 @@ export default {
 		},
 		JoinRoom: function() {
 			this.pages.name = 'Chat';
-			this.pages.leftType = this.leftType.Chat;
-			this.pages.rightType = this.rightType.UserList;
+			this.pages.leftType = this.LEFT_TYPE.Chat;
+			this.pages.rightType = this.RIGHT_TYPE.UserList;
 		},
 		CreateRoom: function() {
 			this.JoinRoom();
 		},
-		GameInfo: function(gameTag) {
-			this.maxMember = gameTag;  // 지워도 되는거, 만들어 놨는데 안쓰면 버그 나서 아무렇게나 쓴거
-			this.maxMember = 4;
-			this.pages.leftType = this.leftType.GameInfo;
-			this.pages.rightType = this.rightType.GameInfo;
+		GameInfo: function(gameTag) {  // eslint-disable-line no-unused-vars
+			this.pages.leftType = this.LEFT_TYPE.GameInfo;
+			this.pages.rightType = this.RIGHT_TYPE.GameInfo;
+		},
+		PagePush: function(page) {
+			this.pageStack.push(page);
+		},
+		PagePop: function() {
+			return this.pageStack.pop();
 		}
 	},
 	mounted() {
 		this.init();
+		this.pageStack.push(this.pages);
 	},
 	components: {
 		leftIdle,
@@ -191,7 +196,7 @@ export default {
 			}
 			.bg {
 				position: absolute;
-				background: url('~@/assets/lol_illust.png') no-repeat right 0px; 
+				background: url('~@/assets/img/usefull/gapa_icon.png') no-repeat right 0px; 
 				-webkit-background-size: cover;
 				-moz-background-size: cover;
 				-o-background-size: cover;

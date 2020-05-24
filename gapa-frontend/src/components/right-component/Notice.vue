@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="notice-page">
-			<button class="btn btn-light" v-on:click="pages.rightType = RIGHT_TYPE.Idle"><i class="fas fa-sign-out-alt"></i></button>
+			<button class="btn btn-light" v-on:click="ChangeRightType(RIGHT_TYPE.Idle)"><i class="fas fa-sign-out-alt"></i></button>
 			<img class="profile-img float-right" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 			<h4>Notifications</h4>
 			<div class="notice-content">

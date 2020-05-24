@@ -4,11 +4,11 @@
 			<div class="state-nav">
 				<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
 				<img class="profile-img float-right" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
-				<button class="float-right" v-on:click="pages.rightType = RIGHT_TYPE.Notice"><i class="far fa-bell"></i></button>
-				<button class="float-right" v-on:click="pages.rightType = RIGHT_TYPE.Notice"><i class="fas fa-search"></i></button>
+				<button class="float-right" v-on:click="ChangeRightType(RIGHT_TYPE.Notice)"><i class="far fa-bell"></i></button>
+				<button class="float-right" v-on:click="ChangeRightType(RIGHT_TYPE.Notice)"><i class="fas fa-search"></i></button>
 			</div>
 			<div class="game-profile" v-show="pages.rightType === RIGHT_TYPE.GameInfo">
-				<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="pages.rightType=1"/>
+				<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="ChangeRightType(RIGHT_TYPE.GameInfo)"/>
 				<h1 class="game-title">BATTLEGROUND</h1>
 				<div class="game-info">
 					<a href="">13 <span>Followers</span></a>
@@ -73,6 +73,10 @@ export default {
 		}
 	},
 	methods:{
+		ChangeRightType: function(rightType) {
+			this.pages.rightType = rightType
+			this.$emit('PagePush', this.pages);
+		},
 		SearchUser : function() {
 			this.$emit('SearchUser');
 		},

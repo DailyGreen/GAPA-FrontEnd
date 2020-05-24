@@ -95,6 +95,10 @@ export default {
 		}
 	},
 	methods:{
+		// ChangeLeftType: function(leftType) {
+		// 	this.pages.leftType = leftType
+		// 	this.$emit('PagePush', this.pages);
+		// },
 		SearchUser : function() {
 			this.$emit('SearchUser');
 		}

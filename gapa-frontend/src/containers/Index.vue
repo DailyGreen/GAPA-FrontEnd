@@ -1,6 +1,6 @@
 <template>
   <div>
-	<p>{{ pageStack }}</p>
+	<p>{{ pageStack.pagesStack }}</p>
 	<p>{{ LEFT_TYPE }}</p>
 	<p>{{ RIGHT_TYPE }}</p>
 	<div class="container">
@@ -136,7 +136,7 @@ export default {
 			this.pages.rightType = this.RIGHT_TYPE.GameInfo;
 		},
 		PagePush: function(page) {
-			this.pageStack.push(page);
+			this.pageStack.push({ name : page.name, leftType: page.leftType, rightType: page.rightType });
 		},
 		PagePop: function() {
 			return this.pageStack.pop();
@@ -158,10 +158,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
-
 // 폰트 생김새 : https://fonts.google.com/specimen/Lilita+One
 // @import url('https://fonts.googleapis.com/css?family=Lilita+One&display=swap');
 // 폰트 생김새 : https://fonts.google.com/specimen/Baloo+Bhai ** 한글은 눈갱 **
@@ -180,7 +179,6 @@ export default {
 	background-color: white;
 	border-radius: 30px;
 	padding: 0px 15px 0px 15px;
-	font-family: 'Noto Sans KR', sans-serif;
 }
 .content {
     height: 40rem;

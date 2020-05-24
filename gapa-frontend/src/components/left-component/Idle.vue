@@ -235,7 +235,6 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
-
 .idle-page {
 	.title-img {
 		width: 40px;

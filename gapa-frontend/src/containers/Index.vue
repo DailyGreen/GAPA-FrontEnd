@@ -1,15 +1,14 @@
 <template>
   <div>
-	<p>{{ pageStack.pagesStack }}</p>
-	<p>{{ LEFT_TYPE }}</p>
-	<p>{{ RIGHT_TYPE }}</p>
+	<p>{{ pageStack.data }}</p>
+	<p>{{ pages }}</p>
 	<div class="container">
 		<div class="content row">
 			<div class="left-content col-md-8">
 				<!----------------------- start of left-content ----------------------->
 				<!-- 평상시 화면 (왼쪽) -->
 				<!-- components / left-component / Idle.vue -->
-				<leftIdle v-show="pages.name === 'Main'" :pages="pages" @GameInfo="GameInfo" @PagePush="PagePush" @PagePop="PagePop"></leftIdle>
+				<leftIdle v-show="pages.name === 'Main'" :pages="pages" @goMainPage="goMainPage" @GameInfo="GameInfo" @JoinRoom="JoinRoom" @PagePush="PagePush" @PagePop="PagePop"></leftIdle>
 				<!-- 팀원 찾기 화면 (왼쪽)-->
 				<div class="left-content search-page col-md-8" v-show="pages.leftType === LEFT_TYPE.Search">
 					<div class="bg"></div>
@@ -61,7 +60,7 @@
 				<rightProfile v-show="pages.rightType === RIGHT_TYPE.Profile" :pages="pages" @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightProfile>
 				<!-- 알림 화면 (오른쪽) -->
 				<!-- components / right-component / Notice.vue -->
-				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightNotice>
+				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" @OutRoom="OutRoom" @PagePush="PagePush" @PagePopAndMove="PagePopAndMove"></rightNotice>
 				<!------------------------ end of right-content ------------------------>
 			</div>
 		</div>
@@ -83,15 +82,19 @@ import rightChat from '@/components/right-component/Chat'
 
 class Stack {
 	constructor() {
-		this.pagesStack = [];
+		this.data = [];
 	}
 	
 	push(page) {
-		this.pagesStack.push(page);
+		this.data.push(page);
 	}
 	
 	pop() {
-		return this.pagesStack.pop();
+		return this.data.pop();
+	}
+	
+	clear() {
+		this.data = [];
 	}
 }
 
@@ -111,19 +114,26 @@ export default {
 	methods:{
 		// http://www.devkuma.com/books/pages/1175
 		init: function() {
+			this.pages.name = 'Main';
 			this.pages.leftType = this.LEFT_TYPE.Explore;
 			this.pages.rightType = this.RIGHT_TYPE.Idle;
+			this.pageStack.clear();
+		},
+		goMainPage: function() {
+			this.init();
+			// this.pageStack.push(this.pages);
 		},
 		SearchUser : function() {
+			this.PagePush(this.pages);
 			this.pages.name = 'Profile';
 			this.pages.leftType = this.LEFT_TYPE.Timeline;
 			this.pages.rightType = this.RIGHT_TYPE.Profile;
 		},
 		OutRoom: function() {
-			this.pages.name = 'Main';
-			this.init();
+			this.PagePopAndMove();
 		},
 		JoinRoom: function() {
+			this.PagePush(this.pages);
 			this.pages.name = 'Chat';
 			this.pages.leftType = this.LEFT_TYPE.Chat;
 			this.pages.rightType = this.RIGHT_TYPE.UserList;
@@ -132,19 +142,32 @@ export default {
 			this.JoinRoom();
 		},
 		GameInfo: function(gameTag) {  // eslint-disable-line no-unused-vars
-			this.pages.leftType = this.LEFT_TYPE.GameInfo;
+			// 왼쪽이 GameRooms 와 GameUsers 상태일때 우측은 계속 GameInfo 상태임
+			//	|----------------------------------------------|
+			//	|  GameRooms (게임 방 목록)   	|				|
+			//	|  Gameusers (게임 유저 목록)		|	GameInfo	|
+			//	|______________________________|_______________|
+			this.PagePush(this.pages);
+			this.pages.leftType = this.LEFT_TYPE.GameRooms;
 			this.pages.rightType = this.RIGHT_TYPE.GameInfo;
 		},
 		PagePush: function(page) {
+			// ! 주의 : PagePush 를 사용할떄 주의 해야 할점
+			// 		- leftType|rightType을 변경하기 전에 호출해야 합니다.
+			//		- emit을 통해 PagePush를 통해 Stack에 넣고 그 이후 leftType|rightType을 변경해야 합니다.
 			this.pageStack.push({ name : page.name, leftType: page.leftType, rightType: page.rightType });
+			console.log(this.pageStack.data);
 		},
 		PagePop: function() {
 			return this.pageStack.pop();
+		},
+		PagePopAndMove: function() {
+			this.pages = this.PagePop();
 		}
 	},
 	mounted() {
 		this.init();
-		this.pageStack.push(this.pages);
+		// this.pageStack.push(this.pages);
 	},
 	components: {
 		leftIdle,

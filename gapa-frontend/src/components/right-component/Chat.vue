@@ -6,7 +6,7 @@
 			<div class="teams card">
 				<div class="member row" v-for="member in teams" v-bind:key="member.id" v-on:click="SearchUser">
 					<div class="col-sm-3 member-profile">
-						<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)"  v-on:click="SearchUser"/>
+						<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)"/>
 					</div>
 					<div class="col-sm-9 member-name">
 						<span class="align-middle">{{ member.name }}</span>

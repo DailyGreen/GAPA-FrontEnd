@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="notice-page">
-			<button class="btn btn-light" v-on:click="ChangeRightType(RIGHT_TYPE.Idle)"><i class="fas fa-sign-out-alt"></i></button>
+			<button class="btn btn-light" v-on:click="PagePopAndMove()"><i class="fas fa-sign-out-alt"></i></button>
 			<img class="profile-img float-right" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 			<h4>Notifications</h4>
 			<div class="notice-content">
@@ -59,8 +59,21 @@ export default {
 		}
 	},
 	methods:{
+		// ChangeRightType: function(rightType) {
+		// 	this.pages.rightType = rightType
+		// 	this.$emit('PagePop', this.pages);
+		// },
 		SearchUser : function() {
 			this.$emit('SearchUser');
+		},
+		PagePopAndMove : function() {
+			//	TODO: 더 나은 PagePop()호출 방식을 발견한다면 개선하기
+			/*
+				this.pages = this.$emit('PagePop'); 는
+				this.pages = this.PagePop(); 처럼 PagePop()이 실행되고 바로 pages 로 값이 들어 가지 않는다.
+				때문에 다른 방식으로 접근해야됨
+			 */
+			this.$emit('PagePopAndMove');
 		},
 		OutRoom : function() {
 			this.$emit('OutRoom');

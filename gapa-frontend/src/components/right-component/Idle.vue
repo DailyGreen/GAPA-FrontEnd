@@ -74,8 +74,8 @@ export default {
 	},
 	methods:{
 		ChangeRightType: function(rightType) {
-			this.pages.rightType = rightType
 			this.$emit('PagePush', this.pages);
+			this.pages.rightType = rightType
 		},
 		SearchUser : function() {
 			this.$emit('SearchUser');

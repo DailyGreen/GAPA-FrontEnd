@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<div class="idle-page">
-			<img class="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)" v-on:click="ChangeLeftType(LEFT_TYPE.Explore)"/>
+			<img class="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)" v-on:click="goMainPage()"/>
 			<div class="menu">
-				<Button class="btn" v-on:click="ChangeLeftType(LEFT_TYPE.Explore)">Explore</Button>
+				<Button class="btn" v-on:click="goMainPage()">Explore</Button>
 				<Button class="btn" v-on:click="ChangeLeftType(LEFT_TYPE.Games)">Games</Button>
 				<!-- <Button class="btn" v-on:click="pages.leftType = leftType.Explore">Rooms</Button> -->
 				<Button class="btn">{{ pages }}</Button>
@@ -116,12 +116,12 @@
 					</div>
 				</simplebar>
 			</div>
-			<div class="list" v-show="pages.leftType === LEFT_TYPE.GameInfo">
-				<button class="btn">게임 방</button>
-				<button class="btn">대기 유저</button>
-				<simplebar class="scrolling-wrapper list-rooms" data-simplebar-auto-hide="true" v-show="false">
+			<div class="list" v-show="pages.leftType === LEFT_TYPE.GameRooms || pages.leftType === LEFT_TYPE.GameUsers">
+				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameRooms">게임 방</button>
+				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameUsers">대기 유저</button>
+				<simplebar class="scrolling-wrapper list-rooms" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameRooms">
 					<div class="list-content">
-						<div class="card almost-full">
+						<div class="card almost-full" v-on:click="JoinRoom(0)">
 							<div class="card-head">
 								<h5 class="card-title">여기에는 방 이름이 들어갑니다.</h5>
 							</div>
@@ -147,7 +147,7 @@
 						</div>
 					</div>
 				</simplebar>
-				<simplebar class="scrolling-wrapper list-users" data-simplebar-auto-hide="true">
+				<simplebar class="scrolling-wrapper list-users" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameUsers">
 					<div class="list-content">
 						<div class="card" v-for="i in 40" :key="i">
 							<img :src="require(`@/assets/img/profile/profileImg.png`)" alt="profile-image" class="profile"/>
@@ -218,9 +218,15 @@ export default {
 		}
 	},
 	methods:{
+		goMainPage : function() {
+			this.$emit('goMainPage');
+		},
+		JoinRoom : function(roomIdx) {	// eslint-disable-line no-unused-vars
+			this.$emit('JoinRoom');
+		},
 		ChangeLeftType: function(leftType) {
-			this.pages.leftType = leftType
 			this.$emit('PagePush', this.pages);
+			this.pages.leftType = leftType
 		},
 		GameInfo : function(gameNum) {
 			this.$emit('GameInfo', gameNum);

@@ -89,7 +89,6 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 
 .notice-page {
-	background-color: $pointColor;
 	color: $idleColor;
 	h4 {
 		margin-bottom: 25px;

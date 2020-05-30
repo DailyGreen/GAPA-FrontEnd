@@ -44,7 +44,7 @@
 			</div>
 			
 			
-			<div class="right-content col-md-4">
+			<div class="right-content col-md-4" :class="{notice : pages.rightType === RIGHT_TYPE.Notice}">
 				<!----------------------- start of right-content ----------------------->
 				<!-- 평상시 화면 (오른쪽)-->
 				<!-- components / right-component / Idle.vue -->
@@ -263,6 +263,9 @@ export default {
 		// border-radius: 50px 0px 0px 50px;
 		border-radius: 30px 30px 30px 30px;
 		background-color: $themeColor;
+		&.notice {
+			background-color: $pointColor;
+		}
 		&.search-page {
 		}
 	}

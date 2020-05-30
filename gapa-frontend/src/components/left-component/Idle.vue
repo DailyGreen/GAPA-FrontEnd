@@ -5,25 +5,32 @@
 			<div class="menu">
 				<Button class="btn" v-on:click="goMainPage()">Explore</Button>
 				<Button class="btn" v-on:click="ChangeLeftType(LEFT_TYPE.Games)">Games</Button>
-				<!-- <Button class="btn" v-on:click="pages.leftType = leftType.Explore">Rooms</Button> -->
-				<Button class="btn">{{ pages }}</Button>
 			</div>
 			<!-- 	검색어창 비활성화	 -->
 			<!-- <div class="search">
 				<input class="search-input" type="text" placeholder="리그오브레전드">
 			</div> -->
 			<div class="explore" v-show="pages.leftType === LEFT_TYPE.Explore">
-				<h2>Recommend For You</h2>
-				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
-					<div class="card-columns">
-						<div class="card">
-							<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">맞춤 라인에는 관련 게임을 분석해서</h5>
-								<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<div class="row columns">
+					<div class="col-md-4">
+						<div class="card card-room">
+							<div class="card-head">
+								<img :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" class="card-img-top">
+							</div>
+							<div class="card-body" style="background-color:#edbe53">
+								<h5 class="card-title">배그 랭 돌릴 4인팟 구합니다</h5>
+								<p class="card-text">(1 / 4)</p>
 							</div>
 						</div>
-						<div class="card p-3">
+						<div class="card p-3 card-user">
+							<blockquote class="blockquote mb-0 card-body text-center">
+								<img :src="require(`@/assets/img/profile/blackspirit.jpg`)" class="user-profile">
+								<p class="user-state">리그오브레전드 대기중</p>
+							</blockquote>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="card p-3 card-user">
 							<blockquote class="blockquote mb-0 card-body">
 								<p>만들어진 방이나</p>
 								<footer class="blockquote-footer">
@@ -31,86 +38,47 @@
 								</footer>
 							</blockquote>
 						</div>
-						<div class="card">
-							<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">비슷한 유저들을 추천해줍니다.</h5>
-								<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-								<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+						<div class="card card-room">
+							<div class="card-head">
+								<img :src="require(`@/assets/img/games/TTF.png`)" class="card-img-top">
+							</div>
+							<div class="card-body" style="background-color:#fb7c3a">
+								<h5 class="card-title">TFT 랭 돌릴 4인팟 구합니다</h5>
+								<p class="card-text">(1 / 4)</p>
 							</div>
 						</div>
-						<div class="card">
-							<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title" style="z-index:10;">맞춤 라인에는 관련 게임을 분석해서</h5>
-								<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+					</div>
+					<div class="col-md-4">
+						<div class="card card-room">
+							<div class="card-head">
+								<img :src="require(`@/assets/img/games/TTF.png`)" class="card-img-top">
+							</div>
+							<div class="card-body" style="background-color:#fb7c3a">
+								<h5 class="card-title">TFT 랭 돌릴 4인팟 구합니다</h5>
+								<p class="card-text">(1 / 4)</p>
 							</div>
 						</div>
-						<div class="card text-center">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This 비슷한 유저들을 추천해hort paragraphy of text below it.</p>
-								<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-							</div>
-						</div>
-						<div class="card">
-							<img src="http://grsmto.github.io/simplebar/static/logo-b9548eb4e7099f8133fd4d039b2dff43.svg" class="card-img-top" alt="...">
-						</div>
-						<div class="card p-3 text-right">
-							<blockquote class="blockquote mb-0">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+						<div class="card p-3 card-user">
+							<blockquote class="blockquote mb-0 card-body">
+								<p>만들어진 방이나</p>
 								<footer class="blockquote-footer">
 									<small class="text-muted">Someone famous in <cite title="Source Title">Source Title</cite></small>
 								</footer>
 							</blockquote>
 						</div>
-						<div class="card">
-							<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-							</div>
-						</div>
 					</div>
-				</simplebar>
+				</div>
+				<button class="btn btn-primary refresh-btn mx-auto d-block"><i class="fas fa-sync-alt"></i> Refresh</button>
 			</div>
 			<div class="games" v-show="pages.leftType === LEFT_TYPE.Games">
 				<h2>Game Category</h2>
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="game-category">
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="GameInfo(0)"/>
+						<div class="card" v-for="game in gameCategory" :key="game.code">
+							<img class="game-img" :src="require(`@/assets/img/games/${game.imgUrl}`)" v-on:click="`GameInfo({{game.code}})`"/>
 							<div class="card-body">
-								<p class="game-name">BATTLEGROUND</p>
-								<p class="game-follower">145명의 팔로워</p>
-							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/DeadByDaylight.png`)" v-on:click="GameInfo(1)"/>
-							<div class="card-body">
-								<p class="game-name">DeadByDaylight</p>
-								<p class="game-follower">12명의 팔로워</p>
-							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/LeagueOfLegend.png`)" v-on:click="GameInfo(2)"/>
-							<div class="card-body">
-								<p class="game-name">League of Legend</p>
-								<p class="game-follower">145명의 팔로워</p>
-							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/TTF.png`)" v-on:click="GameInfo(3)"/>
-							<div class="card-body">
-								<p class="game-name">TTF</p>
-								<p class="game-follower">145명의 팔로워</p>
-							</div>
-						</div>
-						<div class="card">
-							<img class="game-img" :src="require(`@/assets/img/games/overwatch.png`)" v-on:click="GameInfo(4)"/>
-							<div class="card-body">
-								<p class="game-name">Overwatch</p>
-								<p class="game-follower">145명의 팔로워</p>
+								<p class="game-name">{{game.name}}</p>
+								<p class="game-follower">{{game.follwerCount}}명의 팔로워</p>
 							</div>
 						</div>
 					</div>
@@ -189,11 +157,12 @@
 </template>
 
 <script>
+	
 import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
 	
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
-
+	
 export default {
 	props: {
 		pages: {
@@ -214,7 +183,40 @@ export default {
 	data () {
 		return {
 			LEFT_TYPE : new LEFT_TYPE(),
-			RIGHT_TYPE : new RIGHT_TYPE()
+			RIGHT_TYPE : new RIGHT_TYPE(),
+			gameCategory: [
+				{
+					name: '배틀그라운드',
+					follwerCount: 145,
+					imgUrl: 'BATTLEGROUNDS.png',
+					code: 0
+				},
+				{
+					name: 'DeadByDaylight',
+					follwerCount: 32,
+					imgUrl: 'DeadByDaylight.png',
+					code: 1
+				},
+				{
+					name: 'League of Legend',
+					follwerCount: 1394,
+					imgUrl: 'LeagueOfLegend.png',
+					code: 2
+				},
+				{
+					name: 'TTF',
+					follwerCount: 203,
+					imgUrl: 'TTF.png',
+					code: 3
+				},
+				{
+					name: 'Overwatch',
+					follwerCount: 131,
+					imgUrl: 'overwatch.png',
+					code: 4
+				},
+			],
+			blocks: [ 'a','a','a','a']
 		}
 	},
 	methods:{
@@ -241,7 +243,22 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
+	
+@media screen and (min-width: 1200px) {
+  .bricklayer-column-sizer {
+    /* divide by 3. */
+    width: 33.3%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .bricklayer-column-sizer {
+    /* divide by 2. */
+    width: 50%;
+  }
+}
 .idle-page {
+	height: 100%;
 	.title-img {
 		width: 40px;
 		position: relative;
@@ -284,15 +301,76 @@ export default {
 		}
 	}
 	.explore {
-		margin-top: 30px;
-		.scrolling-wrapper {
-			height: 443px;
-			padding-right: 10px;
-			-webkit-overflow-scrolling: touch;
+		height: 100%;
+		position: relative;
+		margin-top: 15px;
+		// margin-left: -40px;
+		// margin-right: -40px;
+		// overflow: hidden;
+		.columns {
 			.card {
+				margin-top: 15px;
+				border: none;
 				border-radius: 25px;
-				// overflow: hidden;
 				cursor: pointer;
+				width: 100%;
+				-webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
+				box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
+				&:hover {
+					-webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
+					-moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
+					box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
+					.card-img-top {
+						transform:scale(1.1); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+						-o-transform:scale(1.1); 
+						-moz-transform:scale(1.1);
+						-webkit-transform:scale(1.1);
+					}
+				}
+				&.card-room {
+					.card-head {
+						max-height: 150px;
+						overflow: hidden;
+						border-radius: 25px 25px 0px 0px;
+						position: relative;
+						.card-img-top {
+							object-fit: cover;
+							max-height: initial;
+							margin-top: -15%;
+							transition: all .2s ease-in-out;
+							-o-transition: all .2s ease-in-out;
+							-moz-transition: all .2s ease-in-out;
+							-webkit-transition: all .2s ease-in-out;
+						}
+					}
+					.card-body {
+						border-radius: 0px 0px 25px 25px;
+					}
+				}
+				&.card-user {
+					.user-profile {
+						width: 50px;
+						height: 50px;
+						border-radius: 25px;
+					}
+					.user-state {
+						margin-top: 10px;
+						font-size: 12px;
+						color: #6c757d;
+					}
+				}
+			}
+		}
+		.refresh-btn {
+			border: none;
+			margin-top: 20px;
+			background-color: $pointColor;
+			&:active {
+				opacity: 0.9;
+			}
+			i {
+				margin-right: 5px;
 			}
 		}
 	}

@@ -20,6 +20,12 @@
 					<p>Following</p>
 				</div>
 			</div>
+			<!-- 	TODO : 글자 제한할 것		 -->
+			<pre class="profile-introduce">
+게임 좋아합니다.
+vkffhdn ghksdud ^^
+			</pre>
+			<button class="btn btn-primary write-btn"><i class="fas fa-3x fa-pen-square"></i></button>
 		</div>
 	</div>
 </template>
@@ -68,6 +74,8 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 
 .profile-page {
+	height: 590px;
+    position: relative;
 	.profile-curt {
 		margin-top: 50px;
 		text-align: center;
@@ -87,6 +95,31 @@ export default {
 		text-align: center;
 		.info-btn {
 			cursor: pointer;
+			&:active {
+				opacity: 0.5;
+			}
+		}
+	}
+	.profile-introduce {
+		color: white;
+		text-align: center;
+		display: block;
+		font-weight: 500;
+	}
+	.write-btn {
+		border: none;
+		background-color: $themeColor;
+		position: absolute;
+		bottom: 30px;
+		left: 50%;
+		-webkit-transform: translate(-50%, 0%);
+		-moz-transform: translate(-50%, 0%);
+		-ms-transform: translate(-50%, 0%);
+		-o-transform: translate(-50%, 0%);
+		transform: translate(-50%, 0%);
+		&:active {
+			background-color: $themeColor;
+			opacity: 0.4;
 		}
 	}
 }

@@ -15,6 +15,7 @@
     "sass-loader": "^8.0.0",
     "simplebar-vue": "^1.3.7",
     "vue": "^2.6.10",
+    "vue-masonry": "^0.11.8",
     "vue-router": "^3.1.3"
   },
   "devDependencies": {
@@ -36,7 +37,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": { "no-console": "off" },
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

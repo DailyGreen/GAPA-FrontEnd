@@ -39,7 +39,7 @@
 				<leftChat v-show="pages.leftType === LEFT_TYPE.Chat" :pages="pages" @SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftChat>
 				<!-- 프로필 화면 (왼쪽) -->
 				<!-- components / left-component / Profile.vue -->
-				<leftProfile v-show="pages.leftType === LEFT_TYPE.Timeline" :pages="pages" @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
+				<leftProfile v-show="LEFT_TYPE.isProfileComponent(pages.leftType)" :pages="pages" @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
 				<!------------------------ end of left-content ------------------------>
 			</div>
 			
@@ -126,7 +126,7 @@ export default {
 		SearchUser : function() {
 			this.PagePush(this.pages);
 			this.pages.name = 'Profile';
-			this.pages.leftType = this.LEFT_TYPE.Timeline;
+			this.pages.leftType = this.LEFT_TYPE.Profile;
 			this.pages.rightType = this.RIGHT_TYPE.Profile;
 		},
 		OutRoom: function() {

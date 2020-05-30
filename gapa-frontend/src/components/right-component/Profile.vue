@@ -4,18 +4,18 @@
 			<button class="btn btn-light" v-on:click="OutRoom"><i class="fas fa-sign-out-alt"></i></button>
 
 			<div class="profile-curt">
-				<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
+				<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)"/>
 			</div>
 			<div class="row profile-info">
-				<div class="col-md-4 text-center">
+				<div class="col-md-4 text-center info-btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileFollwers">
 					<h4>183</h4>
 					<p>Followers</p>
 				</div>
-				<div class="col-md-4 text-center">
+				<div class="col-md-4 text-center info-btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileGames">
 					<h4>4</h4>
 					<p>Games</p>
 				</div>
-				<div class="col-md-4 text-center">
+				<div class="col-md-4 text-center info-btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileFollowing">
 					<h4>1.2K</h4>
 					<p>Following</p>
 				</div>
@@ -85,6 +85,9 @@ export default {
 		margin-top: 50px;
 		color: white;
 		text-align: center;
+		.info-btn {
+			cursor: pointer;
+		}
 	}
 }
 </style>

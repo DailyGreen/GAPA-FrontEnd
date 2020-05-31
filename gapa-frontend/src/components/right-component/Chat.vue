@@ -17,7 +17,7 @@
 						<!-- <img class="profile-img float-center" :src="require(`@/assets/noone.png`)"/> -->
 						<div class="lds-ripple"><div></div><div></div></div>
 					</div>
-					<div class="col-sm-9 member-name">
+					<div class="col-sm-9 member-name" v-on:click="pages.leftType = LEFT_TYPE.SearchUser">
 						<span class="align-middle">Waiting..</span>
 						<!-- <div class="lds-ripple"><div></div><div></div></div> -->
 					</div>

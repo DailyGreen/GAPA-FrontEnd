@@ -37,6 +37,9 @@
 				<!-- 채팅 화면 (왼쪽) -->
 				<!-- components / left-component / Chat.vue -->
 				<leftChat v-show="pages.leftType === LEFT_TYPE.Chat" :pages="pages" @SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftChat>
+				<!-- 채팅 화면에서 유저 찾기 -->
+				<!-- components / left-component / SearchUser.vue -->
+				<leftSearchUser v-show="pages.leftType === LEFT_TYPE.SearchUser" :pages="pages" @SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftSearchUser>
 				<!-- 프로필 화면 (왼쪽) -->
 				<!-- components / left-component / Profile.vue -->
 				<leftProfile v-show="LEFT_TYPE.isProfileComponent(pages.leftType)" :pages="pages" @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
@@ -80,7 +83,8 @@ import leftIdle from '@/components/left-component/Idle'
 import leftProfile from '@/components/left-component/Profile'
 import leftChat from '@/components/left-component/Chat'
 import leftWrite from '@/components/left-component/Write'
-
+import leftSearchUser from '@/components/left-component/SearchUser'
+	
 import rightIdle from '@/components/right-component/Idle'
 import rightProfile from '@/components/right-component/Profile'
 import rightNotice from '@/components/right-component/Notice'
@@ -181,6 +185,7 @@ export default {
 		leftProfile,
 		leftChat,
 		leftWrite,
+		leftSearchUser,
 		rightIdle,
 		rightProfile,
 		rightNotice,

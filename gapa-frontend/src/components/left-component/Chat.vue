@@ -56,9 +56,9 @@
 				</simplebar>
 			</div>
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Send Your Message">
+				<input type="text" class="form-control" placeholder="보낼 메시지를 입력하세요">
 				<div class="input-group-append">
-					<button class="btn btn-outline-secondary" type="button">Enter</button>
+					<button class="btn btn-outline-secondary" type="button">확인</button>
 				</div>
 			</div>
 		</div>

@@ -9,21 +9,21 @@
 			<div class="row profile-info">
 				<div class="col-md-4 text-center info-btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileFollwers">
 					<h4>183</h4>
-					<p>Followers</p>
+					<p>팔로워</p>
 				</div>
 				<div class="col-md-4 text-center info-btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileGames">
 					<h4>4</h4>
-					<p>Games</p>
+					<p>게임</p>
 				</div>
 				<div class="col-md-4 text-center info-btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileFollowing">
 					<h4>1.2K</h4>
-					<p>Following</p>
+					<p>팔로윙</p>
 				</div>
 			</div>
 			<!-- 	TODO : 글자 제한할 것		 -->
 			<pre class="profile-introduce">
 게임 좋아합니다.
-vkffhdn ghksdud ^^
+팔로우 환영 ^^
 			</pre>
 			<button class="btn btn-primary write-btn" v-on:click="MoveWrite()"><i class="fas fa-3x fa-pen-square"></i></button>
 		</div>

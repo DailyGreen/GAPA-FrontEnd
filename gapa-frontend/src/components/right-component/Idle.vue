@@ -11,11 +11,11 @@
 				<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="ChangeRightType(RIGHT_TYPE.GameInfo)"/>
 				<h1 class="game-title">BATTLEGROUND</h1>
 				<div class="game-info">
-					<a href="">13 <span>Followers</span></a>
-					<a href="">2 <span>Rooms</span></a>
+					<a href="">13 <span> 명의 팔로워</span></a>
+					<a href="">2 <span> 개의 방</span></a>
 				</div>
-				<!-- <button class="btn btn-primary follow"><i class="far fa-heart"></i> Follow</button> -->
-				<button class="btn btn-primary following"><i class="fas fa-heart"></i> Following</button>
+				<!-- <button class="btn btn-primary follow"><i class="far fa-heart"></i> 팔로우</button> -->
+				<button class="btn btn-primary following"><i class="fas fa-heart"></i> 팔로윙</button>
 				<br/>
 				<!-- <button class="btn btn-primary">초대 대기하기</button>
 				<button class="btn btn-primary">팀 꾸리기</button> -->

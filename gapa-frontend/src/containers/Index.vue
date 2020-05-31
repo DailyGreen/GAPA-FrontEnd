@@ -4,73 +4,49 @@
 	<p>{{ pages }}</p>
 	<div class="container">
 		<div class="content row">
+			<!---------------------------------- start of left-content ---------------------------------->
 			<div class="left-content col-md-8">
-				<!----------------------- start of left-content ----------------------->
 				<!-- 평상시 화면 (왼쪽) -->
-				<!-- components / left-component / Idle.vue -->
-				<leftIdle v-show="pages.name === 'Main'" :pages="pages" @goMainPage="goMainPage" @GameInfo="GameInfo" @JoinRoom="JoinRoom" @PagePush="PagePush" @PagePop="PagePop"></leftIdle>
-				<!-- 팀원 찾기 화면 (왼쪽)-->
-				<div class="left-content search-page col-md-8" v-show="pages.leftType === LEFT_TYPE.Search">
-					<div class="bg"></div>
-					<div class="row h-100">
-						<div class="col-md-6">
-							<div class="card">
-								<i class="fas fa-user-friends fa-3x"></i>
-								<div class="card-body">
-									<p class="card-text">Join Team</p>
-								</div>
-								<!-- <div class="card-footer">
-									<p>asdfasf</p>
-								</div> -->
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<i class="fas fa-plus fa-3x"></i>
-								<div class="card-body">
-									<p class="card-text">Create Team</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<leftIdle v-show="pages.name === 'Main'" :pages="pages" 
+						  @goMainPage="goMainPage" @GameInfo="GameInfo" @JoinRoom="JoinRoom" @PagePush="PagePush" @PagePop="PagePop"></leftIdle>
 				<!-- 채팅 화면 (왼쪽) -->
-				<!-- components / left-component / Chat.vue -->
-				<leftChat v-show="pages.leftType === LEFT_TYPE.Chat" :pages="pages" @SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftChat>
+				<leftChat v-show="pages.leftType === LEFT_TYPE.Chat" :pages="pages" 
+						  @SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftChat>
 				<!-- 채팅 화면에서 유저 찾기 -->
-				<!-- components / left-component / SearchUser.vue -->
-				<leftSearchUser v-show="pages.leftType === LEFT_TYPE.SearchUser" :pages="pages" @SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftSearchUser>
+				<leftSearchUser v-show="pages.leftType === LEFT_TYPE.SearchUser" :pages="pages"
+								@SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftSearchUser>
 				<!-- 프로필 화면 (왼쪽) -->
-				<!-- components / left-component / Profile.vue -->
-				<leftProfile v-show="LEFT_TYPE.isProfileComponent(pages.leftType)" :pages="pages" @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
+				<leftProfile v-show="LEFT_TYPE.isProfileComponent(pages.leftType)" :pages="pages" 
+							 @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
 				<!-- 게시글 작성 화면 (왼쪽) -->
-				<leftWrite v-show="pages.leftType === LEFT_TYPE.Write" :pages="pages" @PagePush="PagePush" @PagePop="PagePop"></leftWrite>
-				<!------------------------ end of left-content ------------------------>
+				<leftWrite v-show="pages.leftType === LEFT_TYPE.Write" :pages="pages" 
+						   @PagePush="PagePush" @PagePop="PagePop"></leftWrite>
 			</div>
+			<!----------------------------------- end of left-content ----------------------------------->
 			
 			
+			<!---------------------------------- start of right-content ---------------------------------->
 			<div class="right-content col-md-4" :class="{notice : pages.rightType === RIGHT_TYPE.Notice}">
-				<!----------------------- start of right-content ----------------------->
-				<!-- 평상시 화면 (오른쪽)-->
-				<!-- components / right-component / Idle.vue -->
-				<rightIdle v-show="pages.name === 'Main' && pages.rightType !== RIGHT_TYPE.Notice" :pages="pages" @SearchUser="SearchUser" @CreateRoom="CreateRoom" @PagePush="PagePush" @PagePop="PagePop"></rightIdle>
-				<!-- 팀원 검색 화면 (오른쪽)-->
+				<!-- 평상시 화면 (오른쪽) -->
+				<rightIdle v-show="pages.name === 'Main' && pages.rightType !== RIGHT_TYPE.Notice" :pages="pages" 
+						   @SearchUser="SearchUser" @CreateRoom="CreateRoom" @PagePush="PagePush" @PagePop="PagePop"></rightIdle>
+				<!-- 팀원 검색 화면 (오른쪽) -->
 				<div class="right-content search-page col-md-4" v-show="pages.rightType === RIGHT_TYPE.SearchUser">
 				</div>
-				<!-- 팀원 꾸리기 화면 : 채팅 (오른쪽)-->
-				<!-- components / right-component / Chat.vue -->
-				<rightChat v-show="pages.rightType === RIGHT_TYPE.UserList" :pages="pages" @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightChat>
-				<!-- 프로필 화면 (오른쪽)-->
-				<!-- components / right-component / Profile.vue -->
-				<rightProfile v-show="pages.rightType === RIGHT_TYPE.Profile" :pages="pages" @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightProfile>
+				<!-- 팀원 꾸리기 화면 : 채팅 (오른쪽) -->
+				<rightChat v-show="pages.rightType === RIGHT_TYPE.UserList" :pages="pages" 
+						   @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightChat>
+				<!-- 프로필 화면 (오른쪽) -->
+				<rightProfile v-show="pages.rightType === RIGHT_TYPE.Profile" :pages="pages" 
+							  @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightProfile>
 				<!-- 알림 화면 (오른쪽) -->
-				<!-- components / right-component / Notice.vue -->
-				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" @OutRoom="OutRoom" @PagePush="PagePush" @PagePopAndMove="PagePopAndMove"></rightNotice>
-				<!-- 게시글 작성 화면 (오른쪽) -->
-				<!-- components / right-component / Notice.vue -->
-				<rightWrite v-show="pages.rightType === RIGHT_TYPE.Write" :pages="pages" @PagePush="PagePush" @PagePop="PagePop" @PagePopAndMove="PagePopAndMove"></rightWrite>
-				<!------------------------ end of right-content ------------------------>
+				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" 
+							 @OutRoom="OutRoom" @PagePush="PagePush" @PagePopAndMove="PagePopAndMove"></rightNotice>
+				<!-- 게시글 작성 화면 -->
+				<rightWrite v-show="pages.rightType === RIGHT_TYPE.Write" :pages="pages" 
+							@PagePush="PagePush" @PagePop="PagePop" @PagePopAndMove="PagePopAndMove"></rightWrite>
 			</div>
+			<!----------------------------------- end of right-content ----------------------------------->
 		</div>
 	</div>
   </div>
@@ -154,10 +130,10 @@ export default {
 		},
 		GameInfo: function(gameTag) {  // eslint-disable-line no-unused-vars
 			// 왼쪽이 GameRooms 와 GameUsers 상태일때 우측은 계속 GameInfo 상태임
-			//	|----------------------------------------------|
-			//	|  GameRooms (게임 방 목록)   	|				|
-			//	|  Gameusers (게임 유저 목록)		|	GameInfo	|
-			//	|______________________________|_______________|
+			//	|------------------------------------------------------|
+			//	|     GameRooms (게임 방 목록)      |		GameInfo	|
+			//	|     Gameusers (게임 유저 목록)    |		(게임 정보)		|
+			//	|_________________________________|____________________|
 			this.PagePush(this.pages);
 			this.pages.leftType = this.LEFT_TYPE.GameRooms;
 			this.pages.rightType = this.RIGHT_TYPE.GameInfo;
@@ -167,7 +143,6 @@ export default {
 			// 		- leftType|rightType을 변경하기 전에 호출해야 합니다.
 			//		- emit을 통해 PagePush를 통해 Stack에 넣고 그 이후 leftType|rightType을 변경해야 합니다.
 			this.pageStack.push({ name : page.name, leftType: page.leftType, rightType: page.rightType });
-			console.log(this.pageStack.data);
 		},
 		PagePop: function() {
 			return this.pageStack.pop();
@@ -198,16 +173,7 @@ export default {
 <style lang="scss">
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
-// 폰트 생김새 : https://fonts.google.com/specimen/Lilita+One
-// @import url('https://fonts.googleapis.com/css?family=Lilita+One&display=swap');
-// 폰트 생김새 : https://fonts.google.com/specimen/Baloo+Bhai ** 한글은 눈갱 **
-// @import url('https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap');
-// 폰트 생김새 : http://bitly.kr/gXMccr3 ** 한글은 눈갱 **
-// @import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
-
-// @font-face { font-family: 'Godo'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff'); }
-// @font-face { font-family: 'Godo'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); } .godo * { font-family: 'Godo', sans-serif; }
-
+	
 .container {
 	margin-top: 100px;
     -webkit-box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
@@ -219,7 +185,6 @@ export default {
 }
 .content {
     height: 40rem;
-	// background-color: #8458B3;
 	.left-content {
 		padding: 40px 40px 0px 40px;
 		border-radius: 50px;

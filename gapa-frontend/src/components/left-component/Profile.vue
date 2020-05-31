@@ -2,8 +2,8 @@
 	<div>
 		<div class="profile-page">
 			<div class="menus">
-				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.Profile">Recent</button>
-				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileGames">Games</button>
+				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.Profile">타임라인</button>
+				<!-- <button class="btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileGames">Games</button> -->
 			</div>
 			<!-- 	Recent : 최근 활동 기록		 -->
 			<div class="recents" v-show="pages.leftType === LEFT_TYPE.Profile">
@@ -24,7 +24,7 @@
 						</div>
 						<div class="log-content play-content" v-if="recent.post === 'play'" >
 							<img  v-for="(friend, index) in recent.user" :key="index" class="friend-with-play" :src="require(`@/assets/img/profile/blackspirit.jpg`)"/>
-							<p v-if="recent.post === 'play'"> {{recent.game}}를(을) {{recent.user.length}}인파티로 생성해서 게임함 (3hours)</p>
+							<p v-if="recent.post === 'play'"> {{recent.game}}를(을) {{recent.user.length}}인파티로 생성해서 게임함 (3시간 전)</p>
 						</div>
 					</div>
 				</simplebar>

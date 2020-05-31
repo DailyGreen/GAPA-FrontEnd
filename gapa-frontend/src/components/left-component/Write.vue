@@ -6,7 +6,7 @@
 			</div>
 			<p class="upload-img-title">UPLOAD IMAGE</p>
 			<p class="upload-img-desc">이미지는 게시글에 하나만 등록가능합니다.</p>
-			<button class="btn upload-img-button">Find File</button>
+			<button class="btn upload-img-button">이미지 찾기</button>
 		</div>
 		<div class="textWrite" v-show="writeType === 'textWrite'">
 		</div>

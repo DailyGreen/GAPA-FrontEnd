@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="write">
-			<h1 class="write-title">Write Game Log</h1>
+			<h1 class="write-title">작성하기</h1>
 			<!-- 	TAG 기능을 넣거나, 글쓰기 유의사항을 설명하거나 할 예정		 -->
 			<!-- <p class="write-desc">타인의 사진을 도용하거나 부적절한 이미지 등록시 어쩌구 저쩌구</p> -->
 			<form class="write-form">

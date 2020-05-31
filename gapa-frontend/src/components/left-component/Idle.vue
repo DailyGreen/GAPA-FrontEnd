@@ -3,8 +3,8 @@
 		<div class="idle-page">
 			<img class="title-img" :src="require(`@/assets/img/usefull/gapa_icon.png`)" v-on:click="goMainPage()"/>
 			<div class="menu">
-				<Button class="btn" v-on:click="goMainPage()">Explore</Button>
-				<Button class="btn" v-on:click="ChangeLeftType(LEFT_TYPE.Games)">Games</Button>
+				<Button class="btn" v-on:click="goMainPage()">홈</Button>
+				<Button class="btn" v-on:click="ChangeLeftType(LEFT_TYPE.Games)">게임 목록</Button>
 			</div>
 			<!-- 	검색어창 비활성화	 -->
 			<!-- <div class="search">
@@ -22,7 +22,7 @@
 								<p class="card-text">(1 / 4)</p>
 							</div>
 						</div>
-						<div class="card p-3 card-user">
+						<div class="card card-user">
 							<blockquote class="blockquote mb-0 card-body text-center">
 								<img :src="require(`@/assets/img/profile/blackspirit.jpg`)" class="user-profile">
 								<p class="user-state">리그오브레전드 대기중</p>
@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="card p-3 card-user">
+						<div class="card card-user">
 							<blockquote class="blockquote mb-0 card-body text-center">
 								<img :src="require(`@/assets/img/profile/blackspirit.jpg`)" class="user-profile">
 								<p class="user-state">리그오브레전드 대기중</p>
@@ -56,20 +56,18 @@
 								<p class="card-text">(1 / 4)</p>
 							</div>
 						</div>
-						<div class="card p-3 card-user">
-							<blockquote class="blockquote mb-0 card-body">
-								<p>만들어진 방이나</p>
-								<footer class="blockquote-footer">
-									<small class="text-muted">Someone famous in <cite title="Source Title">Source Title</cite></small>
-								</footer>
+						<div class="card card-user">
+							<blockquote class="blockquote mb-0 card-body text-center">
+								<img :src="require(`@/assets/img/profile/profileImg.png`)" class="user-profile">
+								<p class="user-state">배틀그라운드 대기중</p>
 							</blockquote>
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-primary refresh-btn mx-auto d-block"><i class="fas fa-sync-alt"></i> Refresh</button>
+				<button class="btn btn-primary refresh-btn mx-auto d-block"><i class="fas fa-sync-alt"></i> 새로고침</button>
 			</div>
 			<div class="games" v-show="pages.leftType === LEFT_TYPE.Games">
-				<h2>Game Category</h2>
+				<!-- <h2>게임 카테고리</h2> -->
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="game-category">
 						<div class="card" v-for="game in gameCategory" :key="game.code">
@@ -343,7 +341,7 @@ export default {
 	.games {
 		margin-top: 30px;
 		.scrolling-wrapper {
-			height: 443px;
+			height: 530px;
 			padding-right: 10px;
 			-webkit-overflow-scrolling: touch;
 			.game-category {

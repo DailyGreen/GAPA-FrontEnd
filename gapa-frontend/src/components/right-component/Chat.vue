@@ -2,7 +2,7 @@
 	<div>
 		<div class="chat-page">
 			<!-- <img class="title-img" :src="require(`@/assets/gapa_icon.png`)"/> -->
-			<h1 class="search-title">Waiting TEAM..</h1>
+			<h1 class="search-title">팀원 모집중..</h1>
 			<div class="teams card">
 				<div class="member row" v-for="member in teams" v-bind:key="member.id" v-on:click="SearchUser">
 					<div class="col-sm-3 member-profile">
@@ -18,7 +18,7 @@
 						<div class="lds-ripple"><div></div><div></div></div>
 					</div>
 					<div class="col-sm-9 member-name" v-on:click="pages.leftType = LEFT_TYPE.SearchUser">
-						<span class="align-middle">Waiting..</span>
+						<span class="align-middle">대기중..</span>
 						<!-- <div class="lds-ripple"><div></div><div></div></div> -->
 					</div>
 				</div>
@@ -105,7 +105,6 @@ export default {
 	.search-title {
 		color: white;
 		margin-top: 8rem;
-		font-family: 'Lilita One', cursive;
 	}
 	.teams {
 		margin-top: 10px;

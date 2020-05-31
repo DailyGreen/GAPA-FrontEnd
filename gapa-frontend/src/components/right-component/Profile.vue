@@ -25,7 +25,7 @@
 게임 좋아합니다.
 vkffhdn ghksdud ^^
 			</pre>
-			<button class="btn btn-primary write-btn"><i class="fas fa-3x fa-pen-square"></i></button>
+			<button class="btn btn-primary write-btn" v-on:click="MoveWrite()"><i class="fas fa-3x fa-pen-square"></i></button>
 		</div>
 	</div>
 </template>
@@ -57,6 +57,11 @@ export default {
 		}
 	},
 	methods:{
+		MoveWrite: function() {
+			this.$emit('PagePush', this.pages);
+			this.pages.leftType = this.LEFT_TYPE.Write;
+			this.pages.rightType = this.RIGHT_TYPE.Write;
+		},
 		SearchUser : function() {
 			this.$emit('SearchUser');
 		},

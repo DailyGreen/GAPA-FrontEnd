@@ -11,6 +11,7 @@ class LEFT_TYPE {
 		this.ProfileGames = 8;		// Profile - Games
 		this.ProfileFollwers = 9;	// Profile - Followers
 		this.ProfileFollowing = 10;	// Profile - Following
+		this.Write = 11;
 	}
 	isProfileComponent(leftType) {
 		return (this.Profile <= leftType && leftType <= this.ProfileFollowing)
@@ -24,6 +25,7 @@ class RIGHT_TYPE {
 		this.UserList = 3;
 		this.Search = 4;
 		this.Profile = 5;
+		this.Write = 6;
 	}
 }
 

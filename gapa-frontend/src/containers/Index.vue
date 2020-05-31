@@ -40,6 +40,8 @@
 				<!-- 프로필 화면 (왼쪽) -->
 				<!-- components / left-component / Profile.vue -->
 				<leftProfile v-show="LEFT_TYPE.isProfileComponent(pages.leftType)" :pages="pages" @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
+				<!-- 게시글 작성 화면 (왼쪽) -->
+				<leftWrite v-show="pages.leftType === LEFT_TYPE.Write" :pages="pages" @PagePush="PagePush" @PagePop="PagePop"></leftWrite>
 				<!------------------------ end of left-content ------------------------>
 			</div>
 			
@@ -61,6 +63,9 @@
 				<!-- 알림 화면 (오른쪽) -->
 				<!-- components / right-component / Notice.vue -->
 				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" @OutRoom="OutRoom" @PagePush="PagePush" @PagePopAndMove="PagePopAndMove"></rightNotice>
+				<!-- 게시글 작성 화면 (오른쪽) -->
+				<!-- components / right-component / Notice.vue -->
+				<rightWrite v-show="pages.rightType === RIGHT_TYPE.Write" :pages="pages" @PagePush="PagePush" @PagePop="PagePop" @PagePopAndMove="PagePopAndMove"></rightWrite>
 				<!------------------------ end of right-content ------------------------>
 			</div>
 		</div>
@@ -74,11 +79,13 @@ import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
 import leftIdle from '@/components/left-component/Idle'
 import leftProfile from '@/components/left-component/Profile'
 import leftChat from '@/components/left-component/Chat'
+import leftWrite from '@/components/left-component/Write'
 
 import rightIdle from '@/components/right-component/Idle'
 import rightProfile from '@/components/right-component/Profile'
 import rightNotice from '@/components/right-component/Notice'
 import rightChat from '@/components/right-component/Chat'
+import rightWrite from '@/components/right-component/Write'
 
 class Stack {
 	constructor() {
@@ -173,10 +180,12 @@ export default {
 		leftIdle,
 		leftProfile,
 		leftChat,
+		leftWrite,
 		rightIdle,
 		rightProfile,
 		rightNotice,
-		rightChat
+		rightChat,
+		rightWrite
 	}
 }
 </script>

@@ -82,10 +82,6 @@ export default {
 		return {
 			LEFT_TYPE : new LEFT_TYPE(),
 			RIGHT_TYPE : new RIGHT_TYPE(),
-			MENU_TYPE: {
-				RECENT: 'Recent',
-				GAMES: 'Games'
-			},
 			recents: [
 				{
 					post: 'img',

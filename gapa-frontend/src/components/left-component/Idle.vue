@@ -31,11 +31,9 @@
 					</div>
 					<div class="col-md-4">
 						<div class="card p-3 card-user">
-							<blockquote class="blockquote mb-0 card-body">
-								<p>만들어진 방이나</p>
-								<footer class="blockquote-footer">
-									<small class="text-muted">Someone famous in <cite title="Source Title">Source Title</cite></small>
-								</footer>
+							<blockquote class="blockquote mb-0 card-body text-center">
+								<img :src="require(`@/assets/img/profile/blackspirit.jpg`)" class="user-profile">
+								<p class="user-state">리그오브레전드 대기중</p>
 							</blockquote>
 						</div>
 						<div class="card card-room">
@@ -75,7 +73,7 @@
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="game-category">
 						<div class="card" v-for="game in gameCategory" :key="game.code">
-							<img class="game-img" :src="require(`@/assets/img/games/${game.imgUrl}`)" v-on:click="`GameInfo({{game.code}})`"/>
+							<img class="game-img" :src="require(`@/assets/img/games/${game.imgUrl}`)" v-on:click="GameInfo(`${game.code}`)"/>
 							<div class="card-body">
 								<p class="game-name">{{game.name}}</p>
 								<p class="game-follower">{{game.follwerCount}}명의 팔로워</p>
@@ -125,31 +123,6 @@
 							</div>
 						</div>
 					</div>
-				</simplebar>
-			</div>
-			<div class="rooms" v-show="pages.leftType === 1000">
-				<h2>Rooms</h2>
-				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
-				<h4 class="game-name">리그오브레전드 ></h4>
-				<div class="room-list">
-					<div class="card bg-primary text-white text-center p-3">
-						<blockquote class="blockquote mb-0">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-							<footer class="blockquote-footer text-white">
-								<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-							</footer>
-						</blockquote>
-					</div>
-					<div class="card bg-primary text-white text-center p-3">
-						<blockquote class="blockquote mb-0">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-							<footer class="blockquote-footer text-white">
-								<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-							</footer>
-						</blockquote>
-					</div>
-				</div>
-				<h4 class="game-name">배틀그라운드 ></h4>
 				</simplebar>
 			</div>
 		</div>
@@ -231,6 +204,7 @@ export default {
 			this.pages.leftType = leftType
 		},
 		GameInfo : function(gameNum) {
+			console.log("Game Info Call")
 			this.$emit('GameInfo', gameNum);
 		}
 	},
@@ -244,19 +218,7 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 	
-@media screen and (min-width: 1200px) {
-  .bricklayer-column-sizer {
-    /* divide by 3. */
-    width: 33.3%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .bricklayer-column-sizer {
-    /* divide by 2. */
-    width: 50%;
-  }
-}
+	
 .idle-page {
 	height: 100%;
 	.title-img {
@@ -281,14 +243,10 @@ export default {
 		height: 6.5%;
 	}
 	.search {
-		// margin-top: 5rem;
 		font-size: 30px;
-		// font-weight: 700;
 		color: black;
 		.search-input {
 			width: 100%;
-			// margin-left: 15px;
-			// display: block;
 			color: white;
 			border: 0px;
 			border-radius: 4px;
@@ -304,9 +262,6 @@ export default {
 		height: 100%;
 		position: relative;
 		margin-top: 15px;
-		// margin-left: -40px;
-		// margin-right: -40px;
-		// overflow: hidden;
 		.columns {
 			.card {
 				margin-top: 15px;
@@ -322,7 +277,13 @@ export default {
 					-moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
 					box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
 					.card-img-top {
-						transform:scale(1.1); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+						transform:scale(1.1);
+						-o-transform:scale(1.1); 
+						-moz-transform:scale(1.1);
+						-webkit-transform:scale(1.1);
+					}
+					.user-profile {
+						transform:scale(1.1);
 						-o-transform:scale(1.1); 
 						-moz-transform:scale(1.1);
 						-webkit-transform:scale(1.1);
@@ -338,10 +299,10 @@ export default {
 							object-fit: cover;
 							max-height: initial;
 							margin-top: -15%;
-							transition: all .2s ease-in-out;
-							-o-transition: all .2s ease-in-out;
-							-moz-transition: all .2s ease-in-out;
-							-webkit-transition: all .2s ease-in-out;
+							transition: transform .2s ease-in-out;
+							-o-transition: transform .2s ease-in-out;
+							-moz-transition: transform .2s ease-in-out;
+							-webkit-transition: transform .2s ease-in-out;
 						}
 					}
 					.card-body {
@@ -349,15 +310,20 @@ export default {
 					}
 				}
 				&.card-user {
+					background-color: $positiveColor;
+					color: white;
 					.user-profile {
 						width: 50px;
 						height: 50px;
 						border-radius: 25px;
+						transition: all .2s ease-in-out;
+						-o-transition: all .2s ease-in-out;
+						-moz-transition: all .2s ease-in-out;
+						-webkit-transition: all .2s ease-in-out;
 					}
 					.user-state {
 						margin-top: 10px;
 						font-size: 12px;
-						color: #6c757d;
 					}
 				}
 			}
@@ -505,22 +471,6 @@ export default {
 							}
 						}
 					}
-				}
-			}
-		}
-	}
-	.rooms {
-		margin-top: 30px;
-		.scrolling-wrapper {
-			height: 443px;
-			padding-right: 10px;
-			-webkit-overflow-scrolling: touch;
-			.game-name {
-
-			}
-			.room-list {
-				.card {
-					width: 120px;
 				}
 			}
 		}

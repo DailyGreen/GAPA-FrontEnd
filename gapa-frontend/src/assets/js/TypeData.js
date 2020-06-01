@@ -12,6 +12,7 @@ class LEFT_TYPE {
 		this.ProfileFollwers = 9;	// Profile - Followers
 		this.ProfileFollowing = 10;	// Profile - Following
 		this.Write = 11;
+		this.CreateRoom = 12;
 		this.Search = 4;
 	}
 	isProfileComponent(leftType) {
@@ -30,6 +31,7 @@ class RIGHT_TYPE {
 		this.Search = 4;
 		this.Profile = 5;
 		this.Write = 6;
+		this.CreateRoom = 7;
 	}
 }
 

@@ -25,7 +25,7 @@ import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
 export default {
 	props: {
 		pages: {
-			names: {
+			name: {
 				type: String,
 				default: ''
 			},
@@ -38,7 +38,7 @@ export default {
 				default: -1
 			}
 		}
-	},
+	}, 
 	data () {
 		return {
 			LEFT_TYPE : new LEFT_TYPE(),

@@ -17,8 +17,8 @@
 				<!-- <button class="btn btn-primary follow"><i class="far fa-heart"></i> 팔로우</button> -->
 				<button class="btn btn-primary following"><i class="fas fa-heart"></i> 팔로윙</button>
 				<br/>
-				<!-- <button class="btn btn-primary">초대 대기하기</button>
-				<button class="btn btn-primary">팀 꾸리기</button> -->
+				<button class="btn btn-primary">초대 대기하기</button>
+				<button class="btn btn-primary" v-on:click="PagePush('CreateRoom', LEFT_TYPE.CreateRoom, RIGHT_TYPE.CreateRoom)">팀 꾸리기</button>
 			</div>
 			<div class="menu-nav" v-show="pages.rightType === RIGHT_TYPE.Idle">>
 				<!-- 버튼 나중에 꾸미기! -->
@@ -52,7 +52,7 @@ import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
 export default {
 	props: {
 		pages: {
-			names: {
+			name: {
 				type: String,
 				default: ''
 			},
@@ -73,9 +73,15 @@ export default {
 		}
 	},
 	methods:{
+		PagePush: function(name, leftType, rightType) {
+			this.$emit('PagePush', this.pages);
+			this.pages.name = name;
+			this.pages.leftType = leftType;
+			this.pages.rightType = rightType;
+		},
 		ChangeRightType: function(rightType) {
 			this.$emit('PagePush', this.pages);
-			this.pages.rightType = rightType
+			this.pages.rightType = rightType;
 		},
 		SearchUser : function() {
 			this.$emit('SearchUser');

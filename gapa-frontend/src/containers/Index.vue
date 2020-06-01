@@ -21,6 +21,9 @@
 				<!-- 게시글 작성 화면 (왼쪽) -->
 				<leftWrite v-show="pages.leftType === LEFT_TYPE.Write" :pages="pages" 
 						   @PagePush="PagePush" @PagePop="PagePop"></leftWrite>
+				<!-- 방 생성 화면 (왼쪽) -->
+				<leftCreateRoom v-show="pages.name === 'CreateRoom' && pages.leftType === LEFT_TYPE.CreateRoom" :pages="pages" 
+						   @PagePush="PagePush" @PagePop="PagePop"></leftCreateRoom>
 			</div>
 			<!----------------------------------- end of left-content ----------------------------------->
 			
@@ -42,9 +45,12 @@
 				<!-- 알림 화면 (오른쪽) -->
 				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" 
 							 @OutRoom="OutRoom" @PagePush="PagePush" @PagePopAndMove="PagePopAndMove"></rightNotice>
-				<!-- 게시글 작성 화면 -->
+				<!-- 게시글 작성 화면 (오른쪽) -->
 				<rightWrite v-show="pages.rightType === RIGHT_TYPE.Write" :pages="pages" 
 							@PagePush="PagePush" @PagePop="PagePop" @PagePopAndMove="PagePopAndMove"></rightWrite>
+				<!-- 방 생성 화면 (오른쪽) -->
+				<rightCreateRoom v-show="pages.rightType === RIGHT_TYPE.CreateRoom" :pages="pages" 
+						   @PagePush="PagePush" @PagePop="PagePop"></rightCreateRoom>
 			</div>
 			<!----------------------------------- end of right-content ----------------------------------->
 		</div>
@@ -60,12 +66,14 @@ import leftProfile from '@/components/left-component/Profile'
 import leftChat from '@/components/left-component/Chat'
 import leftWrite from '@/components/left-component/Write'
 import leftSearchUser from '@/components/left-component/SearchUser'
+import leftCreateRoom from '@/components/left-component/CreateRoom'
 	
 import rightIdle from '@/components/right-component/Idle'
 import rightProfile from '@/components/right-component/Profile'
 import rightNotice from '@/components/right-component/Notice'
 import rightChat from '@/components/right-component/Chat'
 import rightWrite from '@/components/right-component/Write'
+import rightCreateRoom from '@/components/right-component/CreateRoom'
 
 class Stack {
 	constructor() {
@@ -161,11 +169,13 @@ export default {
 		leftChat,
 		leftWrite,
 		leftSearchUser,
+		leftCreateRoom,
 		rightIdle,
 		rightProfile,
 		rightNotice,
 		rightChat,
-		rightWrite
+		rightWrite,
+		rightCreateRoom
 	}
 }
 </script>

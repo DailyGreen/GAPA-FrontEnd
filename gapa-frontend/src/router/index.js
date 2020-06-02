@@ -5,7 +5,6 @@ import VueRouter from 'vue-router'
 import Index from '../containers/Index'
 
 import Auth from '../containers/Auth'
-import Sample from '../containers/Sample'
 
 Vue.use(VueRouter)
 
@@ -19,13 +18,7 @@ const routes = [
 		path: '/auth',
 		name: 'AuthPage',
 		component: Auth
-    },
-	{
-		path: '/sample',
-		name: 'SamplePage',
-		component: Sample
-	},
-	
+    },	
 	{
 		path: '*',
 		redirect: '/'

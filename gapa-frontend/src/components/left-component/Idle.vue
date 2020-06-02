@@ -13,16 +13,16 @@
 			<div class="explore" v-show="pages.leftType === LEFT_TYPE.Explore">
 				<div class="row columns">
 					<div class="col-md-4">
-						<div class="card card-room">
+						<div class="card card-rounded card-room">
 							<div class="card-head">
-								<img :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" class="card-img-top">
+								<img :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" class="room-img-top">
 							</div>
 							<div class="card-body" style="background-color:#edbe53">
 								<h5 class="card-title">배그 랭 돌릴 4인팟 구합니다</h5>
 								<p class="card-text">(1 / 4)</p>
 							</div>
 						</div>
-						<div class="card card-user">
+						<div class="card card-rounded card-user">
 							<blockquote class="blockquote mb-0 card-body text-center">
 								<img :src="require(`@/assets/img/profile/blackspirit.jpg`)" class="user-profile">
 								<p class="user-state">리그오브레전드 대기중</p>
@@ -30,15 +30,15 @@
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="card card-user">
+						<div class="card card-rounded card-user">
 							<blockquote class="blockquote mb-0 card-body text-center">
 								<img :src="require(`@/assets/img/profile/blackspirit.jpg`)" class="user-profile">
 								<p class="user-state">리그오브레전드 대기중</p>
 							</blockquote>
 						</div>
-						<div class="card card-room">
+						<div class="card card-rounded card-room">
 							<div class="card-head">
-								<img :src="require(`@/assets/img/games/TTF.png`)" class="card-img-top">
+								<img :src="require(`@/assets/img/games/TTF.png`)" class="room-img-top">
 							</div>
 							<div class="card-body" style="background-color:#fb7c3a">
 								<h5 class="card-title">TFT 랭 돌릴 4인팟 구합니다</h5>
@@ -47,16 +47,16 @@
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="card card-room">
+						<div class="card card-rounded card-room">
 							<div class="card-head">
-								<img :src="require(`@/assets/img/games/TTF.png`)" class="card-img-top">
+								<img :src="require(`@/assets/img/games/TTF.png`)" class="room-img-top">
 							</div>
 							<div class="card-body" style="background-color:#fb7c3a">
 								<h5 class="card-title">TFT 랭 돌릴 4인팟 구합니다</h5>
 								<p class="card-text">(1 / 4)</p>
 							</div>
 						</div>
-						<div class="card card-user">
+						<div class="card card-rounded card-user">
 							<blockquote class="blockquote mb-0 card-body text-center">
 								<img :src="require(`@/assets/img/profile/profileImg.png`)" class="user-profile">
 								<p class="user-state">배틀그라운드 대기중</p>
@@ -83,7 +83,7 @@
 			<div class="list" v-show="pages.leftType === LEFT_TYPE.GameRooms || pages.leftType === LEFT_TYPE.GameUsers">
 				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameRooms">게임 방</button>
 				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameUsers">대기 유저</button>
-				<simplebar class="scrolling-wrapper list-rooms" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameRooms">
+				<simplebar class="rooms-scrolling-wrapper" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameRooms">
 					<div class="list-content">
 						<div class="card almost-full" v-on:click="JoinRoom(0)">
 							<div class="card-head">
@@ -111,8 +111,18 @@
 						</div>
 					</div>
 				</simplebar>
-				<simplebar class="scrolling-wrapper list-users" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameUsers">
-					<div class="list-content">
+				<simplebar class="users-scrolling-wrapper" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameUsers">
+					<div class="row card-wrapper">
+						<div class="col-sm-6" v-for="i in 24" :key="i">
+							<div class="card card-rounded card-user">
+								<blockquote class="blockquote mb-0 card-body text-center">
+									<img :src="require(`@/assets/img/profile/blackspirit.jpg`)" class="user-profile">
+									<p class="user-state">리그오브레전드 대기중</p>
+								</blockquote>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="list-content">
 						<div class="card" v-for="i in 40" :key="i">
 							<img :src="require(`@/assets/img/profile/profileImg.png`)" alt="profile-image" class="profile"/>
 							<div class="card-content">
@@ -120,7 +130,7 @@
 								<p>14 Followers</p>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</simplebar>
 			</div>
 		</div>
@@ -216,6 +226,8 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 	
+@import "@/assets/css/profile.scss";
+	
 	
 .idle-page {
 	height: 100%;
@@ -261,26 +273,10 @@ export default {
 		position: relative;
 		margin-top: 15px;
 		.columns {
-			.card {
-				margin-top: 15px;
-				border: none;
-				border-radius: 25px;
-				cursor: pointer;
-				width: 100%;
-				-webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
-				-moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
-				box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
+			.card-rounded {
+				/* card-rounded 설정은 profile.scss 에 있음 */
 				&:hover {
-					-webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
-					-moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
-					box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
-					.card-img-top {
-						transform:scale(1.1);
-						-o-transform:scale(1.1); 
-						-moz-transform:scale(1.1);
-						-webkit-transform:scale(1.1);
-					}
-					.user-profile {
+					.room-img-top {
 						transform:scale(1.1);
 						-o-transform:scale(1.1); 
 						-moz-transform:scale(1.1);
@@ -293,9 +289,9 @@ export default {
 						overflow: hidden;
 						border-radius: 25px 25px 0px 0px;
 						position: relative;
-						.card-img-top {
+						.room-img-top {
 							object-fit: cover;
-							max-height: initial;
+							width: 100%;
 							margin-top: -15%;
 							transition: transform .2s ease-in-out;
 							-o-transition: transform .2s ease-in-out;
@@ -305,23 +301,6 @@ export default {
 					}
 					.card-body {
 						border-radius: 0px 0px 25px 25px;
-					}
-				}
-				&.card-user {
-					background-color: $positiveColor;
-					color: white;
-					.user-profile {
-						width: 50px;
-						height: 50px;
-						border-radius: 25px;
-						transition: all .2s ease-in-out;
-						-o-transition: all .2s ease-in-out;
-						-moz-transition: all .2s ease-in-out;
-						-webkit-transition: all .2s ease-in-out;
-					}
-					.user-state {
-						margin-top: 10px;
-						font-size: 12px;
 					}
 				}
 			}
@@ -386,90 +365,64 @@ export default {
 	}
 	.list {
 		margin-top: 30px;
-		.scrolling-wrapper {
+		.rooms-scrolling-wrapper {
 			height: 443px;
 			padding-right: 10px;
 			-webkit-overflow-scrolling: touch;
-			&.list-rooms {
-				.list-content {
-					display: flex;
-					flex-wrap: wrap;
-					.card {
-						width: 100%;
-						margin-bottom: 8px;
-						border-radius: 8px;
-						cursor: pointer;
-						display: block;
-						position: relative;
-						border: 0px;
+			.list-content {
+				display: flex;
+				flex-wrap: wrap;
+				.card {
+					width: 100%;
+					margin-bottom: 8px;
+					border-radius: 8px;
+					cursor: pointer;
+					display: block;
+					position: relative;
+					border: 0px;
+					&:hover {
+						background-color: $idleColor;
+						border-color: $idleColor;
+					}
+					&.almost-full {
+						background-color: $almostFullColor;
+						border-color:  $almostFullColor;
 						&:hover {
-							background-color: $idleColor;
-							border-color: $idleColor;
+							background-color: $almostFullColorHover;
+							border-color: $almostFullColorHover;
 						}
-						&.almost-full {
-							background-color: $almostFullColor;
-							border-color:  $almostFullColor;
-							&:hover {
-								background-color: $almostFullColorHover;
-								border-color: $almostFullColorHover;
-							}
+					}
+					&.half {
+						background-color: $halfColor;
+						border-color: $halfColor;
+						&:hover {
+							background-color: $halfColorHover;
+							border-color: $halfColorHover;
 						}
-						&.half {
-							background-color: $halfColor;
-							border-color: $halfColor;
-							&:hover {
-								background-color: $halfColorHover;
-								border-color: $halfColorHover;
-							}
+					}
+					.card-head {
+						padding: 10px;
+						h5 {
+							margin-bottom: 0px;
 						}
-						.card-head {
-							padding: 10px;
-							h5 {
-								margin-bottom: 0px;
-							}
-						}
-						.card-body {
-							padding: 0px 10px 10px 10px;
-							p {
-								font-size: 12px;
-								margin-bottom: 0px;
-							}
+					}
+					.card-body {
+						padding: 0px 10px 10px 10px;
+						p {
+							font-size: 12px;
+							margin-bottom: 0px;
 						}
 					}
 				}
 			}
-			&.list-users {
-				.list-content {
-					display: flex;
-					flex-wrap: wrap;
-					justify-content: space-between;
-					.card {
-						margin-bottom: 25px;
-						display: inline-block;
-						position: relative;
-						color: #ffffff;
-						text-align: center;
-						width: 138px;
-						border: 0px;
-						border-radius: 10px;
-						box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
-						background-color: $themeColor;
-						padding: 30px 0px 30px 0px;
-						.profile {
-							border-radius: 50%;
-							min-width: 50px;
-							min-height: 50px;
-							max-width: 50px;
-							max-height: 50px;
-							object-fit: cover;
-						}
-						.card-content {
-							h2 {
-								font-size: 18px;
-							}
-						}
-					}
-				}
+		}
+		.users-scrolling-wrapper {
+			height: 443px;
+			padding-right: 10px;
+			-webkit-overflow-scrolling: touch;
+			.card-wrapper {
+				margin-left: 0px;
+				margin-right: 0px;
 			}
 		}
 	}

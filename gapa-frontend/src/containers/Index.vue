@@ -50,7 +50,7 @@
 							@PagePush="PagePush" @PagePop="PagePop" @PagePopAndMove="PagePopAndMove"></rightWrite>
 				<!-- 방 생성 화면 (오른쪽) -->
 				<rightCreateRoom v-show="pages.rightType === RIGHT_TYPE.CreateRoom" :pages="pages" 
-						   @PagePush="PagePush" @PagePop="PagePop"></rightCreateRoom>
+						   @PagePush="PagePush" @PagePopAndMove="PagePopAndMove"></rightCreateRoom>
 			</div>
 			<!----------------------------------- end of right-content ----------------------------------->
 		</div>

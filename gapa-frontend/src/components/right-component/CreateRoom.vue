@@ -1,11 +1,12 @@
 <template>
 	<div class="create-room-page">
+		<button class="btn btn-light" v-on:click="PagePopAndMove"><i class="fas fa-sign-out-alt"></i></button>
 		<div class="game-profile">
 			<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="ChangeRightType(RIGHT_TYPE.GameInfo)"/>
 			<h1 class="game-title">BATTLEGROUND</h1>
 			<div class="game-info">
-				<a href="">13 <span> 명의 팔로워</span></a>
-				<a href="">2 <span> 개의 방</span></a>
+				<p>13 <span> 명의 대기자</span></p>
+				<p>2 <span> 개의 방</span></p>
 			</div>
 		</div>
 	</div>
@@ -39,8 +40,8 @@ export default {
 		}
 	},
 	methods:{
-		PopPage : function() {
-			this.$emit('PopPage');
+		PagePopAndMove : function() {
+			this.$emit('PagePopAndMove');
 		}
 	},
 	components: {
@@ -71,7 +72,8 @@ export default {
 			font-weight: 700;
 		}
 		.game-info {
-			a {
+			p {
+				display: inline;
 				margin-left: 5px;
 				margin-right: 5px;
 				margin-bottom: 8px;

@@ -6,7 +6,7 @@
 			<div class="teams card">
 				<div class="member row" v-for="member in teams" v-bind:key="member.id" v-on:click="SearchUser">
 					<div class="col-sm-3 member-profile">
-						<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)"/>
+						<img class="profile-img sm-size float-center" :src="require(`@/assets/img/profile/profileImg.png`)"/>
 					</div>
 					<div class="col-sm-9 member-name">
 						<span class="align-middle">{{ member.name }}</span>
@@ -14,7 +14,7 @@
 				</div>
 				<div class="member empty-member row" v-for="i in (maxMember - teams.length)" v-bind:key="i">
 					<div class="col-sm-3 member-profile-empty">
-						<!-- <img class="profile-img float-center" :src="require(`@/assets/noone.png`)"/> -->
+						<!-- <img class="profile-img sm-size float-center" :src="require(`@/assets/noone.png`)"/> -->
 						<div class="lds-ripple"><div></div><div></div></div>
 					</div>
 					<div class="col-sm-9 member-name" v-on:click="pages.leftType = LEFT_TYPE.SearchUser">
@@ -83,6 +83,8 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
+	
+@import "@/assets/css/profile.scss";
 	
 @keyframes lds-ripple {
   0% {

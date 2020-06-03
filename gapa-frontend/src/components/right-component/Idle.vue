@@ -3,7 +3,7 @@
 		<div class="idle-page">
 			<div class="state-nav">
 				<!-- 상태 네비 공간으로 프로필이나 알린 등등이 들어갈 것임 -->
-				<img class="profile-img float-right" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
+				<img class="profile-img sm-size float-right" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 				<button class="float-right" v-on:click="ChangeRightType(RIGHT_TYPE.Notice)"><i class="far fa-bell"></i></button>
 				<button class="float-right" v-on:click="ChangeRightType(RIGHT_TYPE.Notice)"><i class="fas fa-search"></i></button>
 			</div>
@@ -99,6 +99,8 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 
+@import "@/assets/css/profile.scss";
+	
 .idle-page {
 	.state-nav {
 		height: 40px;
@@ -114,9 +116,6 @@ export default {
 			i {
 				font-size: 24px;
 			}
-		}
-		.profile-img {
-			display: block;
 		}
 	}
 	.game-profile {

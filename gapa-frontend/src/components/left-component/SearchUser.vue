@@ -78,7 +78,7 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 	
-@import "@/assets/css/profile.scss";
+@import "@/assets/css/card.scss";
 
 .before-btn {
 	font-size: 18px;

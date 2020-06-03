@@ -1,45 +1,24 @@
-/*
-	.card-rounded는 .card를 원형으로 꾸미는 클래스
-		.card-user 사용시
-			class = "card card-rounded card-user"
-		.card-room 사용시
-			class = "card card-rounded card-room
-*/
-.card-rounded {
-	margin-top: 15px;
-	border: none;
-	border-radius: 25px;
+.profile-img {
+	border-radius: 20%;
+	object-fit: cover;
 	cursor: pointer;
-	-webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
-	-moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
-	box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.1);
-	&:hover {
-		-webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
-		-moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
-		box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
-		.user-profile {
-			transform:scale(1.1);
-			-o-transform:scale(1.1); 
-			-moz-transform:scale(1.1);
-			-webkit-transform:scale(1.1);
-		}
+	border: 0px;
+	&.sm-size {
+		min-width: 40px;
+		max-width: 40px;
+		min-height: 40px;
+		max-height: 40px;
 	}
-	&.card-user {
-		background-color: $positiveColor;
-		color: white;
-		.user-profile {
-			width: 50px;
-			height: 50px;
-			border-radius: 25px;
-			object-fit: cover;
-			transition: all .2s ease-in-out;
-			-o-transition: all .2s ease-in-out;
-			-moz-transition: all .2s ease-in-out;
-			-webkit-transition: all .2s ease-in-out;
-		}
-		.user-state {
-			margin-top: 10px;
-			font-size: 12px;
-		}
+	&.md-size {		
+		min-width: 60px;
+		max-width: 60px;
+		min-height: 60px;
+		max-height: 60px;
+	}
+	&.lg-size {
+		min-width: 150px;
+		max-width: 150px;
+		min-height: 150px;
+		max-height: 150px;
 	}
 }

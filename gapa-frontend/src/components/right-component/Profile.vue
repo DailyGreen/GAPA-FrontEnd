@@ -4,7 +4,7 @@
 			<button class="btn btn-light" v-on:click="OutRoom"><i class="fas fa-sign-out-alt"></i></button>
 
 			<div class="profile-curt">
-				<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)"/>
+				<img class="profile-img lg-size float-center" :src="require(`@/assets/img/profile/profileImg.png`)"/>
 			</div>
 			<div class="row profile-info">
 				<div class="col-md-4 text-center info-btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileFollwers">
@@ -78,21 +78,14 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 
+@import "@/assets/css/profile.scss";
+	
 .profile-page {
 	height: 590px;
     position: relative;
 	.profile-curt {
 		margin-top: 50px;
 		text-align: center;
-		.profile-img {
-			min-width: 150px;
-			max-width: 150px;
-			min-height: 150px;
-			max-height: 150px;
-			border-radius: 20%;
-			object-fit: cover;
-			cursor: pointer;
-		}
 	}
 	.profile-info {
 		margin-top: 50px;

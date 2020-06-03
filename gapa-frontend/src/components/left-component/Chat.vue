@@ -5,7 +5,7 @@
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="chat-log row">
 						<div class="profile col-md-2">
-							<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
+							<img class="profile-img md-size float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 						</div>
 						<div class="msg col-md-10">
 							<p class="nickname">닉네임</p>
@@ -14,7 +14,7 @@
 					</div>
 					<div class="chat-log row">
 						<div class="profile col-md-2">
-							<img class="profile-img float-center" :src="require(`@/assets/img/profile/blackspirit.jpg`)" v-on:click="SearchUser"/>
+							<img class="profile-img md-size float-center" :src="require(`@/assets/img/profile/blackspirit.jpg`)" v-on:click="SearchUser"/>
 						</div>
 						<div class="msg col-md-10">
 							<p class="nickname">닉네임22</p>
@@ -46,7 +46,7 @@
 					</div>
 					<div class="chat-log row">
 						<div class="profile col-md-2">
-							<img class="profile-img float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
+							<img class="profile-img md-size float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
 						</div>
 						<div class="msg col-md-10">
 							<p class="nickname">닉네임</p>
@@ -113,6 +113,8 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 	
+@import "@/assets/css/profile.scss";
+	
 .chat-page {
 	.chat-content {
 		// margin-top: 20px;
@@ -133,13 +135,6 @@ export default {
 				margin: 20px 0px 20px 0px;
 				.profile {
 					text-align: center;
-					.profile-img {
-						min-width: 60px;
-						max-width: 60px;
-						min-height: 60px;
-						max-height: 60px;
-						border: 0px;
-					}
 				}
 				.msg {
 					padding-left: 0px;

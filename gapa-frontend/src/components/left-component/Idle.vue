@@ -64,7 +64,7 @@
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-primary refresh-btn mx-auto d-block"><i class="fas fa-sync-alt"></i> 새로고침</button>
+				<button class="btn primary icon-btn mx-auto d-block"><i class="fas fa-sync-alt"></i> 새로고침</button>
 			</div>
 			<div class="games" v-show="pages.leftType === LEFT_TYPE.Games">
 				<!-- <h2>게임 카테고리</h2> -->
@@ -227,6 +227,7 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 	
 @import "@/assets/css/card.scss";
+@import "@/assets/css/button.scss";
 	
 	
 .idle-page {
@@ -305,16 +306,8 @@ export default {
 				}
 			}
 		}
-		.refresh-btn {
-			border: none;
-			margin-top: 20px;
-			background-color: $pointColor;
-			&:active {
-				opacity: 0.9;
-			}
-			i {
-				margin-right: 5px;
-			}
+		.icon-btn {
+			margin-top: 30px;
 		}
 	}
 	.games {

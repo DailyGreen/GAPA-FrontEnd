@@ -13,7 +13,7 @@
 			</form>
 			<div class="write-decision-group">
 				<button class="btn btn-cancel" v-on:click="PagePopAndMove()">취소</button>
-				<button class="btn btn-complete">작성</button>
+				<button class="btn btn-complete positive">작성</button>
 			</div>
 		</div>
 	</div>
@@ -65,6 +65,7 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 
+@import "@/assets/css/button.scss";
 .write {
 	height: 590px;
 	display: flex;
@@ -105,14 +106,7 @@ export default {
 				background-color: $themeColor;
 			}
 			&.btn-complete {
-				background-color: $positiveColor;
 				border-radius: 10px;
-			}
-			&:hover {
-				opacity: 0.9;
-			}
-			&:active {
-				opacity: 0.8;
 			}
 		}
 	}

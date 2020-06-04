@@ -12,8 +12,8 @@
 					<div class="col-md-10">
 						<h5>닉네임2</h5>
 						<h6>Would You Join Us? <span>(3min)</span></h6>
-						<button type="button" class="btn btn-primary">Join</button>
-						<button type="button" class="btn btn-outline-primary">Refused</button>
+						<button type="button" class="btn positive">Join</button>
+						<button type="button" class="btn outline">Refused</button>
 					</div>
 				</div>
 				<div class="notice-msg row">
@@ -89,6 +89,7 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 
 @import "@/assets/css/profile.scss";
+@import "@/assets/css/button.scss";
 	
 .notice-page {
 	color: $idleColor;
@@ -118,22 +119,23 @@ export default {
 				color: $idleColorOpa;
 			}
 			.btn {
+				// border: initial !important;
 				margin-top: 10px;
 				// width: calc(50%-6px);
 				width: -webkit-calc(50% - 6px); /* for Chrome, Safari */
 				width:    -moz-calc(50% - 6px); /* for Firefox */
 				width:         calc(50% - 6px); /* for IE */
 				// border-width: 1px;
-				&.btn-primary {
-					color: $idleColor;
-					border-color: $positiveColor;
-					background-color: $positiveColor;
+				&.primary {
+					// color: $idleColor;
+					// border-color: $positiveColor;
+					// background-color: $positiveColor;
 					margin-right: 3px;
 				}
-				&.btn-outline-primary {
-					color: $idleColor;
-					border-color: $idleColor;
-					background-color: $pointColor;
+				&.outline {
+					// color: $idleColor;
+					// border-color: $idleColor;
+					// background-color: $pointColor;
 					margin-left: 3px;
 				}
 			}

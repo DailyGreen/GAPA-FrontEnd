@@ -28,7 +28,7 @@
 					</div>
 				</div>
 			</simplebar>
-			<button class="btn btn-primary refresh-btn mx-auto d-block">방 생성</button>
+			<button class="btn positive mx-auto d-block">방 생성</button>
 		</form>
 	</div>
 </template>
@@ -79,6 +79,7 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 
 @import "@/assets/css/card.scss";
+@import "@/assets/css/button.scss";
 	
 	.form-box {
 		margin-top: 30px;

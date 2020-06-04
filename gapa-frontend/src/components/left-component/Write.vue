@@ -6,7 +6,7 @@
 			</div>
 			<p class="upload-img-title">UPLOAD IMAGE</p>
 			<p class="upload-img-desc">이미지는 게시글에 하나만 등록가능합니다.</p>
-			<button class="btn upload-img-button">이미지 찾기</button>
+			<button class="btn positive upload-img-button">이미지 찾기</button>
 		</div>
 		<div class="textWrite" v-show="writeType === 'textWrite'">
 		</div>
@@ -49,6 +49,8 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 	
+@import "@/assets/css/button.scss";
+
 .upload-img-block {
 	width: 100%;
 	height: 553px;
@@ -85,17 +87,10 @@ export default {
 		font-weight: 400;
 	}
 	.upload-img-button {
+        padding: 6px 12px 6px 12px;
 		margin-top: 15px;
 		font-size: 14px;
 		font-weight: 600;
-		color: white;
-		background-color: $positiveColor;
-		&:hover {
-			opacity: 0.9;
-		}
-		&:active {
-			opacity: 0.8;
-		}
 	}
 }
 </style>

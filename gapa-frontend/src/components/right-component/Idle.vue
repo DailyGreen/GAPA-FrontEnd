@@ -14,11 +14,11 @@
 					<a href="">13 <span> 명의 팔로워</span></a>
 					<a href="">2 <span> 개의 방</span></a>
 				</div>
-				<!-- <button class="btn btn-primary follow"><i class="far fa-heart"></i> 팔로우</button> -->
-				<button class="btn btn-primary following"><i class="fas fa-heart"></i> 팔로윙</button>
+				<button class="btn negative icon-btn follow" v-if="isFollowingGame === false" v-on:click="isFollowingGame = !isFollowingGame"><i class="far fa-heart"></i> 팔로우</button>
+				<button class="btn positive icon-btn following" v-if="isFollowingGame === true" v-on:click="isFollowingGame = !isFollowingGame"><i class="fas fa-heart"></i> 팔로윙</button>
 				<br/>
-				<button class="btn btn-primary">초대 대기하기</button>
-				<button class="btn btn-primary" v-on:click="PagePush('CreateRoom', LEFT_TYPE.CreateRoom, RIGHT_TYPE.CreateRoom)">팀 꾸리기</button>
+				<button class="btn primary">초대 대기하기</button>
+				<button class="btn primary" v-on:click="PagePush('CreateRoom', LEFT_TYPE.CreateRoom, RIGHT_TYPE.CreateRoom)">팀 꾸리기</button>
 			</div>
 			<div class="menu-nav" v-show="pages.rightType === RIGHT_TYPE.Idle">>
 				<!-- 버튼 나중에 꾸미기! -->
@@ -69,7 +69,8 @@ export default {
 	data () {
 		return {
 			LEFT_TYPE : new LEFT_TYPE(),
-			RIGHT_TYPE : new RIGHT_TYPE()
+			RIGHT_TYPE : new RIGHT_TYPE(),
+			isFollowingGame: false
 		}
 	},
 	methods:{
@@ -100,6 +101,7 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 
 @import "@/assets/css/profile.scss";
+@import "@/assets/css/button.scss";
 	
 .idle-page {
 	.state-nav {
@@ -149,23 +151,23 @@ export default {
 				}
 			}
 		}
-		.btn {
-			padding: 8px 15px 8px 15px;
-			margin-top: 8px;
-			border: 0px;
-			font-weight: 400;
-			i {
-				font-size: 12px;
-				margin-right: 5px;
-			}
-			// display: block;
-			&.follow {
-				background-color: $positiveColor;
-			}
-			&.following {
-				background-color: $pointColor;
-			}
-		}
+		// .btn {
+		// 	padding: 8px 15px 8px 15px;
+		// 	margin-top: 8px;
+		// 	border: 0px;
+		// 	font-weight: 400;
+		// 	i {
+		// 		font-size: 12px;
+		// 		margin-right: 5px;
+		// 	}
+		// 	// display: block;
+		// 	&.follow {
+		// 		background-color: $positiveColor;
+		// 	}
+		// 	&.following {
+		// 		background-color: $pointColor;
+		// 	}
+		// }
 	}
 	.menu-nav {
 		height: -webkit-calc(100% - 40px); /* for Chrome, Safari */

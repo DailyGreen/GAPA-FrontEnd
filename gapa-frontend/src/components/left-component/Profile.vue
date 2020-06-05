@@ -33,7 +33,7 @@
 			<div class="games" v-show="pages.leftType === LEFT_TYPE.ProfileGames">
 				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="game-category">
-						<div class="card" v-for="game in followGames" :key="game.code">
+						<div class="card game-card" v-for="game in followGames" :key="game.code">
 							<img class="game-img" :src="require(`@/assets/img/games/${game.imgUrl}`)" v-on:click="`GameInfo({{game.code}})`"/>
 							<div class="card-body">
 								<p class="game-name">{{game.name}}</p>
@@ -147,7 +147,8 @@ export default {
 }
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
-	
+@import "@/assets/css/game.scss";
+
 .profile-page {
 	color: black;
 	font-size: 14px;
@@ -235,44 +236,6 @@ export default {
 			height: 443px;
 			padding-right: 10px;
 			-webkit-overflow-scrolling: touch;
-			.game-category {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: space-between;
-				.card {
-					width: 138px;
-					margin-bottom: 15px;
-					display: inline-block;
-					position: relative;
-					border: 0px;
-					.game-img {
-						min-width: 138px;
-						min-height: 183px;
-						max-width: 138px;
-						max-height: 183px;
-						display: inline-block;
-						position: relative;
-						border-radius: 10px;
-						box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
-						cursor: pointer;
-					}
-					.card-body {
-						margin-top: 5px;
-						padding: 0px;
-						.game-name {
-							font-size: 14px;
-							font-weight: 500;
-							margin-bottom: 0px;
-						}
-						.game-follower {
-							font-size: 12px;
-							color: #656565;
-							font-weight: 400;
-							margin-bottom: 0px;
-						}
-					}
-				}
-			}
 		}	
 	}
 }

@@ -8,7 +8,11 @@
 				<button class="float-right" v-on:click="ChangeRightType(RIGHT_TYPE.Notice)"><i class="fas fa-search"></i></button>
 			</div>
 			<div class="game-profile" v-show="pages.rightType === RIGHT_TYPE.GameInfo">
-				<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="ChangeRightType(RIGHT_TYPE.GameInfo)"/>
+				
+				<div class="card game-card">
+					<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="ChangeRightType(RIGHT_TYPE.GameInfo)"/>
+				</div>
+				<!-- <img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="ChangeRightType(RIGHT_TYPE.GameInfo)"/> -->
 				<h1 class="game-title">BATTLEGROUND</h1>
 				<div class="game-info">
 					<a href="">13 <span> 명의 팔로워</span></a>
@@ -102,7 +106,8 @@ export default {
 
 @import "@/assets/css/profile.scss";
 @import "@/assets/css/button.scss";
-	
+@import "@/assets/css/game.scss";
+
 .idle-page {
 	.state-nav {
 		height: 40px;
@@ -123,14 +128,6 @@ export default {
 	.game-profile {
 		margin-top: 30px;
 		text-align: center;
-		.game-img {
-			min-width: 138px;
-			min-height: 183px;
-			max-width: 138px;
-			max-height: 183px;
-			border-radius: 10px;
-			margin-bottom: 8px;
-		}
 		.game-title {
 			color: white;
 			font-size: 24px;

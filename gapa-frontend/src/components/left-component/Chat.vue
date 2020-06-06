@@ -2,7 +2,7 @@
 	<div>
 		<div class="chat-page">
 			<div class="chat-content">
-				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
+				<simplebar class="chat-scrolling-wrapper" data-simplebar-auto-hide="true">
 					<div class="chat-log row">
 						<div class="profile col-md-2">
 							<img class="profile-img md-size float-center" :src="require(`@/assets/img/profile/profileImg.png`)" v-on:click="SearchUser"/>
@@ -114,6 +114,7 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 	
 @import "@/assets/css/profile.scss";
+@import "@/assets/css/scrolling.scss";
 	
 .chat-page {
 	.chat-content {
@@ -127,30 +128,25 @@ export default {
 		border: 0px;
 		border-radius: 5px;
 		background-color: #edebeb;
-		.scrolling-wrapper {
-			height: 520px;		
-			padding-right: 10px;
-			-webkit-overflow-scrolling: touch;
-			.chat-log {
-				margin: 20px 0px 20px 0px;
-				.profile {
-					text-align: center;
+		.chat-log {
+			margin: 20px 0px 20px 0px;
+			.profile {
+				text-align: center;
+			}
+			.msg {
+				padding-left: 0px;
+				.nickname {
+					margin-bottom: 0px;
+					font-weight: 800;
+					font-size: 20px;
 				}
-				.msg {
-					padding-left: 0px;
-					.nickname {
-						margin-bottom: 0px;
-						font-weight: 800;
-						font-size: 20px;
-					}
-					pre {
-						color: rgba(0,0,0,0.5);
-						margin-bottom: 0px;
-						white-space: pre-line;
-						font-size: 16px;
-						font-weight: 600;
-						font-family: 'Noto Sans KR', sans-serif;
-					}
+				pre {
+					color: rgba(0,0,0,0.5);
+					margin-bottom: 0px;
+					white-space: pre-line;
+					font-size: 16px;
+					font-weight: 600;
+					font-family: 'Noto Sans KR', sans-serif;
 				}
 			}
 		}

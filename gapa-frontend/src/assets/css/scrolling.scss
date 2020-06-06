@@ -1,0 +1,41 @@
+/* 
+    scrolling-wrapper lg-size 를 사용하기 위해선
+    상위 컴포넌트에 아래 컨디션 클래스를 추가
+    - 스크롤 바를 없애고 싶다면 margin-right: -50px 로 변경하면 됨
+*/
+.lg-wrapper-condition {
+    margin-left: -40px;
+    margin-right: -40px;
+}
+
+.scrolling-wrapper {
+    padding-right: 10px;
+    -webkit-overflow-scrolling: touch;
+    &.md-size {
+        height: 530px;
+    }
+    &.sm-size {
+        height: 490px;
+        // height: 443px;
+    }
+    &.lg-size {
+        height: 538px;
+        padding-right: 50px;
+        padding-left: 40px;
+        padding-bottom: 100px;
+    }
+}
+
+.search-scrolling-wrapper {
+	margin-left: -15px;
+	margin-right: -15px;
+	margin-top: 20px;
+	height: 520px;
+	-webkit-overflow-scrolling: touch;
+}
+
+.chat-scrolling-wrapper {
+    height: 520px;		
+    padding-right: 10px;
+    -webkit-overflow-scrolling: touch;
+}

@@ -66,9 +66,9 @@
 				</div>
 				<button class="btn primary icon-btn mx-auto d-block"><i class="fas fa-sync-alt"></i> 새로고침</button>
 			</div>
-			<div class="games" v-show="pages.leftType === LEFT_TYPE.Games">
+			<div class="games lg-wrapper-condition" v-show="pages.leftType === LEFT_TYPE.Games">
 				<!-- <h2>게임 카테고리</h2> -->
-				<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
+				<simplebar class="scrolling-wrapper lg-size" data-simplebar-auto-hide="true">
 					<div class="game-category">
 						<div class="card game-card" v-for="game in gameCategory" :key="game.code">
 							<img class="game-img" :src="require(`@/assets/img/games/${game.imgUrl}`)" v-on:click="GameInfo(`${game.code}`)"/>
@@ -83,7 +83,7 @@
 			<div class="list" v-show="pages.leftType === LEFT_TYPE.GameRooms || pages.leftType === LEFT_TYPE.GameUsers">
 				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameRooms">게임 방</button>
 				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameUsers">대기 유저</button>
-				<simplebar class="rooms-scrolling-wrapper" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameRooms">
+				<simplebar class="room-list scrolling-wrapper sm-size" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameRooms">
 					<div class="list-content">
 						<div class="card almost-full" v-on:click="JoinRoom(0)">
 							<div class="card-head">
@@ -111,7 +111,7 @@
 						</div>
 					</div>
 				</simplebar>
-				<simplebar class="users-scrolling-wrapper" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameUsers">
+				<simplebar class="user-list scrolling-wrapper sm-size" data-simplebar-auto-hide="true" v-show="pages.leftType === LEFT_TYPE.GameUsers">
 					<div class="row card-wrapper">
 						<div class="col-sm-6" v-for="i in 24" :key="i">
 							<div class="card card-rounded card-user">
@@ -229,7 +229,8 @@ export default {
 @import "@/assets/css/card.scss";
 @import "@/assets/css/button.scss";
 @import "@/assets/css/game.scss";
-	
+@import "@/assets/css/scrolling.scss";
+
 .idle-page {
 	height: 100%;
 	.title-img {
@@ -312,18 +313,10 @@ export default {
 	}
 	.games {
 		margin-top: 30px;
-		.scrolling-wrapper {
-			height: 530px;
-			padding-right: 10px;
-			-webkit-overflow-scrolling: touch;
-		}	
 	}
 	.list {
 		margin-top: 30px;
-		.rooms-scrolling-wrapper {
-			height: 443px;
-			padding-right: 10px;
-			-webkit-overflow-scrolling: touch;
+		.room-list {
 			.list-content {
 				display: flex;
 				flex-wrap: wrap;
@@ -371,10 +364,7 @@ export default {
 				}
 			}
 		}
-		.users-scrolling-wrapper {
-			height: 443px;
-			padding-right: 10px;
-			-webkit-overflow-scrolling: touch;
+		.user-list {
 			.card-wrapper {
 				margin-left: 0px;
 				margin-right: 0px;

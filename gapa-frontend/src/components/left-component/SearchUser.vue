@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<span class="before-btn" v-on:click="pages.leftType = LEFT_TYPE.Chat"> <i class="fas fa-chevron-left"></i> 채팅으로 되돌아가기</span>
-		<simplebar class="scrolling-wrapper" data-simplebar-auto-hide="true">
+		<simplebar class="search-scrolling-wrapper" data-simplebar-auto-hide="true">
 			<div class="">
 				<p class="wrapper-title">팔로우한 유저</p>
 				<div class="row card-wrapper">
@@ -79,34 +79,28 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 	
 @import "@/assets/css/card.scss";
+@import "@/assets/css/scrolling.scss";
 
 .before-btn {
 	font-size: 18px;
 	font-weight: 600;
 	cursor: pointer;
 }
-.scrolling-wrapper {
-	margin-left: -15px;
-	margin-right: -15px;
-	margin-top: 20px;
-	height: 520px;
-	-webkit-overflow-scrolling: touch;
-	.wrapper-title {
-		color: $grayColor;
-		margin-left: 15px;
-		margin-bottom: 15px;
-		display: flex; 
-		flex-direction: row;
-		&:after { 
-            content: ""; 
-            flex: 1 1; 
-            border-bottom: 1px solid $grayColor;
-			margin: auto 15px auto 15px;
-        } 
-	}
-	.card-wrapper {
-		margin-left: 0px;
-		margin-right: 0px;
-	}
-}	
+.wrapper-title {
+	color: $grayColor;
+	margin-left: 15px;
+	margin-bottom: 15px;
+	display: flex; 
+	flex-direction: row;
+	&:after { 
+		content: ""; 
+		flex: 1 1; 
+		border-bottom: 1px solid $grayColor;
+		margin: auto 15px auto 15px;
+	} 
+}
+.card-wrapper {
+	margin-left: 0px;
+	margin-right: 0px;
+}
 </style>

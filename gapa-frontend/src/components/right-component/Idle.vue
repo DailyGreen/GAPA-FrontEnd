@@ -56,10 +56,6 @@ import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
 export default {
 	props: {
 		pages: {
-			name: {
-				type: String,
-				default: ''
-			},
 			leftType: {
 				type: Number,
 				default: -1
@@ -80,7 +76,6 @@ export default {
 	methods:{
 		PagePush: function(name, leftType, rightType) {
 			this.$emit('PagePush', this.pages);
-			this.pages.name = name;
 			this.pages.leftType = leftType;
 			this.pages.rightType = rightType;
 		},

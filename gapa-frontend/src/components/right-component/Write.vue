@@ -103,7 +103,7 @@ export default {
 			height: 50px;
 			color: white;
 			&.btn-cancel {
-				background-color: $themeColor;
+				background-color: $blackColor;
 			}
 			&.btn-complete {
 				border-radius: 10px;

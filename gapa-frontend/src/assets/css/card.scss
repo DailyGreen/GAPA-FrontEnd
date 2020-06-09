@@ -1,3 +1,4 @@
+@import "@/assets/css/_variables.scss";
 /*
 	.card-rounded는 .card를 원형으로 꾸미는 클래스
 		.card-user 사용시
@@ -25,8 +26,8 @@
 		}
 	}
 	&.card-user {
-		background-color: $positiveColor;
-		color: white;
+		background-color: $themeColor;
+		color: $whiteColor;
 		.user-profile {
 			width: 50px;
 			height: 50px;

@@ -24,7 +24,8 @@
 				<button class="btn primary">초대 대기하기</button>
 				<button class="btn primary" v-on:click="PagePush('CreateRoom', LEFT_TYPE.CreateRoom, RIGHT_TYPE.CreateRoom)">팀 꾸리기</button>
 			</div>
-			<div class="menu-nav" v-show="pages.rightType === RIGHT_TYPE.Idle">>
+			<div class="menu-nav" v-show="pages.rightType === RIGHT_TYPE.Idle">
+				<br/><br/><br/><br/><br/><br/>
 				<!-- 버튼 나중에 꾸미기! -->
 				<button type="button" class="btn btn-success btn-lg btn-block">
 					<div class="card">
@@ -112,7 +113,7 @@ export default {
 			line-height: 40px;
 			margin-right: 20px;
 			border: 0px;
-			background-color: $themeColor;
+			background-color: $blackColor;
 			color: white;
 			cursor: pointer;
 			i {
@@ -137,7 +138,7 @@ export default {
 				font-weight: 500;
 				text-decoration: none;
 				span {
-					color: $idleColorOpa;
+					color: $whiteColorOpa;
 					font-size: 12px;
 					font-weight: 400;
 				}
@@ -171,10 +172,10 @@ export default {
 		align-items: center;
 		button {
 			display: block;
-			background-color: $pointColor;
+			background-color: $themeColor;
 			padding: 0px;
 			.card {
-				background-color: $pointColor;
+				background-color: $themeColor;
 				font-size: 20px;
 				font-family: 'Noto Sans KR', sans-serif;
 				font-weight: 900;

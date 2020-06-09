@@ -81,7 +81,7 @@ export default {
 				font-weight: 500;
 				text-decoration: none;
 				span {
-					color: $idleColorOpa;
+					color: $whiteColorOpa;
 					font-size: 12px;
 					font-weight: 400;
 				}

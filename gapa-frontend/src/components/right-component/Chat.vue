@@ -111,10 +111,10 @@ export default {
 	.teams {
 		margin-top: 10px;
 		border: 0px;
-		background-color: $themeColor;
+		background-color: $blackColor;
 		color: white;
 		.member {
-			background-color: $themeColor;
+			background-color: $blackColor;
 			border-radius: 10px;
 			margin: 2px 0px 2px 0px;
 			.member-profile {

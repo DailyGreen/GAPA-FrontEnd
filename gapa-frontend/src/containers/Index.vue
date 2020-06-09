@@ -1,7 +1,7 @@
 <template>
   <div>
-	<p>{{ pageStack.data }}</p>
-	<p>{{ pages }}</p>
+	<!-- <p>{{ pageStack.data }}</p>
+	<p>{{ pages }}</p> -->
 	<div class="container">
 		<div class="content row">
 			<!---------------------------------- start of left-content ---------------------------------->
@@ -190,7 +190,7 @@ export default {
 	padding: 0px 15px 0px 15px;
 }
 .content {
-    height: 40rem;
+    height: 45rem;
 	.left-content {
 		padding: 40px 40px 0px 40px;
 		border-radius: 50px;
@@ -247,9 +247,9 @@ export default {
 		padding: 25px;
 		// border-radius: 50px 0px 0px 50px;
 		border-radius: 30px 30px 30px 30px;
-		background-color: $themeColor;
+		background-color: $blackColor;
 		&.notice {
-			background-color: $pointColor;
+			background-color: $themeColor;
 		}
 		&.search-page {
 		}

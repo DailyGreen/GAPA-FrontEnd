@@ -7,23 +7,23 @@
     font-weight: 600;
     // border: 0px;
     &.primary {
-        color: $idleColor;
-        background-color: $backgroundColor;
+        color: $whiteColor;
+        background-color: $themeColor;
     }
     &.positive {
-        color: $idleColor;
+        color: $whiteColor;
         background-color: $positiveColor;
     }
     &.negative {
-        color: $idleColor;
-        background-color: $pointColor;
+        color: $whiteColor;
+        background-color: $negativeColor;
     }
     &.outline {
         // border: initial;
         // border: 1px;
-        color: $idleColor;
-        border-color: $idleColor;
-        background-color: $pointColor;
+        color: $whiteColor;
+        border-color: $whiteColor;
+        background-color: none;
     }
     &.icon-btn {
         i {
@@ -38,54 +38,3 @@
         opacity: 0.8;
     }
 }
-
-// .refresh-btn {
-//     border: none;
-//     margin-top: 20px;
-//     background-color: $pointColor;
-//     &:active {
-//         opacity: 0.9;
-//     }
-//     i {
-//         margin-right: 5px;
-//     }
-// }
-
-// .btn {
-//     padding: 8px 15px 8px 15px;
-//     margin-top: 8px;
-//     border: 0px;
-//     font-weight: 400;
-//     i {
-//         font-size: 12px;
-//         margin-right: 5px;
-//     }
-//     // display: block;
-//     &.follow {
-//         background-color: $positiveColor;
-//     }
-//     &.following {
-//         background-color: $pointColor;
-//     }
-// }
-
-// .btn {
-//     margin-top: 10px;
-//     // width: calc(50%-6px);
-//     width: -webkit-calc(50% - 6px); /* for Chrome, Safari */
-//     width:    -moz-calc(50% - 6px); /* for Firefox */
-//     width:         calc(50% - 6px); /* for IE */
-//     // border-width: 1px;
-//     &.btn-primary {
-//         color: $idleColor;
-//         border-color: $positiveColor;
-//         background-color: $positiveColor;
-//         margin-right: 3px;
-//     }
-//     &.btn-outline-primary {
-//         color: $idleColor;
-//         border-color: $idleColor;
-//         background-color: $pointColor;
-//         margin-left: 3px;
-//     }
-// }

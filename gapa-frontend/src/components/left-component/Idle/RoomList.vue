@@ -68,8 +68,8 @@ export default {
             position: relative;
             border: 0px;
             &:hover {
-                background-color: $idleColor;
-                border-color: $idleColor;
+                background-color: $whiteColor;
+                border-color: $whiteColor;
             }
             &.almost-full {
                 background-color: $almostFullColor;

@@ -190,7 +190,7 @@ export default {
 			}
 			#Login {
 				font-weight: 600;
-				background-color: $pointColor;
+				background-color: $themeColor;
 				padding: 10px 30px 10px 30px;
 			}
 			#SingUp {
@@ -230,7 +230,7 @@ export default {
 			}
 			#SingUp {
 				font-weight: 600;
-				background-color: $pointColor;
+				background-color: $themeColor;
 				padding: 10px 30px 10px 30px;
 			}
 			#Login {

@@ -55,7 +55,7 @@ export default {
 	width: 100%;
 	height: 553px;
 	border-radius: 25px;
-	background-color: $idleColor;
+	background-color: $whiteColor;
 	text-align: center;
 	display: flex;
 	align-items: center;
@@ -69,7 +69,7 @@ export default {
 		text-align: center;
 		i {
 			font-size: 100px;
-			color: $idleColor;
+			color: $whiteColor;
 		}
 	}
 	.upload-img-title {

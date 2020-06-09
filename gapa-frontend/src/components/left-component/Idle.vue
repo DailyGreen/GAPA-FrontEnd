@@ -14,8 +14,7 @@
 
 			<explore v-show="pages.leftType === LEFT_TYPE.Explore"></explore>
 
-			<category v-show="pages.leftType === LEFT_TYPE.Games"
-						@GameInfo="GameInfo"></category>
+			<category v-show="pages.leftType === LEFT_TYPE.Games" @GameInfo="GameInfo"></category>
 
 			<div class="list" v-show="pages.leftType === LEFT_TYPE.GameRooms || pages.leftType === LEFT_TYPE.GameUsers">
 				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameRooms">게임 방</button>
@@ -108,16 +107,9 @@ export default {
 		.btn {
 			margin-left: 10px;
 			&:hover {
-				color: $pointColor;
+				color: $themeColor;
 			}
 		}
-	}
-	.sprofile {
-		background-color: black;
-		border-radius: 50px;
-		opacity: 0.5;
-		float: right;
-		height: 6.5%;
 	}
 	.search {
 		font-size: 30px;

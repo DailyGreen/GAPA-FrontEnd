@@ -1,23 +1,24 @@
-$themeColor: #242424;
-$backgroundColor: #FADA80;
-$pointColor: #F6404F;
-$idleColor: #F7F7F7;
-$idleColorOpa: #dbd0d0;
-$positiveColor: #30BCC9;
+// 기본 색 밸류
+$blackColor: #242424;
+$blackColorOpa: #656565;
+$whiteColor: #F7F7F7;
+$whiteColorOpa: #DBD0D0;
 $grayColor: #A7A8A9;
 
-// Room Color
+// 테마 색
+$themeColor: #9754CB;
+$positiveColor: #9754CB;
+$negativeColor: #F6404F;
+
+// 방 색
 $almostFullColor: #c2eaed;
 $almostFullColorHover: #b7e5e8;
 $halfColor: #daf3f5;
 $halfColorHover: #d5ebed;
 
-// $themeColor: #171515;
-// $backgroundColor: #FADA80;
-// $pointColor: #F6404F;
-// $idleColor: white;
-
-.btn-success {
-	background-color: $themeColor;
-	border: 0px;
-}
+// 아래 테마 색들로 변경 언제든지 가능
+// $themeColor: #C0EB6A;
+// $themeColor: #9754CB;
+// $themeColor: #6A67CE;
+// $themeColor: #6BCBA5;
+// $themeColor: #FF8F00;

@@ -1,3 +1,5 @@
+@import "@/assets/css/_variables.scss";
+
 .game-category {
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +33,7 @@
         }
         .game-follower {
             font-size: 12px;
-            color: #656565;
+            color: $blackColorOpa;
             font-weight: 400;
             margin-bottom: 0px;
         }

@@ -92,14 +92,13 @@ export default {
 @import "@/assets/css/button.scss";
 	
 .notice-page {
-	color: $idleColor;
+	color: $whiteColor;
 	h4 {
 		margin-bottom: 25px;
 		margin-top: 40px;
 		font-weight: 800;
 	}
 	.notice-content {
-		// font-weight: 500;
 		.notice-msg {
 			margin-bottom: 25px;
 			h5 {
@@ -116,26 +115,19 @@ export default {
 			}
 			p {
 				font-size: 14px;
-				color: $idleColorOpa;
+				color: $whiteColorOpa;
 			}
 			.btn {
-				// border: initial !important;
 				margin-top: 10px;
 				// width: calc(50%-6px);
 				width: -webkit-calc(50% - 6px); /* for Chrome, Safari */
 				width:    -moz-calc(50% - 6px); /* for Firefox */
 				width:         calc(50% - 6px); /* for IE */
-				// border-width: 1px;
-				&.primary {
-					// color: $idleColor;
-					// border-color: $positiveColor;
-					// background-color: $positiveColor;
+				&.positive {
+					background-color: $blackColor;
 					margin-right: 3px;
 				}
 				&.outline {
-					// color: $idleColor;
-					// border-color: $idleColor;
-					// background-color: $pointColor;
 					margin-left: 3px;
 				}
 			}

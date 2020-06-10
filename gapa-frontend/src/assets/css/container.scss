@@ -1,0 +1,13 @@
+
+.container {
+	margin-top: 100px;
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
+	-moz-box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
+	box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
+	background-color: white;
+	border-radius: 30px;
+	padding: 0px 15px 0px 15px;
+    .content {
+        height: 45rem;
+    }
+}

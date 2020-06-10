@@ -179,80 +179,70 @@ export default {
 <style lang="scss">
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
+
+@import "@/assets/css/container.scss";
 	
-.container {
-	margin-top: 100px;
-    -webkit-box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
-	-moz-box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
-	box-shadow: 0px 0px 50px -25px rgba(71,71,71,1);
-	background-color: white;
-	border-radius: 30px;
-	padding: 0px 15px 0px 15px;
-}
-.content {
-    height: 45rem;
-	.left-content {
-		padding: 40px 40px 0px 40px;
-		border-radius: 50px;
-		overflow: hidden;
-		&.search-page {
-			background-color: white;
-			&:not(.bg) {
-				z-index: 1;
-			}
-			.bg {
-				position: absolute;
-				background: url('~@/assets/img/usefull/gapa_icon.png') no-repeat right 0px; 
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				-o-background-size: cover;
-				background-size: cover;
-				filter: brightness(50%);
-				-webkit-filter: blur(3px);
-				-moz-filter: blur(3px);
-				-o-filter: blur(3px);
-				-ms-filter: blur(3px);
-				filter: blur(3px);
-				width: calc(100% + 80px);
-				height: calc(100% + 20px);
-				margin: -20px -40px 0px -40px;
-				z-index: -1;
-			}
-			.row {
-				height: 100%;
-				text-align: center;
-				.col-md-6 {
-					margin-top: auto;
-					margin-bottom: auto;
-					.card {
-						padding-top: 40px;
-						padding-bottom: 10px;
-						border-radius: 20px;
-						cursor: pointer;
-						.card-body {
-							.card-text {
-								font-weight: 700;
-							}
+.left-content {
+	padding: 40px 40px 0px 40px;
+	border-radius: 50px;
+	overflow: hidden;
+	&.search-page {
+		background-color: white;
+		&:not(.bg) {
+			z-index: 1;
+		}
+		.bg {
+			position: absolute;
+			background: url('~@/assets/img/usefull/gapa_icon.png') no-repeat right 0px; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			filter: brightness(50%);
+			-webkit-filter: blur(3px);
+			-moz-filter: blur(3px);
+			-o-filter: blur(3px);
+			-ms-filter: blur(3px);
+			filter: blur(3px);
+			width: calc(100% + 80px);
+			height: calc(100% + 20px);
+			margin: -20px -40px 0px -40px;
+			z-index: -1;
+		}
+		.row {
+			height: 100%;
+			text-align: center;
+			.col-md-6 {
+				margin-top: auto;
+				margin-bottom: auto;
+				.card {
+					padding-top: 40px;
+					padding-bottom: 10px;
+					border-radius: 20px;
+					cursor: pointer;
+					.card-body {
+						.card-text {
+							font-weight: 700;
 						}
-						.card-footer {
-							padding: 0px;
-							p { margin-top: 5px; margin-bottom: 0px; }
-						}
+					}
+					.card-footer {
+						padding: 0px;
+						p { margin-top: 5px; margin-bottom: 0px; }
 					}
 				}
 			}
 		}
 	}
-	.right-content {
-		padding: 25px;
-		// border-radius: 50px 0px 0px 50px;
-		border-radius: 30px 30px 30px 30px;
-		background-color: $blackColor;
-		&.notice {
-			background-color: $themeColor;
-		}
-		&.search-page {
-		}
+}
+.right-content {
+	padding: 25px;
+	// border-radius: 50px 0px 0px 50px;
+	border-radius: 30px 30px 30px 30px;
+	background-color: $blackColor;
+	&.notice {
+		background-color: $themeColor;
+	}
+	&.search-page {
 	}
 }
 </style>

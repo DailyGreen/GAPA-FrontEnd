@@ -25,14 +25,25 @@
 					<!-- 로그인 실패시 띄워주기 -->
 					<!-- <a href="#">로그인이 안되시나요?</a> -->
 				</div>
-				<button type="button" class="btn loginBtn" v-on:click="Login" id="login">로그인</button>
-				<button type="button" class="btn registerBtn" v-on:click="page = 'REGISTER'" id="REGISTER">회원가입</button>
+				<div class="row d-flex align-items-center" style="margin-bottom: 180px;">
+					<div class="col-sm-7">
+						<span class="forgotPwBtn" v-on:click="page = 'FORGOT'"> 비밀번호를 깜빡했어요! </span>
+					</div>
+					<div class="col-sm-5">
+						<button type="button" class="btn primary loginBtn" v-on:click="Login">로그인</button>
+					</div>
+				</div>
+				<button type="button" class="btn registerBtn" v-on:click="page = 'REGISTER'" id="REGISTER">계정이 없으신가요?<span>회원가입</span></button>
 			</div>			
 			<!-- 회원가입 페이지 (왼쪽) -->
 			<div class="left-content register-page col-md-5" v-show="page === 'REGISTER'">
-				<h1 class="register-title">반갑습니다!</h1>
+				<h1 class="register-title">환영합니다!</h1>
 				
 				<div class="card form-card">
+					<div class="row input-block">
+						<i class="col-md-2 far fa-user align-middle"></i>
+						<input type="Nickname" class="col-md-10" placeholder="닉네임" onfocus="this.placeholder = ''" onblur="this.placeholder = '닉네임'" v-model="registerData.nickname">
+					</div>
 					<div class="row input-block">
 						<i class="col-md-2 far fa-1x fa-envelope align-middle"></i>
 						<input type="email" class="col-md-10" placeholder="이메일" onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일'" v-model="registerData.email">
@@ -43,16 +54,37 @@
 					</div>
 					<div class="row input-block">
 						<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
-						<input type="Confirm Password" class="col-md-10" placeholder="비밀번호 재입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호 재입력'" v-model="registerData.repw">
-					</div>
-					<div class="row input-block">
-						<i class="col-md-2 far fa-user align-middle"></i>
-						<input type="Nickname" class="col-md-10" placeholder="닉네임" onfocus="this.placeholder = ''" onblur="this.placeholder = '닉네임'" v-model="registerData.nickname">
+						<input type="password" class="col-md-10" placeholder="비밀번호 재입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호 재입력'" v-model="registerData.repw">
 					</div>
 					<!-- <button type="button" class="col-md-6 btn btn-success" v-on:click="Register">SIGN UP</button> -->
 				</div>
-				<button type="button" class="btn loginBtn" v-on:click="page='LOGIN'" id="login">로그인</button>
-				<button type="button" class="btn registerBtn" v-on:click="Register" id="register">회원가입</button>
+				<div class="row d-flex align-items-center">
+					<div class="col-sm-7">
+						<span class="loginBtn" v-on:click="page = 'LOGIN'">로그인 하러 가기</span>
+					</div>
+					<div class="col-sm-5">
+						<button class="btn primary registerBtn" v-on:click="Register"> 회원가입 </button>
+					</div>
+				</div>
+			</div>
+			<!-- 계정 잊었을때 페이지 (왼쪽) -->
+			<div class="left-content found-page col-md-5" v-show="page === 'FORGOT'">			
+				<h1 class="found-title">계정 찾기</h1>
+				<p class="found-desc">가입시 입력한 이메일 주소를 입력해주세요.</p>
+				<div class="card form-card">
+					<div class="row input-block">
+						<i class="col-md-2 far fa-1x fa-envelope align-middle"></i>
+						<input type="email" class="col-md-10" placeholder="이메일" onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일'" v-model="loginData.email">
+					</div>
+				</div>
+				<div class="row d-flex align-items-center">
+					<div class="col-sm-7">
+						<span class="loginBtn" v-on:click="page = 'LOGIN'">로그인 하러 가기</span>
+					</div>
+					<div class="col-sm-5">
+						<button class="btn primary foundBtn" > 계정 찾기 </button>
+					</div>
+				</div>
 			</div>
 			<!----------------------------------- end of left-content ----------------------------------->
 		
@@ -60,7 +92,7 @@
 
 			<!---------------------------------- start of right-content ---------------------------------->
 			<!-- 로그인 화면 (오른쪽) -->
-			<div class="right-content login-page col-md-7" v-if="page === 'LOGIN'">
+			<div class="right-content login-page col-md-7">
 				<br/>
 				<img class="" style="width: 300px;" :src="require(`@/assets/img/usefull/gapa_project.png`)"/>
 				<br/><br/><br/><br/>
@@ -70,9 +102,9 @@
 				<img class="" :src="require(`@/assets/img/usefull/gapa_intro_1.png`)"/>
 			</div>
 			<!-- 회원가입 페이지(오른쪽) -->
-			<div class="right-content register-page col-md-7" v-if="page === 'REGISTER'">
+			<!-- <div class="right-content register-page col-md-7">
 				<button type="button" class="btn btn-success" v-on:click="SingIn">SIGN IN</button>
-			</div>
+			</div> -->
 			<!----------------------------------- end of right-content ----------------------------------->
 		</div>
 	</div>
@@ -88,6 +120,7 @@ export default {
 				page: 페이지 상황
 				'LOGIN': 로그인
 				'REGISTER': 회원가입
+				'FORGOT': 계정을 까먹었을때
 			*/
 			page: 'LOGIN',
 			loginData: {
@@ -118,58 +151,101 @@ export default {
 @import "@/assets/css/baseStyle.scss";
 
 @import "@/assets/css/container.scss";
+@import "@/assets/css/button.scss";
 
 .left-content {
 	height: 100%;
 	border-radius: 30px 30px 30px 30px;
 	overflow: hidden;
-	background-color: $themeColor;
+	background-color: $blackColor;
 	.title-img {
 		width: 40px;
 		position: relative;
 	}
-	&.login-page{
+	&.login-page {
 		.login-title {
-			color: white;
+			color: $whiteColor;
 			margin-top: 8rem;
 			margin-bottom: 1rem;
 			font-weight: 700;
 		}
+		.forgotPwBtn {
+			// font-size: 14px;
+			// font-weight: 400;
+			color: $grayColor;
+			cursor: pointer;
+		}
 		.btn {
 			&.loginBtn {
-				font-weight: 600;
-				background-color: $themeColor;
+				width: 100%;
 				padding: 10px 30px 10px 30px;
 			}
 			&.registerBtn {
-				// margin-left: 20px;
-				color: white;
+				height: 55px;
+				background-color: $whiteColorOpa;
+				width: 100%;
+				color: $grayColor;
 				font-weight: 400;
-				font-size: 12px;
+				font-size: 13px;
 				padding: 10px;
 				padding: 15px 30px 15px 30px;
+				&:hover {
+					font-size: 14px;
+					span {
+						font-size: 15px;
+					}
+				}
+				span {
+					margin-left: 10px;
+					font-weight: 600;
+					font-size: 14px;
+				}
 			}
 		}
 	}
-	&.register-page{
+	&.register-page {
 		.register-title {
-			color: white;
-			margin-top: 4rem;
+			margin-top: 8rem;
 			margin-bottom: 1rem;
+			font-weight: 700;
+			color: $whiteColor;
 		}
-		.btn {
-			&.loginBtn {
-				color: white;
-				font-weight: 400;
-				font-size: 12px;
-				padding: 10px;
-				padding: 15px 30px 15px 30px;
-			}
-			&.registerBtn {
-				font-weight: 600;
-				background-color: $themeColor;
-				padding: 10px 30px 10px 30px;
-			}
+		.loginBtn {
+			font-size: 16px;
+			font-weight: 400;
+			color: $grayColor;
+			cursor: pointer;
+		}
+		.registerBtn {
+			width: 100%;
+			padding: 10px 30px 10px 30px;
+		}
+	}
+	&.found-page {
+		.found-title {
+			color: $whiteColor;
+			margin-top: 8rem;
+			font-weight: 700;
+			// margin-bottom: 3rem;
+		}
+		.found-desc {
+			font-weight: 400;
+			font-size: 18px;
+			color: $whiteColor;
+			margin-bottom: 50px;
+		}
+		.form-card {
+			margin-bottom: 35px;
+		}
+		.loginBtn {
+			font-size: 16px;
+			font-weight: 400;
+			color: $grayColor;
+			cursor: pointer;
+		}
+		.foundBtn {
+			width: 100%;
+			padding: 10px 30px 10px 30px;
 		}
 	}
 }
@@ -187,18 +263,20 @@ export default {
 }
 
 .form-card {
-	border-color: $themeColor;
-	background-color: $themeColor;
+	// border-color: $themeColor;
+	background-color: $blackColor;
 	.input-block {
-		background-color: #e6e6e6;
+		border-radius: 3px;
+		background-color: $whiteColorOpa;
 		display: block;
 		margin: 0px 0px 10px 0px;
-		box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+		box-shadow: 5px 5px 10px rgba(247,247,247,0.3);
 		input {
+			border-radius: 0px 3px 3px 0px;
 			padding: 10px 20px 10px 20px;
 			font-size: 18px;
 			border: 0px;
-			background-color: #e6e6e6;
+			background-color: $whiteColor;
 			color: #686868;
 			&:focus {
 				outline: none;

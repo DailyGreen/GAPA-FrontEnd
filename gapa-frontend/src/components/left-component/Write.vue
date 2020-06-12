@@ -53,7 +53,7 @@ export default {
 
 .upload-img-block {
 	width: 100%;
-	height: 553px;
+	height: 640px;
 	border-radius: 25px;
 	background-color: $whiteColor;
 	text-align: center;

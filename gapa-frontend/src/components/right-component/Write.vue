@@ -67,7 +67,7 @@ export default {
 
 @import "@/assets/css/button.scss";
 .write {
-	height: 590px;
+	height: 670px;
 	display: flex;
 	// align-items: center;
 	flex-direction: column;

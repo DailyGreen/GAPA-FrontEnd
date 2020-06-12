@@ -53,6 +53,54 @@ export default {
                 imgUrl: 'overwatch.png',
                 code: 4
             },
+            {
+                name: 'DeadByDaylight',
+                follwerCount: 32,
+                imgUrl: 'DeadByDaylight.png',
+                code: 1
+            },
+            {
+                name: 'League of Legend',
+                follwerCount: 1394,
+                imgUrl: 'LeagueOfLegend.png',
+                code: 2
+            },
+            {
+                name: 'TTF',
+                follwerCount: 203,
+                imgUrl: 'TTF.png',
+                code: 3
+            },
+            {
+                name: 'Overwatch',
+                follwerCount: 131,
+                imgUrl: 'overwatch.png',
+                code: 4
+            },
+            {
+                name: 'DeadByDaylight',
+                follwerCount: 32,
+                imgUrl: 'DeadByDaylight.png',
+                code: 1
+            },
+            {
+                name: 'League of Legend',
+                follwerCount: 1394,
+                imgUrl: 'LeagueOfLegend.png',
+                code: 2
+            },
+            {
+                name: 'TTF',
+                follwerCount: 203,
+                imgUrl: 'TTF.png',
+                code: 3
+            },
+            {
+                name: 'Overwatch',
+                follwerCount: 131,
+                imgUrl: 'overwatch.png',
+                code: 4
+            }
         ]
     }
   },

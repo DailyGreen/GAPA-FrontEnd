@@ -17,8 +17,8 @@
 			<category v-show="pages.leftType === LEFT_TYPE.Games" @GameInfo="GameInfo"></category>
 
 			<div class="list" v-show="pages.leftType === LEFT_TYPE.GameRooms || pages.leftType === LEFT_TYPE.GameUsers">
-				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameRooms">게임 방</button>
-				<button class="btn" v-on:click="pages.leftType = LEFT_TYPE.GameUsers">대기 유저</button>
+				<button class="btn" style="padding-left:0px; padding-right:0px; margin-right: 20px;" v-on:click="pages.leftType = LEFT_TYPE.GameRooms">게임 방</button>
+				<button class="btn" style="padding-left:0px; padding-right:0px;" v-on:click="pages.leftType = LEFT_TYPE.GameUsers">대기 유저</button>
 
 				<!-- 게임 방 목록 컴포넌트 -->
 				<roomList v-show="pages.leftType === LEFT_TYPE.GameRooms"

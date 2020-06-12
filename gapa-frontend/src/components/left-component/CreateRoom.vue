@@ -60,7 +60,7 @@ export default {
 		return {
 			LEFT_TYPE : new LEFT_TYPE(),
 			RIGHT_TYPE : new RIGHT_TYPE(),
-			showFollowers: false
+			showFollowers: true
 		}
 	},
 	methods:{
@@ -81,30 +81,30 @@ export default {
 @import "@/assets/css/card.scss";
 @import "@/assets/css/button.scss";
 	
-	.form-box {
-		margin-top: 30px;
-		padding-left: 3rem;
-		padding-right: 3rem;
-		.wrapper-titles {
-			margin-bottom: 0px;
-			display: flex; 
-			flex-direction: row;
-			&:after { 
-				content: ""; 
-				flex: 1 1; 
-				border-bottom: 1px solid $grayColor;
-				margin: auto auto auto 15px;
-			} 
-		}
-		.followers-scrolling-wrapper {
-			height: 200px;
-			padding-right: 10px;
-			margin-bottom: 25px;
-			-webkit-overflow-scrolling: touch;
-			.card-wrapper {
-				margin-left: 0px;
-				margin-right: 0px;
-			}
+.form-box {
+	margin-top: 50px;
+	padding-left: 3rem;
+	padding-right: 3rem;
+	.wrapper-titles {
+		margin-bottom: 0px;
+		display: flex; 
+		flex-direction: row;
+		&:after { 
+			content: ""; 
+			flex: 1 1; 
+			border-bottom: 1px solid $grayColor;
+			margin: auto auto auto 15px;
+		} 
+	}
+	.followers-scrolling-wrapper {
+		height: 260px;
+		padding-right: 10px;
+		margin-bottom: 35px;
+		-webkit-overflow-scrolling: touch;
+		.card-wrapper {
+			margin-left: 0px;
+			margin-right: 0px;
 		}
 	}
+}
 </style>

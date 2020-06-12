@@ -93,13 +93,40 @@
 			<!---------------------------------- start of right-content ---------------------------------->
 			<!-- 로그인 화면 (오른쪽) -->
 			<div class="right-content login-page col-md-7">
-				<br/>
+				<div id="introduceCarousel" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#introduceCarousel" class="indicate-item active" data-slide-to="0"></li>
+						<li data-target="#introduceCarousel" class="indicate-item" data-slide-to="1"></li>
+						<li data-target="#introduceCarousel" class="indicate-item" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+						<img class="d-block w-100" :src="require(`@/assets/img/usefull/gapa_intro_1.png`)" alt="First slide">
+						</div>
+						<div class="carousel-item">
+						<img class="d-block w-100" :src="require(`@/assets/img/usefull/gapa_intro_1.png`)" alt="Second slide">
+						</div>
+						<div class="carousel-item">
+						<img class="d-block w-100" :src="require(`@/assets/img/usefull/gapa_intro_1.png`)" alt="Third slide">
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#introduceCarousel" role="button" data-slide="prev">
+						<!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+						<!-- <span class="sr-only">Previous</span> -->
+					</a>
+					<a class="carousel-control-next" href="#introduceCarousel" role="button" data-slide="next">
+						<!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+						<!-- <span class="sr-only">Next</span> -->
+					</a>
+				</div>
+
+				<!-- <br/>
 				<img class="" style="width: 300px;" :src="require(`@/assets/img/usefull/gapa_project.png`)"/>
 				<br/><br/><br/><br/>
 				<p>게임 파티 매칭 시스템, 가파입니다.</p>
 				<p>당신의 성향과 비슷한 유저를 찾고 같이 플레이하세요!</p>
+				<img class="" :src="require(`@/assets/img/usefull/gapa_intro_1.png`)"/> -->
 				<!-- <p>당신의 성향과 비슷한 유저를 찾고 같이 플레이하세요!</p> -->
-				<img class="" :src="require(`@/assets/img/usefull/gapa_intro_1.png`)"/>
 			</div>
 			<!-- 회원가입 페이지(오른쪽) -->
 			<!-- <div class="right-content register-page col-md-7">
@@ -253,9 +280,26 @@ export default {
 	padding: 25px;
 	background: none;
 	overflow: hidden;
+	height: 100%;
 	&.login-page {
 		color: black;
 		text-align: center;
+		.carousel {
+			height: 100%;
+			.carousel-indicators {
+				margin-bottom: 0px;
+				.indicate-item {
+					width:15px;
+					height:15px;
+					background-color: $blackColor;
+					//  border-radius:15px !important;
+				}
+			}
+		}
+		.carousel-control-prev,
+		.carousel-control-next {
+			background-color: none;
+		}
 	}
 	&.register-page{
 		

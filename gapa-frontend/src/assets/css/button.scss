@@ -18,6 +18,10 @@
         color: $whiteColor;
         background-color: $negativeColor;
     }
+    &.dark {
+        color: $whiteColor !important;
+        background-color: $blackColorNone;
+    }
     &.outline {
         // border: initial;
         // border: 1px;

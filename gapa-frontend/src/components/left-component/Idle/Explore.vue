@@ -80,6 +80,7 @@ export default {
     position: relative;
     margin-top: 15px;
     .columns {
+        margin-top: 60px;
         .card-rounded {
             /* card-rounded 설정은 profile.scss 에 있음 */
             &:hover {
@@ -113,7 +114,7 @@ export default {
         }
     }
     .icon-btn {
-        margin-top: 30px;
+        margin-top: 50px;
     }
 }
 </style>

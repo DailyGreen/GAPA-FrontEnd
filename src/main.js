@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import {VueMasonryPlugin} from 'vue-masonry';
 Vue.use(VueMasonryPlugin)
-
+// Vue.prototype.$axios = axios
 
 
 // var Bricklayer = require("bricklayer");

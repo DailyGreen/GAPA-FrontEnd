@@ -2,7 +2,7 @@ var path = require("path")
 
 // vue.config.js
 module.exports = {
-	outputDir: path.resolve(__dirname, "../eon-backend/public/"),
+	outputDir: path.resolve(__dirname, "../GAPA-BackEnd/public/"),
     // options...
     devServer: {
         disableHostCheck: true,

@@ -38,34 +38,48 @@
 			<!-- 회원가입 페이지 (왼쪽) -->
 			<div class="left-content register-page col-md-5" v-show="page === 'REGISTER'">
 				<h1 class="register-title">환영합니다!</h1>
-				
-				<div class="card form-card">
-					<div class="row input-block">
-						<i class="col-md-2 far fa-user align-middle"></i>
-						<input type="Nickname" class="col-md-10" placeholder="닉네임" onfocus="this.placeholder = ''" onblur="this.placeholder = '닉네임'" v-model="registerData.nickname">
+				<form @submit.prevent="registerUser">
+					<div class="card form-card">
+						<div class="row input-block">
+							<i class="col-md-2 far fa-user align-middle"></i>
+							<input type="Nickname" id="name" class="col-md-10" placeholder="닉네임" onfocus="this.placeholder = ''" onblur="this.placeholder = '닉네임'" v-model="registerData.nickname">
+						</div>
+						<div class="row input-block">
+							<i class="col-md-2 far fa-1x fa-envelope align-middle"></i>
+							<input type="email" id="email" class="col-md-10" placeholder="이메일" onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일'" v-model="registerData.email">
+						</div>
+						<div class="row input-block">
+							<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
+							<input type="password" id="pw" class="col-md-10" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'" v-model="registerData.pw">
+						</div>
+						<div class="row input-block">
+							<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
+							<input type="password" class="col-md-10" placeholder="비밀번호 재입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호 재입력'" v-model="registerData.repw">
+						</div>
+						<div class="row justify-content-between" style="margin: 0px;">
+							<button type="button" class="col-md-4 sex-btn" v-if="registerData.sex === false" v-on:click="registerData.sex = !registerData.sex">
+								<i class="fas fa-1x fa-male align-middle" style="margin-right: 10px;"></i> 남자
+							</button>
+							<button type="button" class="col-md-4 sex-btn" v-else-if="registerData.sex === true" v-on:click="registerData.sex = !registerData.sex">
+								<i class="fas fa-1x fa-female align-middle" style="margin-right: 10px;"></i> 여자
+							</button>
+							<div class="col-md-5" style="padding: 0px;">
+								<div class="row input-block">
+									<i class="col-md-4 fas fa-1x fa-child align-middle"></i>
+									<input type="number" id="age" class="col-md-8 text-center" style="padding-right:10px;" min="1" max="99"  placeholder="나이" onfocus="this.placeholder = ''" onblur="this.placeholder = '나이'" v-model="registerData.age">
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="row input-block">
-						<i class="col-md-2 far fa-1x fa-envelope align-middle"></i>
-						<input type="email" class="col-md-10" placeholder="이메일" onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일'" v-model="registerData.email">
+					<div class="row d-flex align-items-center">
+						<div class="col-sm-7">
+							<span class="loginBtn" v-on:click="page = 'LOGIN'">로그인 하러 가기</span>
+						</div>
+						<div class="col-sm-5">
+							<button class="btn primary registerBtn" type="submit"> 회원가입 </button>
+						</div>
 					</div>
-					<div class="row input-block">
-						<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
-						<input type="password" class="col-md-10" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'" v-model="registerData.pw">
-					</div>
-					<div class="row input-block">
-						<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
-						<input type="password" class="col-md-10" placeholder="비밀번호 재입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호 재입력'" v-model="registerData.repw">
-					</div>
-					<!-- <button type="button" class="col-md-6 btn btn-success" v-on:click="Register">SIGN UP</button> -->
-				</div>
-				<div class="row d-flex align-items-center">
-					<div class="col-sm-7">
-						<span class="loginBtn" v-on:click="page = 'LOGIN'">로그인 하러 가기</span>
-					</div>
-					<div class="col-sm-5">
-						<button class="btn primary registerBtn" v-on:click="Register"> 회원가입 </button>
-					</div>
-				</div>
+				</form>
 			</div>
 			<!-- 계정 잊었을때 페이지 (왼쪽) -->
 			<div class="left-content found-page col-md-5" v-show="page === 'FORGOT'">			
@@ -158,7 +172,9 @@ export default {
 				email: '',
 				pw: '',
 				repw: '',
-				nickname: ''
+				nickname: '',
+				sex: false,
+				age: ''
 			}
 		}
     },
@@ -166,8 +182,22 @@ export default {
 		Login: function(){
 			// 로그인 버튼 눌렀을때
 		},
-		Register: function() {
+		registerUser: function() {
+			console.log("FFFFFFFF");
 			// 회원가입 버튼 눌렀을때
+			this.$http.post('http://localhost:3000/users', {
+				email: this.registerData.email,
+				pw: this.registerData.pw,
+				name: this.registerData.nickname,
+				sex: this.registerData.sex,
+				age: this.registerData.age
+			})
+			.then(response => {
+				console.log(response);
+			})
+			.catch(error => {
+				console.log(error);
+			});
 		}
 	}
 }
@@ -236,6 +266,13 @@ export default {
 			margin-bottom: 1rem;
 			font-weight: 700;
 			color: $whiteColor;
+		}
+		.sex-btn {
+			width: 100%;
+			height: 47px;
+			border: 0;
+			color: #686868;
+			cursor: pointer;
 		}
 		.loginBtn {
 			font-size: 16px;
@@ -309,7 +346,8 @@ export default {
 .form-card {
 	// border-color: $themeColor;
 	background-color: $blackColor;
-	.input-block {
+	.input-block,
+	.sex-btn {
 		border-radius: 3px;
 		background-color: $whiteColorOpa;
 		display: block;

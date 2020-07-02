@@ -9,30 +9,32 @@
 				<h1 class="login-title">안녕하세요!</h1>
 				<!--<p class="text-danger"> 아이디 혹은 비밀번호가 다릅니다.</p>-->
 				
-				<div class="card form-card">
-					<div class="row input-block">
-						<i class="col-md-2 far fa-1x fa-envelope align-middle"></i>
-						<input type="email" class="col-md-10" placeholder="이메일" onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일'" v-model="loginData.email">
+				<form @submit.prevent="loginUser">
+					<div class="card form-card">
+						<div class="row input-block">
+							<i class="col-md-2 far fa-1x fa-envelope align-middle" :class="{ helpMe : loginData.emailHelp }"></i>
+							<input type="email" class="col-md-10" placeholder="이메일" onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일'" v-model="loginData.email">
+						</div>
+						<div class="row input-block">
+							<i class="col-md-2 fas fa-1x fa-lock align-middle" :class="{ helpMe : loginData.pwHelp }"></i>
+							<input type="password" class="col-md-10" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'"  v-model="loginData.pw">
+						</div>
+						<div class="remember">
+							<input type="checkbox" class="form-check-input" id="exampleCheck1">
+							<label class="form-check-label" for="exampleCheck1">로그인 정보 기억하기</label>
+						</div>
+						<!-- 로그인 실패시 띄워주기 -->
+						<!-- <a href="#">로그인이 안되시나요?</a> -->
 					</div>
-					<div class="row input-block">
-						<i class="col-md-2 fas fa-1x fa-lock align-middle"></i>
-						<input type="password" class="col-md-10" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'"  v-model="loginData.pw">
+					<div class="row d-flex align-items-center" style="margin-bottom: 180px;">
+						<div class="col-sm-7">
+							<span class="forgotPwBtn" v-on:click="page = 'FORGOT'"> 비밀번호를 깜빡했어요! </span>
+						</div>
+						<div class="col-sm-5">
+							<button type="submit" class="btn primary loginBtn">로그인</button>
+						</div>
 					</div>
-					<div class="remember">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1">
-						<label class="form-check-label" for="exampleCheck1">로그인 정보 기억하기</label>
-					</div>
-					<!-- 로그인 실패시 띄워주기 -->
-					<!-- <a href="#">로그인이 안되시나요?</a> -->
-				</div>
-				<div class="row d-flex align-items-center" style="margin-bottom: 180px;">
-					<div class="col-sm-7">
-						<span class="forgotPwBtn" v-on:click="page = 'FORGOT'"> 비밀번호를 깜빡했어요! </span>
-					</div>
-					<div class="col-sm-5">
-						<button type="button" class="btn primary loginBtn" v-on:click="Login">로그인</button>
-					</div>
-				</div>
+				</form>
 				<button type="button" class="btn registerBtn" v-on:click="page = 'REGISTER'" id="REGISTER">계정이 없으신가요?<span>회원가입</span></button>
 			</div>			
 			<!-- 회원가입 페이지 (왼쪽) -->
@@ -166,7 +168,9 @@ export default {
 			page: 'LOGIN',
 			loginData: {
 				email: '',
-				pw: ''
+				pw: '',
+				emailHelp: false,
+				pwHelp: false
 			},
 			registerData: {
 				email: '',
@@ -179,11 +183,35 @@ export default {
 		}
     },
 	methods:{
-		Login: function(){
+		loginUser: function(){
+			this.loginData.emailHelp = false;
+			this.loginData.pwHelp = false;
 			// 로그인 버튼 눌렀을때
+			this.$http.get('http://localhost:3000/users', {
+				params: {
+					email: this.loginData.email,
+					pw: this.loginData.pw
+				}
+			})
+			.then(response => {
+				console.log(response);
+				if (response.data.msg === 'SUCCESS') {
+					console.log("로그인 성공");
+					this.$router.push('IndexPage');
+				} else if (response.data.msg === 'EMAIL_SUCCESS') {
+					this.loginData.pwHelp = true;
+					console.log("이메일만 성공");
+				} else {
+					this.loginData.emailHelp = true;
+					this.loginData.pwHelp = true;
+					console.log("로그인 실패");
+				}
+			})
+			.catch(error => {
+				console.log(error);
+			});
 		},
 		registerUser: function() {
-			console.log("FFFFFFFF");
 			// 회원가입 버튼 눌렀을때
 			this.$http.post('http://localhost:3000/users', {
 				email: this.registerData.email,
@@ -369,6 +397,11 @@ export default {
 			text-align: center;
 			vertical-align: middle;
 			color: #686868;
+			&.helpMe {
+				color: red;
+				animation-name: shakeit;
+				animation-duration: 1s;
+			}
 		}
 	}
 	.remember {
@@ -384,5 +417,14 @@ export default {
 		}
 	}
 }
-
+@keyframes shakeit {
+    12.5% {left: -5px;}
+    25% {left: 5px;}
+    37.5% {left: -5px;}
+    50% {left: 5px;}
+    62.5% {left: -5px;}
+    75% {left: 5px;}
+    82.5% {left: -2px;}
+    100% {left: 0px;}
+}
 </style>

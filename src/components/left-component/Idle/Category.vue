@@ -3,11 +3,11 @@
         <!-- <h2>게임 카테고리</h2> -->
         <simplebar class="scrolling-wrapper lg-size" data-simplebar-auto-hide="true">
             <div class="game-category">
-                <div class="card game-card" v-for="game in gameCategory" :key="game.code">
-                    <img class="game-img" :src="require(`@/assets/img/games/${game.imgUrl}`)" v-on:click="GameInfo(`${game.code}`)"/>
+                <div class="card game-card" v-for="game in gameCategory" :key="game.game_code">
+                    <img class="game-img" :src="require(`@/assets/img/games/${game.game_img}`)" v-on:click="GameInfo(`${game.game_code}`)"/>
                     <div class="card-body">
-                        <p class="game-name">{{game.name}}</p>
-                        <p class="game-follower">{{game.follwerCount}}명의 팔로워</p>
+                        <p class="game-name">{{game.game_name}}</p>
+                        <p class="game-follower">{{game.game_follower.length}}명의 팔로워</p>
                     </div>
                 </div>
             </div>
@@ -20,93 +20,29 @@ import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 
 export default {
+  created () {
+      this.GetCategory();
+  },
   data () {
     return {
         gameCategory: [
-            {
-                name: '배틀그라운드',
-                follwerCount: 145,
-                imgUrl: 'BATTLEGROUNDS.png',
-                code: 0
-            },
-            {
-                name: 'DeadByDaylight',
-                follwerCount: 32,
-                imgUrl: 'DeadByDaylight.png',
-                code: 1
-            },
-            {
-                name: 'League of Legend',
-                follwerCount: 1394,
-                imgUrl: 'LeagueOfLegend.png',
-                code: 2
-            },
-            {
-                name: 'TTF',
-                follwerCount: 203,
-                imgUrl: 'TTF.png',
-                code: 3
-            },
-            {
-                name: 'Overwatch',
-                follwerCount: 131,
-                imgUrl: 'overwatch.png',
-                code: 4
-            },
-            {
-                name: 'DeadByDaylight',
-                follwerCount: 32,
-                imgUrl: 'DeadByDaylight.png',
-                code: 1
-            },
-            {
-                name: 'League of Legend',
-                follwerCount: 1394,
-                imgUrl: 'LeagueOfLegend.png',
-                code: 2
-            },
-            {
-                name: 'TTF',
-                follwerCount: 203,
-                imgUrl: 'TTF.png',
-                code: 3
-            },
-            {
-                name: 'Overwatch',
-                follwerCount: 131,
-                imgUrl: 'overwatch.png',
-                code: 4
-            },
-            {
-                name: 'DeadByDaylight',
-                follwerCount: 32,
-                imgUrl: 'DeadByDaylight.png',
-                code: 1
-            },
-            {
-                name: 'League of Legend',
-                follwerCount: 1394,
-                imgUrl: 'LeagueOfLegend.png',
-                code: 2
-            },
-            {
-                name: 'TTF',
-                follwerCount: 203,
-                imgUrl: 'TTF.png',
-                code: 3
-            },
-            {
-                name: 'Overwatch',
-                follwerCount: 131,
-                imgUrl: 'overwatch.png',
-                code: 4
-            }
         ]
     }
   },
   methods: {
     GameInfo : function(gameNum) {
         this.$emit('GameInfo', gameNum);
+    },
+    GetCategory: function() {        
+        this.$http.get('http://localhost:3000/games', {})
+            .then(response => {
+                for (const r in response.data) {
+                    this.gameCategory.push(response.data[r]);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
   },
   components: {

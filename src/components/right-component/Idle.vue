@@ -6,24 +6,9 @@
 			<button class="float-right" v-on:click="ChangeRightType(RIGHT_TYPE.Notice)"><i class="far fa-bell"></i></button>
 			<button class="float-right" v-on:click="ChangeRightType(RIGHT_TYPE.Notice)"><i class="fas fa-search"></i></button>
 		</div>
-		<div class="game-profile" v-show="pages.rightType === RIGHT_TYPE.GameInfo">
-			
-			<div class="card game-card">
-				<img class="game-img" :src="require(`@/assets/img/games/BATTLEGROUNDS.png`)" v-on:click="ChangeRightType(RIGHT_TYPE.GameInfo)"/>
-			</div>
-			<h1 class="game-title">BATTLEGROUND</h1>
-			<div class="game-info">
-				<a href="">13 <span> 명의 팔로워</span></a>
-				<a href="">2 <span> 개의 방</span></a>
-			</div>
-			<button class="btn dark icon-btn follow" v-if="isFollowingGame === false" v-on:click="isFollowingGame = !isFollowingGame"><i class="far fa-heart"></i> 팔로우</button>
-			<button class="btn positive icon-btn following" v-if="isFollowingGame === true" v-on:click="isFollowingGame = !isFollowingGame"><i class="fas fa-heart"></i> 팔로윙</button>
-			<br/>
-			<div class="game-decision-group">
-				<button class="btn btn-waiting" v-on:click="PagePopAndMove()">초대 대기하기</button>
-				<button class="btn btn-create-room positive" v-on:click="PagePush('CreateRoom', LEFT_TYPE.CreateRoom, RIGHT_TYPE.CreateRoom)">팀 꾸리기</button>
-			</div>
-		</div>
+
+		<gameProfile :gameTag="gameTag" v-show="pages.rightType === RIGHT_TYPE.GameInfo"></gameProfile>
+
 		<div class="menu-nav" v-show="pages.rightType === RIGHT_TYPE.Idle">
 			<br/><br/><br/><br/><br/><br/>
 			<!-- 버튼 나중에 꾸미기! -->
@@ -52,9 +37,14 @@
 
 <script>
 import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
-	
+import gameProfile from '@/components/right-component/Idle/GameProfile'
+
 export default {
 	props: {
+		gameTag: {
+			type: Number,
+			default: 0
+		},
 		pages: {
 			leftType: {
 				type: Number,
@@ -88,9 +78,10 @@ export default {
 		},
 		CreateRoom : function() {
 			this.$emit('CreateRoom');
-		}
+		},
 	},
 	components: {
+		gameProfile
 	}
 }
 </script>

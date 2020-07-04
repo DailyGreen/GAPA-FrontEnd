@@ -7,7 +7,7 @@
                     <img class="game-img" :src="require(`@/assets/img/games/${game.game_img}`)" v-on:click="GameInfo(`${game.game_code}`)"/>
                     <div class="card-body">
                         <p class="game-name">{{game.game_name}}</p>
-                        <p class="game-follower">{{game.game_follower.length}}명의 팔로워</p>
+                        <p class="game-follower">명의 팔로워</p>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@ export default {
     GameInfo : function(gameNum) {
         this.$emit('GameInfo', gameNum);
     },
-    GetCategory: function() {        
+    GetCategory: function() {
         this.$http.get('http://localhost:3000/games', {})
             .then(response => {
                 for (const r in response.data) {

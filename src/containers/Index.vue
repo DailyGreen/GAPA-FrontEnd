@@ -31,7 +31,7 @@
 			<!---------------------------------- start of right-content ---------------------------------->
 			<div class="right-content col-md-4" :class="{notice : pages.rightType === RIGHT_TYPE.Notice}">
 				<!-- 평상시 화면 (오른쪽) -->
-				<rightIdle v-show="RIGHT_TYPE.isIdleComponent(pages.rightType)" :pages="pages" 
+				<rightIdle v-show="RIGHT_TYPE.isIdleComponent(pages.rightType)" :pages="pages" :gameTag="gameTag"
 						   @SearchUser="SearchUser" @CreateRoom="CreateRoom" @PagePush="PagePush" @PagePop="PagePop"></rightIdle>
 				<!-- 알림 화면 (오른쪽) -->
 				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" 
@@ -102,7 +102,8 @@ export default {
 			},
 			pageStack : new Stack(),
 			LEFT_TYPE : new LEFT_TYPE(),
-			RIGHT_TYPE : new RIGHT_TYPE()
+			RIGHT_TYPE : new RIGHT_TYPE(),
+			gameTag : -1
 		}
     },
 	methods:{
@@ -138,6 +139,7 @@ export default {
 			//	|     GameRooms (게임 방 목록)      |		GameInfo	|
 			//	|     Gameusers (게임 유저 목록)    |		(게임 정보)		|
 			//	|_________________________________|____________________|
+			this.gameTag = parseInt(gameTag);
 			this.PagePush(this.pages);
 			this.pages.leftType = this.LEFT_TYPE.GameRooms;
 			this.pages.rightType = this.RIGHT_TYPE.GameInfo;

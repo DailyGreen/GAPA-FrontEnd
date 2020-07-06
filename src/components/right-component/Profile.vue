@@ -2,6 +2,7 @@
 	<div>
 		<div class="profile-page">
 			<button class="btn btn-light" v-on:click="OutRoom"><i class="fas fa-sign-out-alt"></i></button>
+			<button class="btn setting-btn float-right" v-on:click="ProfileUpdate"><i class="fas fa-cog"></i></button>
 
 			<div class="profile-curt">
 				<img class="profile-img lg-size float-center" :src="require(`@/assets/img/profile/profileImg.png`)"/>
@@ -67,6 +68,10 @@ export default {
 		},
 		OutRoom : function() {
 			this.$emit('OutRoom');
+		},
+		ProfileUpdate : function() {
+			this.$emit('PagePush', this.pages);
+			this.pages.leftType = this.LEFT_TYPE.ProfileUpdate;
 		}
 	},
 	components: {
@@ -83,6 +88,9 @@ export default {
 .profile-page {
 	height: 590px;
     position: relative;
+	.setting-btn {
+		color: white;
+	}
 	.profile-curt {
 		margin-top: 50px;
 		text-align: center;

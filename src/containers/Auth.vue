@@ -235,6 +235,7 @@ export default {
 @import "@/assets/css/_variables.scss";
 @import "@/assets/css/baseStyle.scss";
 
+@import "@/assets/css/form.scss";
 @import "@/assets/css/container.scss";
 @import "@/assets/css/button.scss";
 
@@ -372,59 +373,7 @@ export default {
 }
 
 .form-card {
-	// border-color: $themeColor;
 	background-color: $blackColor;
-	.input-block,
-	.sex-btn {
-		border-radius: 3px;
-		background-color: $whiteColorOpa;
-		display: block;
-		margin: 0px 0px 10px 0px;
-		box-shadow: 5px 5px 10px rgba(247,247,247,0.3);
-		input {
-			border-radius: 0px 3px 3px 0px;
-			padding: 10px 20px 10px 20px;
-			font-size: 18px;
-			border: 0px;
-			background-color: $whiteColor;
-			color: #686868;
-			&:focus {
-				outline: none;
-			}
-		}
-		i {
-			padding: 0px 0px 5px 0px;
-			text-align: center;
-			vertical-align: middle;
-			color: #686868;
-			&.helpMe {
-				color: red;
-				animation-name: shakeit;
-				animation-duration: 1s;
-			}
-		}
-	}
-	.remember {
-		color: white;
-		margin-bottom: 20px;
-		.form-check-input {
-			margin-left: 0px;
-		}
-		.form-check-label {
-			font-size: 12px;
-			font-weight: 400;
-			margin-left: 20px;
-		}
-	}
 }
-@keyframes shakeit {
-    12.5% {left: -5px;}
-    25% {left: 5px;}
-    37.5% {left: -5px;}
-    50% {left: 5px;}
-    62.5% {left: -5px;}
-    75% {left: 5px;}
-    82.5% {left: -2px;}
-    100% {left: 0px;}
-}
+
 </style>

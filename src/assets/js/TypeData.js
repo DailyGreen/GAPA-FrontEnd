@@ -15,10 +15,11 @@ class LEFT_TYPE {
 		this.ProfileFollwers = 9;	// Profile - Followers
 		this.ProfileFollowing = 10;	// Profile - Following
 		this.Write = 11;
+		this.ProfileUpdate = 12;
 		// 방 생성 화면
-		this.CreateRoom = 12;
+		this.CreateRoom = 13;
 		// 검색 기능 (아직 페이지 없음)
-		this.Search = 4;
+		this.Search = 14;
 	}
 	isIdleComponent(leftType) {
 		return (this.Explore <= leftType && leftType <= this.UserList)

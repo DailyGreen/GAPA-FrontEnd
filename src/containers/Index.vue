@@ -18,6 +18,9 @@
 				<!-- 프로필 화면 (왼쪽) -->
 				<leftProfile v-show="LEFT_TYPE.isProfileComponent(pages.leftType)" :pages="pages" 
 							 @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
+				<!-- 프로필 업데이트 화면 (왼쪽) -->
+				<leftProfileUpdate v-show="pages.leftType === LEFT_TYPE.ProfileUpdate" :pages="pages" 
+							 @PagePush="PagePush" @PagePop="PagePop"></leftProfileUpdate>
 				<!-- 게시글 작성 화면 (왼쪽) -->
 				<leftWrite v-show="pages.leftType === LEFT_TYPE.Write" :pages="pages" 
 						   @PagePush="PagePush" @PagePop="PagePop"></leftWrite>
@@ -63,6 +66,7 @@ import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
 
 import leftIdle from '@/components/left-component/Idle'
 import leftProfile from '@/components/left-component/Profile'
+import leftProfileUpdate from '@/components/left-component/ProfileUpdate'
 import leftChat from '@/components/left-component/Chat'
 import leftWrite from '@/components/left-component/Write'
 import leftSearchUser from '@/components/left-component/SearchUser'
@@ -164,6 +168,7 @@ export default {
 	components: {
 		leftIdle,
 		leftProfile,
+		leftProfileUpdate,
 		leftChat,
 		leftWrite,
 		leftSearchUser,

@@ -14,7 +14,7 @@
 
 			<explore v-show="pages.leftType === LEFT_TYPE.Explore"></explore>
 
-			<category v-show="pages.leftType === LEFT_TYPE.Games" @GameInfo="GameInfo"></category>
+			<category v-show="pages.leftType === LEFT_TYPE.Games" ref="category" @GameInfo="GameInfo"></category>
 
 			<div class="list" v-show="pages.leftType === LEFT_TYPE.GameRooms || pages.leftType === LEFT_TYPE.GameUsers">
 				<button class="btn" style="padding-left:0px; padding-right:0px; margin-right: 20px;" v-on:click="pages.leftType = LEFT_TYPE.GameRooms">게임 방</button>
@@ -68,6 +68,10 @@ export default {
 	methods:{
 		goMainPage : function() {
 			this.$emit('goMainPage');
+		},
+		toCategoryPage : function() {
+			this.$refs.category.CallMe();
+			this.ChangeLeftType(LEFT_TYPE.Games);
 		},
 		JoinRoom : function(roomIdx) {	// eslint-disable-line no-unused-vars
 			this.$emit('JoinRoom');

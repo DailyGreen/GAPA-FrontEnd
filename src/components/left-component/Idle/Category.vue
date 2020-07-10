@@ -20,9 +20,6 @@ import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 
 export default {
-  created () {
-      this.GetCategory();
-  },
   data () {
     return {
         gameCategory: [
@@ -33,12 +30,10 @@ export default {
     GameInfo : function(gameNum) {
         this.$emit('GameInfo', gameNum);
     },
-    CallMe: function() {
-        this.GetCategory();
-    },
     GetCategory: function() {
         this.$http.get('http://localhost:3000/games', {})
             .then(response => {
+                this.gameCategory = [];
                 for (const r in response.data) {
                     this.gameCategory.push(response.data[r]);
                 }

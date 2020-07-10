@@ -7,25 +7,25 @@
 			<!---------------------------------- start of left-content ---------------------------------->
 			<div class="left-content col-md-8">
 				<!-- 평상시 화면 (왼쪽) -->
-				<leftIdle v-show="LEFT_TYPE.isIdleComponent(pages.leftType)" :pages="pages" 
+				<leftIdle v-if="LEFT_TYPE.isIdleComponent(pages.leftType)" :pages="pages" 
 						  @goMainPage="goMainPage" @GameInfo="GameInfo" @JoinRoom="JoinRoom" @PagePush="PagePush" @PagePop="PagePop"></leftIdle>
 				<!-- 채팅 화면 (왼쪽) -->
-				<leftChat v-show="pages.leftType === LEFT_TYPE.Chat" :pages="pages" 
+				<leftChat v-else-if="pages.leftType === LEFT_TYPE.Chat" :pages="pages" 
 						  @SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftChat>
 				<!-- 채팅 화면에서 유저 찾기 -->
-				<leftSearchUser v-show="pages.leftType === LEFT_TYPE.SearchUser" :pages="pages"
+				<leftSearchUser v-else-if="pages.leftType === LEFT_TYPE.SearchUser" :pages="pages"
 								@SearchUser="SearchUser" @PagePush="PagePush" @PagePop="PagePop"></leftSearchUser>
 				<!-- 프로필 화면 (왼쪽) -->
-				<leftProfile v-show="LEFT_TYPE.isProfileComponent(pages.leftType)" :pages="pages" 
+				<leftProfile v-else-if="LEFT_TYPE.isProfileComponent(pages.leftType)" :pages="pages" 
 							 @PagePush="PagePush" @PagePop="PagePop"></leftProfile>
 				<!-- 프로필 업데이트 화면 (왼쪽) -->
-				<leftProfileUpdate v-show="pages.leftType === LEFT_TYPE.ProfileUpdate" :pages="pages" 
+				<leftProfileUpdate v-else-if="pages.leftType === LEFT_TYPE.ProfileUpdate" :pages="pages" 
 							 @PagePush="PagePush" @PagePop="PagePop"></leftProfileUpdate>
 				<!-- 게시글 작성 화면 (왼쪽) -->
-				<leftWrite v-show="pages.leftType === LEFT_TYPE.Write" :pages="pages" 
+				<leftWrite v-else-if="pages.leftType === LEFT_TYPE.Write" :pages="pages" 
 						   @PagePush="PagePush" @PagePop="PagePop"></leftWrite>
 				<!-- 방 생성 화면 (왼쪽) -->
-				<leftCreateRoom v-show="pages.leftType === LEFT_TYPE.CreateRoom" :pages="pages" 
+				<leftCreateRoom v-else-if="pages.leftType === LEFT_TYPE.CreateRoom" :pages="pages" 
 						   @PagePush="PagePush" @PagePop="PagePop"></leftCreateRoom>
 			</div>
 			<!----------------------------------- end of left-content ----------------------------------->
@@ -34,25 +34,25 @@
 			<!---------------------------------- start of right-content ---------------------------------->
 			<div class="right-content col-md-4" :class="{notice : pages.rightType === RIGHT_TYPE.Notice}">
 				<!-- 평상시 화면 (오른쪽) -->
-				<rightIdle v-show="RIGHT_TYPE.isIdleComponent(pages.rightType)" :pages="pages" :gameTag="gameTag"
+				<rightIdle v-if="RIGHT_TYPE.isIdleComponent(pages.rightType)" :pages="pages" :gameTag="gameTag"
 						   @SearchUser="SearchUser" @CreateRoom="CreateRoom" @PagePush="PagePush" @PagePop="PagePop"></rightIdle>
 				<!-- 알림 화면 (오른쪽) -->
-				<rightNotice v-show="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" 
+				<rightNotice v-else-if="pages.rightType === RIGHT_TYPE.Notice" :pages="pages" 
 							 @OutRoom="OutRoom" @PagePush="PagePush" @PagePopAndMove="PagePopAndMove"></rightNotice>
 				<!-- 팀원 검색 화면 (오른쪽) -->
 				<!-- <div class="right-content search-page col-md-4" v-show="pages.rightType === RIGHT_TYPE.SearchUser">
 				</div> -->
 				<!-- 팀원 꾸리기 화면 : 채팅 (오른쪽) -->
-				<rightChat v-show="pages.rightType === RIGHT_TYPE.UserList" :pages="pages" 
+				<rightChat v-else-if="pages.rightType === RIGHT_TYPE.UserList" :pages="pages" 
 						   @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightChat>
 				<!-- 프로필 화면 (오른쪽) -->
-				<rightProfile v-show="pages.rightType === RIGHT_TYPE.Profile" :pages="pages" 
+				<rightProfile v-else-if="pages.rightType === RIGHT_TYPE.Profile" :pages="pages" 
 							  @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightProfile>
 				<!-- 게시글 작성 화면 (오른쪽) -->
-				<rightWrite v-show="pages.rightType === RIGHT_TYPE.Write" :pages="pages" 
+				<rightWrite v-else-if="pages.rightType === RIGHT_TYPE.Write" :pages="pages" 
 							@PagePush="PagePush" @PagePop="PagePop" @PagePopAndMove="PagePopAndMove"></rightWrite>
 				<!-- 방 생성 화면 (오른쪽) -->
-				<rightCreateRoom v-show="pages.rightType === RIGHT_TYPE.CreateRoom" :pages="pages" 
+				<rightCreateRoom v-else-if="pages.rightType === RIGHT_TYPE.CreateRoom" :pages="pages" 
 						   @PagePush="PagePush" @PagePopAndMove="PagePopAndMove"></rightCreateRoom>
 			</div>
 			<!----------------------------------- end of right-content ----------------------------------->

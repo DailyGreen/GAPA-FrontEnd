@@ -5,7 +5,7 @@
 
 			<div class="menu">
 				<Button class="btn" v-on:click="goMainPage()">홈</Button>
-				<Button class="btn" v-on:click="ChangeLeftType(LEFT_TYPE.Games)">게임 목록</Button>
+				<Button class="btn" v-on:click="toCategoryPage()">게임 목록</Button>
 			</div>
 			<!-- 	검색어창 비활성화	 -->
 			<!-- <div class="search">
@@ -70,8 +70,8 @@ export default {
 			this.$emit('goMainPage');
 		},
 		toCategoryPage : function() {
-			this.$refs.category.CallMe();
-			this.ChangeLeftType(LEFT_TYPE.Games);
+			this.$refs.category.GetCategory();
+			this.ChangeLeftType(this.LEFT_TYPE.Games);
 		},
 		JoinRoom : function(roomIdx) {	// eslint-disable-line no-unused-vars
 			this.$emit('JoinRoom');

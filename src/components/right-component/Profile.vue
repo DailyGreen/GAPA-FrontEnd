@@ -6,6 +6,7 @@
 
 			<div class="profile-curt">
 				<img class="profile-img lg-size float-center" :src="require(`@/assets/img/profile/profileImg.png`)"/>
+				<h2 class="profile-name">{{ userInfo.user_name }}</h2>
 			</div>
 			<div class="row profile-info">
 				<div class="col-md-4 text-center info-btn" v-on:click="pages.leftType = LEFT_TYPE.ProfileFollwers">
@@ -22,10 +23,7 @@
 				</div>
 			</div>
 			<!-- 	TODO : 글자 제한할 것		 -->
-			<pre class="profile-introduce">
-게임 좋아합니다.
-팔로우 환영 ^^
-			</pre>
+			<pre class="profile-introduce">{{ userInfo.user_desc }}</pre>
 			<button class="btn btn-primary write-btn" v-on:click="MoveWrite()"><i class="fas fa-3x fa-pen-square"></i></button>
 		</div>
 	</div>
@@ -35,29 +33,40 @@
 import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
 	
 export default {
-	props: {
-		pages: {
-			name: {
-				type: String,
-				default: ''
-			},
-			leftType: {
-				type: Number,
-				default: -1
-			},
-			rightType: {
-				type: Number,
-				default: -1
-			}
-		}
+	created() {
+		this.GetProfileInfo(this.user_email);
 	},
+	props: [
+		'user_email',
+		'pages'
+		// : {
+		// 	leftType: {
+		// 		type: Number,
+		// 		default: -1
+		// 	},
+		// 	rightType: {
+		// 		type: Number,
+		// 		default: -1
+		// 	}
+		// }
+	],
 	data () {
 		return {
-			LEFT_TYPE : new LEFT_TYPE(),
-			RIGHT_TYPE : new RIGHT_TYPE()
+			LEFT_TYPE: new LEFT_TYPE(),
+			RIGHT_TYPE: new RIGHT_TYPE(),
+			userInfo: ''
 		}
 	},
 	methods:{
+		GetProfileInfo: function(email) {
+			this.$http.get(`http://localhost:3000/users/profile/${ email }`)
+				.then(response => {
+					this.userInfo = response.data;
+				})
+				.catch(error => {
+					console.log("MY ERO " ,error);
+				});
+		},
 		MoveWrite: function() {
 			this.$emit('PagePush', this.pages);
 			this.pages.leftType = this.LEFT_TYPE.Write;
@@ -73,8 +82,6 @@ export default {
 			this.$emit('PagePush', this.pages);
 			this.pages.leftType = this.LEFT_TYPE.ProfileUpdate;
 		}
-	},
-	components: {
 	}
 }
 </script>
@@ -94,9 +101,14 @@ export default {
 	.profile-curt {
 		margin-top: 50px;
 		text-align: center;
+		.profile-name {
+			margin-top: 8px;
+			font-size: 24px;
+			color: white;
+		}
 	}
 	.profile-info {
-		margin-top: 50px;
+		// margin-top: 50px;
 		color: white;
 		text-align: center;
 		.info-btn {

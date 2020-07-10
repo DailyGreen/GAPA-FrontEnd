@@ -5,11 +5,11 @@
 		</div>
 		<h1 class="game-title">{{gameTitle}}</h1>
 		<div class="game-info">
-			<a href="">{{gameTag}} <span> 명의 팔로워</span></a>
+			<a href="">{{gameFollowers}} <span> 명의 팔로워</span></a>
 			<a href="">{{gameRooms}} <span> 개의 방</span></a>
 		</div>
-		<button class="btn dark icon-btn follow" v-if="isFollowingGame === false" v-on:click="ChangeFollowing"><i class="far fa-heart"></i> 팔로우</button>
-		<button class="btn positive icon-btn following" v-if="isFollowingGame === true" v-on:click="ChangeFollowing"><i class="fas fa-heart"></i> 팔로윙</button>
+		<button class="btn dark icon-btn follow" v-if="isFollowingGame === false" v-on:click="gameFollowers++; ChangeFollowing();"><i class="far fa-heart"></i> 팔로우</button>
+		<button class="btn positive icon-btn following" v-if="isFollowingGame === true" v-on:click="gameFollowers--; ChangeFollowing();"><i class="fas fa-heart"></i> 팔로윙</button>
 		<br/>
 		<div class="game-decision-group">
 			<button class="btn btn-waiting" v-on:click="PagePopAndMove()">초대 대기하기</button>
@@ -48,7 +48,8 @@ export default {
 			isFollowingGame: false,
 			gameProfileImg: '',
 			gameTitle: '',
-			gameRooms: 0
+			gameRooms: 0,
+			gameFollowers: 0
 		}
 	},
 	watch: {
@@ -77,10 +78,10 @@ export default {
 			this.gameProfileImg = 'none.png';
 			this.$http.get(`http://localhost:3000/games/${ this.gameTag.toString() }/bb@bb`)
 				.then(response => {
-					console.log("R ", response);
 					this.gameProfileImg = response.data.game_img;
 					this.gameTitle = response.data.game_name;
 					this.isFollowingGame = response.data.following;
+					this.gameFollowers = response.data.followers;
 					// this.gameRooms = response.data.game_img;
 				})
 				.catch(error => {

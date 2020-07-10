@@ -46,7 +46,7 @@
 				<rightChat v-else-if="pages.rightType === RIGHT_TYPE.UserList" :pages="pages" 
 						   @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightChat>
 				<!-- 프로필 화면 (오른쪽) -->
-				<rightProfile v-else-if="pages.rightType === RIGHT_TYPE.Profile" :pages="pages" 
+				<rightProfile v-else-if="pages.rightType === RIGHT_TYPE.Profile" :pages="pages" :user_email="whoProfileEmail"
 							  @SearchUser="SearchUser" @OutRoom="OutRoom" @PagePush="PagePush" @PagePop="PagePop"></rightProfile>
 				<!-- 게시글 작성 화면 (오른쪽) -->
 				<rightWrite v-else-if="pages.rightType === RIGHT_TYPE.Write" :pages="pages" 
@@ -61,7 +61,7 @@
   </div>
 </template>
 
-<script>	
+<script>
 import { LEFT_TYPE, RIGHT_TYPE } from '@/assets/js/TypeData.js'
 
 import leftIdle from '@/components/left-component/Idle'
@@ -104,10 +104,11 @@ export default {
 				leftType: 0,
 				rightType: 0
 			},
-			pageStack : new Stack(),
-			LEFT_TYPE : new LEFT_TYPE(),
-			RIGHT_TYPE : new RIGHT_TYPE(),
-			gameTag : -1
+			pageStack: new Stack(),
+			LEFT_TYPE: new LEFT_TYPE(),
+			RIGHT_TYPE: new RIGHT_TYPE(),
+			gameTag: -1,
+			whoProfileEmail: ''
 		}
     },
 	methods:{
@@ -122,6 +123,9 @@ export default {
 			// this.pageStack.push(this.pages);
 		},
 		SearchUser : function() {
+			this.whoProfileEmail = 'bb@bb'
+			// this.bus.$emit('GetProfileInfo', 'bb@bb');
+			// this.$refs.profileInfo.GetProfileInfo('bb@bb');
 			this.PagePush(this.pages);
 			this.pages.leftType = this.LEFT_TYPE.Profile;
 			this.pages.rightType = this.RIGHT_TYPE.Profile;
